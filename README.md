@@ -8,6 +8,8 @@ Repository contents:
 
  - `scripts` = folder contents include an R script for individual and interaction analyses (`data/CNPmeta_analysis.R`), individual climate and plant functional type moderator analyses (`data/CNPmeta_moderator_ind.R`), and interaction climate and plant functional type moderator analyses (`data/CNPmeta_moderator_int.R`). Folder also includes an R script for plot-making (`data/CNPmeta_plots.R`)
 
- - `functions` = folder contents include a custom function for iterating meta-regression models across a series of variables for individual (`functions/meta_analyse.R`) and interaction (`functions/meta_analyse_int.R`). Custom function was modified from Benjamin D. Stocker and can be sourced [here](https://github.com/geco-bern/lt_cn_review/blob/main/R/analyse_meta.R).
+ - `functions` = folder contents include a custom function for iterating meta-regression models across a series of variables for individual (`functions/analyse_meta.R`) and interaction (`functions/calc_intxn_effSize_meta.R`). Custom function was modified from Benjamin D. Stocker and can be sourced [here](https://github.com/geco-bern/lt_cn_review/blob/main/R/analyse_meta.R).
+
+ - `tables` = folder contents include all table outputs from scripts
 
 For all questions and requests about data usage, please contact Evan Perkowski at [evan.a.perkowski@ttu.edu](evan.a.perkowski@ttu.edu).
