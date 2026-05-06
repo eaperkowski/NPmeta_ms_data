@@ -385,7 +385,8 @@ CNP_effect_sizes_reduced <- CNP_effect_sizes %>%
          dNPi = ifelse(response == "jmax" & dNPi < -1.5, NA, dNPi),
          dNPi = ifelse(response == "leaf_ppue" & dNPi < -4, NA, dNPi),
          dNPi = ifelse(response == "leaf_ppue" & dNPi > 2.5, NA, dNPi),
-         dNPi = ifelse(response == "rootshoot" & dNPi < -2, NA, dNPi))
+         dNPi = ifelse(response == "rootshoot" & dNPi < -2, NA, dNPi)) %>%
+  write.csv("../data/CNPmeta_logr_results_int.csv", row.names = F)
 
 ###############################################################################
 # Use helper fxn from `analyse_meta.R` to iterate through traits and determine
@@ -432,8 +433,10 @@ nfert_lnRR$nut_add <- "n"
 # Merge N, P, and NP meta results
 nfert_lnRR %>%
   full_join(pfert_lnRR) %>%
-  full_join(npfert_lnRR) # %>%
-  # write.csv("../data/CNPmeta_logr_results.csv", row.names = F)
+  full_join(npfert_lnRR) %>%
+  write.csv("../data/CNPmeta_logr_results.csv", row.names = F)
+
+
 
 # Merge N, P, and NP meta results
 out_n_modl_df %>%
@@ -453,7 +456,7 @@ out_n_modl_df %>%
          ci_range = str_c("[", sprintf("%.3f", ci.lb), ", ", sprintf("%.3f", ci.ub), "]")) %>%
   arrange(var, nut_add) %>%
   dplyr::select(var:SE, estimate_se, zval:pval, ci.lb, ci.ub, ci_range) # %>%
-  # write_excel_csv("../table/CNPmeta_ci.csv")
+  # write_excel_csv("../tables/CNPmeta_ci.csv")
 
 # Factor interaction effect size variables in a certain order
 out_int_modl_df %>%
@@ -471,5 +474,5 @@ out_int_modl_df %>%
          estimate_se = str_c(sprintf( "%.3f", estimate), "±", sprintf("%.3f", SE)),
          ci_range = str_c("[", sprintf("%.3f", ci.lb), ", ", ci.ub, "]")) %>%
   arrange(var, nut_add) %>%
-  dplyr::select(var:SE, estimate_se, zval:pval, ci.lb, ci.ub, ci_range) #%>%
-  #write_excel_csv("../table/CNPmeta_ci_int.csv")
+  dplyr::select(var:SE, estimate_se, zval:pval, ci.lb, ci.ub, ci_range) # %>%
+  # write_excel_csv("../tables/CNPmeta_ci_int.csv")

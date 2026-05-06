@@ -66,13 +66,13 @@ nadd_marea_tg_plot <- ggplot() +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.4, 0.4), breaks = seq(-0.4, 0.4, 0.2)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("M")[bold("area")]*bold(" N response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - N addition resp. to "*bolditalic("T")[bold("g")])),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_marea_tg_plot 
@@ -88,13 +88,13 @@ nadd_marea_ai_plot <- ggplot() +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.4, 0.4), breaks = seq(-0.4, 0.4, 0.2)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("M")[bold("area")]*bold(" N response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - N addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_marea_ai_plot 
@@ -110,13 +110,13 @@ nadd_marea_par_plot <- ggplot() +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.4, 0.4), breaks = seq(-0.4, 0.4, 0.2)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("M")[bold("area")]*bold(" N response to "*bolditalic("PAR")[bold("g")])),,
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - N addition resp. to "*bolditalic("PAR")[bold("g")])),,
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_marea_par_plot 
@@ -170,13 +170,13 @@ padd_marea_tg_plot <- mod_results(padd_marea_clim, mod = "gs_mat",
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.4, 0.4), breaks = seq(-0.4, 0.4, 0.2)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("M")[bold("area")]*bold(" P response to "*bolditalic("T")[bold("g")])),,
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - P addition resp. to "*bolditalic("T")[bold("g")])),,
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_marea_tg_plot 
@@ -197,13 +197,13 @@ padd_marea_ai_plot <- mod_results(padd_marea_clim, mod = "gs_ai",
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.4, 0.4), breaks = seq(-0.4, 0.4, 0.2)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("M")[bold("area")]*bold(" P response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - P addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold"),
         axis.text = element_text(color = "black", size = 20))
 padd_marea_ai_plot 
@@ -224,13 +224,13 @@ padd_marea_par_plot <- mod_results(padd_marea_clim, mod = "gs_par",
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.4, 0.4), breaks = seq(-0.4, 0.4, 0.2)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("M")[bold("area")]*bold(" P response to "*bolditalic("PAR")[bold("g")])),
-       x = "",
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - P addition resp. to "*bolditalic("PAR")[bold("g")])),
+       x = "", 
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_marea_par_plot 
@@ -278,21 +278,21 @@ npadd_marea_tg_plot <- mod_results(npadd_marea_clim, mod = "gs_mat",
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & 
                              logr > -0.5 & logr < 0.4),
              aes(x = gs_mat, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
-              alpha = 0.3, fill = "magenta") +
-  geom_smooth(method = "loess", linewidth = 2, color = "magenta", 
+              alpha = 0.3, fill = "darkorange") +
+  geom_smooth(method = "loess", linewidth = 2, color = "darkorange", 
               linetype = "dashed") +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.4, 0.4), breaks = seq(-0.4, 0.4, 0.2)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("M")[bold("area")]*bold(" N+P response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - N+P add. resp. to "*bolditalic("T")[bold("g")])),
        x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_marea_tg_plot 
@@ -306,22 +306,22 @@ npadd_marea_ai_plot <- mod_results(npadd_marea_clim, mod = "gs_ai",
                              nut_add == "np" & !is.na(gs_mat)  & gs_ai < 3 & 
                              logr > -0.5 & logr < 0.4),
              aes(x = gs_ai, y = logr, size = 1/logr_se), 
-             alpha = 0.30, shape = 21, fill = "magenta") +
+             alpha = 0.30, shape = 21, fill = "darkorange") +
   geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
-              alpha = 0.3, fill = "magenta") +
-  geom_smooth(method = "loess", linewidth = 2, color = "magenta", 
+              alpha = 0.3, fill = "darkorange") +
+  geom_smooth(method = "loess", linewidth = 2, color = "darkorange", 
               linetype = "dashed") +
-  scale_fill_manual(values = "magenta") +
+  scale_fill_manual(values = "darkorange") +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.4, 0.4), breaks = seq(-0.4, 0.4, 0.2)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("M")[bold("area")]*bold(" N+P response to "*bolditalic("MI")[bold("g")])),,
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - N+P addition resp. to "*bolditalic("MI")[bold("g")])),,
        x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_marea_ai_plot 
@@ -333,17 +333,17 @@ npadd_marea_par_plot <- ggplot() +
                              nut_add == "np" & !is.na(gs_mat)  & gs_ai < 3 & 
                              logr > -0.5 & logr < 0.4),
              aes(x = gs_par, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.4, 0.4), breaks = seq(-0.4, 0.4, 0.2)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("M")[bold("area")]*bold(" N+P response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - N+P add. resp. to "*bolditalic("PAR")[bold("g")])),
        x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   theme_classic(base_size = 20) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_marea_par_plot
@@ -359,15 +359,15 @@ marea_clim_summary <- rbind(nadd_marea_clim_summary,
          across(zval:ci.ub, ~ round(.x, digits = 4)))
 
 # Create plot
-# png("../plots/supp/CNP_figSX_marea_climate.png", height = 14, width = 14,
-#     units = "in", res = 600)
+png("../plots/supplement/CNP_figS1_marea_climate.png", height = 14, width = 15,
+    units = "in", res = 600)
 ggarrange(nadd_marea_tg_plot, nadd_marea_ai_plot, nadd_marea_par_plot,
           padd_marea_tg_plot, padd_marea_ai_plot, padd_marea_par_plot,
           npadd_marea_tg_plot, npadd_marea_ai_plot, npadd_marea_par_plot,
           ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom",
           labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)"),
-          font.label = list(size = 22))
-# dev.off()
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 ##############################################################################
 # Nmass climate moderators
@@ -417,13 +417,13 @@ nadd_nmass_tg_plot <- mod_results(nadd_nmass_clim, mod = "gs_mat",
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.3, 0.6), breaks = seq(-0.3, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" N response to "*bolditalic("T")[bold("g")])),,
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - N addition resp. to "*bolditalic("T")[bold("g")])),,
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_nmass_tg_plot 
@@ -438,13 +438,13 @@ nadd_nmass_ai_plot <- ggplot() +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.3, 0.6), breaks = seq(-0.3, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" N response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - N addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_nmass_ai_plot 
@@ -459,13 +459,13 @@ nadd_nmass_par_plot <- ggplot() +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.3, 0.6), breaks = seq(-0.3, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" N response to "*bolditalic("PAR")[bold("g")])),,
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - N addition resp. to "*bolditalic("PAR")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_nmass_par_plot 
@@ -514,13 +514,13 @@ padd_nmass_tg_plot <- ggplot() +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.6, 0.6), breaks = seq(-0.6, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" P response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - P addition resp. to "*bolditalic("T")[bold("g")])),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_nmass_tg_plot 
@@ -536,13 +536,13 @@ padd_nmass_ai_plot <- ggplot() +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.6, 0.6), breaks = seq(-0.6, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" P response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - P addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_nmass_ai_plot 
@@ -558,13 +558,13 @@ padd_nmass_par_plot <- ggplot() +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.6, 0.6), breaks = seq(-0.6, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" P response to "*bolditalic("PAR")[bold("g")])),,
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - P addition resp. to "*bolditalic("PAR")[bold("g")])),,
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_nmass_par_plot 
@@ -611,20 +611,20 @@ npadd_nmass_tg_plot <- mod_results(npadd_nmass_clim, mod = "gs_mat",
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & 
                              logr < 0.7 & logr > -0.3),
              aes(x = gs_mat, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
-              alpha = 0.3, fill = "magenta") +
-  geom_smooth(method = "loess", linewidth = 2, color = "magenta") +
+              alpha = 0.3, fill = "darkorange") +
+  geom_smooth(method = "loess", linewidth = 2, color = "darkorange") +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.3, 0.6), breaks = seq(-0.3, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" N+P response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - N+P add. resp. to "*bolditalic("T")[bold("g")])),
        x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_nmass_tg_plot
@@ -636,17 +636,17 @@ npadd_nmass_ai_plot <- ggplot() +
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & 
                              logr < 0.7 & logr > -0.3),
              aes(x = gs_ai, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.3, 0.6), breaks = seq(-0.3, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" N+P response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - N+P add. resp. to "*bolditalic("MI")[bold("g")])),
        x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_nmass_ai_plot 
@@ -658,17 +658,17 @@ npadd_nmass_par_plot <- ggplot() +
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & 
                              logr < 0.7 & logr > -0.3),
              aes(x = gs_par, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.3, 0.6), breaks = seq(-0.3, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" N+P response to "*bolditalic("PAR")[bold("g")])),,
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - N+P add. resp. to "*bolditalic("PAR")[bold("g")])),,
        x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_nmass_par_plot
@@ -684,15 +684,15 @@ nmass_clim_summary <- rbind(nadd_nmass_clim_summary,
          across(zval:ci.ub, ~ round(.x, digits = 4)))
 
 # Create plot
-# png("../plots/supp/CNP_figSX_nmass_climate.png", height = 14, width = 14,
-#     units = "in", res = 600)
+png("../plots/supplement/CNP_figS2_nmass_climate.png", height = 14, width = 15,
+    units = "in", res = 600)
 ggarrange(nadd_nmass_tg_plot, nadd_nmass_ai_plot, nadd_nmass_par_plot,
           padd_nmass_tg_plot, padd_nmass_ai_plot, padd_nmass_par_plot,
           npadd_nmass_tg_plot, npadd_nmass_ai_plot, npadd_nmass_par_plot,
           ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom",
           labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)"),
-          font.label = list(size = 22))
-# dev.off()
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 ##############################################################################
 # Narea climate moderators
@@ -745,13 +745,13 @@ nadd_narea_tg_plot <- mod_results(nadd_narea_clim, mod = "gs_mat",
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.5, 1), breaks = seq(-0.5, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("area")]*bold(" N response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - N addition resp. to "*bolditalic("T")[bold("g")])),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_narea_tg_plot 
@@ -772,13 +772,13 @@ nadd_narea_ai_plot <- mod_results(nadd_narea_clim, mod = "gs_ai",
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.5, 1), breaks = seq(-0.5, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("area")]*bold(" N response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - N addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_narea_ai_plot 
@@ -793,13 +793,13 @@ nadd_narea_par_plot <- ggplot(data = subset(meta_results, myvar == "leaf_n_area"
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.5, 1), breaks = seq(-0.5, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("area")]*bold(" N response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - N addition resp. to "*bolditalic("PAR")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_narea_par_plot 
@@ -847,13 +847,13 @@ padd_narea_tg_plot <- ggplot() +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.5, 1), breaks = seq(-0.5, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("area")]*bold(" P response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - P addition resp. to "*bolditalic("T")[bold("g")])),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_narea_tg_plot 
@@ -869,13 +869,13 @@ padd_narea_ai_plot <- ggplot() +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.5, 1), breaks = seq(-0.5, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("area")]*bold(" P response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - P addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_narea_ai_plot 
@@ -891,13 +891,13 @@ padd_narea_par_plot <- ggplot() +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.5, 1), breaks = seq(-0.5, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("area")]*bold(" P response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - P addition resp. to "*bolditalic("PAR")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_narea_par_plot 
@@ -942,20 +942,20 @@ npadd_narea_tg_plot <- mod_results(npadd_narea_clim, mod = "gs_mat",
                              nut_add == "np" & !is.na(gs_mat) & 
                              gs_ai < 3 & logr > -0.2),
              aes(x = gs_mat, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
-              alpha = 0.3, fill = "magenta") +
-  geom_smooth(method = "loess", linewidth = 2, color = "magenta", linetype = "dashed") +
+              alpha = 0.3, fill = "darkorange") +
+  geom_smooth(method = "loess", linewidth = 2, color = "darkorange", linetype = "dashed") +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.3, 0.6), breaks = seq(-0.3, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("area")]*bold(" N+P response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - N+P add. resp. to "*bolditalic("T")[bold("g")])),
        x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_narea_tg_plot 
@@ -967,17 +967,17 @@ npadd_narea_ai_plot <- ggplot() +
                              nut_add == "np" & !is.na(gs_mat) & 
                              gs_ai < 3 & logr > -0.2),
              aes(x = gs_ai, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.3, 0.6), breaks = seq(-0.3, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("area")]*bold(" N+P response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - N+P add. resp. to "*bolditalic("MI")[bold("g")])),
        x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_narea_ai_plot 
@@ -989,17 +989,17 @@ npadd_narea_par_plot <- ggplot() +
                              nut_add == "np" & !is.na(gs_mat) & 
                              gs_ai < 3 & logr > -0.2),
              aes(x = gs_par, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.3, 0.6), breaks = seq(-0.3, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("N")[bold("area")]*bold(" N+P response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - N+P add. resp. to "*bolditalic("PAR")[bold("g")])),
        x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_narea_par_plot 
@@ -1015,15 +1015,15 @@ narea_clim_summary <- rbind(nadd_narea_clim_summary,
          across(zval:ci.ub, ~ round(.x, digits = 4)))
 
 # Create plot
-# png("../plots/supp/CNP_figSX_narea_climate.png", height = 14, width = 14,
-#     units = "in", res = 600)
+png("../plots/supplement/CNP_figS3_narea_climate.png", height = 14, width = 15,
+    units = "in", res = 600)
 ggarrange(nadd_narea_tg_plot, nadd_narea_ai_plot, nadd_narea_par_plot,
           padd_narea_tg_plot, padd_narea_ai_plot, padd_narea_par_plot,
           npadd_narea_tg_plot, npadd_narea_ai_plot, npadd_narea_par_plot,
           ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom",
           labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)"),
-          font.label = list(size = 22))
-# dev.off()
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 ##############################################################################
 # Pmass climate moderators
@@ -1069,13 +1069,13 @@ nadd_pmass_tg_plot <- ggplot() +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.6, 0.6), breaks = seq(-0.6, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" N response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - N addition resp. to "*bolditalic("T")[bold("g")])),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_pmass_tg_plot 
@@ -1090,13 +1090,13 @@ nadd_pmass_ai_plot <- ggplot() +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.6, 0.6), breaks = seq(-0.6, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" N response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - N addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_pmass_ai_plot 
@@ -1111,13 +1111,13 @@ nadd_pmass_par_plot <- ggplot() +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.6, 0.6), breaks = seq(-0.6, 0.6, 0.3)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" N response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - N addition resp. to "*bolditalic("PAR")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_pmass_par_plot 
@@ -1164,13 +1164,13 @@ padd_pmass_tg_plot <- ggplot() +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.5, 2), breaks = seq(-0.5, 2, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" P response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - P addition resp. to "*bolditalic("T")[bold("g")])),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_pmass_tg_plot 
@@ -1190,13 +1190,13 @@ padd_pmass_ai_plot <- mod_results(padd_pmass_clim, mod = "gs_ai",
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.5, 2), breaks = seq(-0.5, 2, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" P response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - P addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_pmass_ai_plot 
@@ -1211,13 +1211,13 @@ padd_pmass_par_plot <- ggplot() +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.5, 2), breaks = seq(-0.5, 2, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" P response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - P addition resp. to "*bolditalic("PAR")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_pmass_par_plot 
@@ -1262,20 +1262,20 @@ npadd_pmass_tg_plot <- mod_results(npadd_pmass_clim, mod = "gs_mat",
   geom_point(data = subset(meta_results, myvar == "leaf_p_mass" & 
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3),
              aes(x = gs_mat, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
-              alpha = 0.3, fill = "magenta") +
-  geom_smooth(method = "loess", linewidth = 2, color = "magenta", linetype = "dashed") +
+              alpha = 0.3, fill = "darkorange") +
+  geom_smooth(method = "loess", linewidth = 2, color = "darkorange", linetype = "dashed") +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.5, 2), breaks = seq(-0.5, 2, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" N+P response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - N+P add. resp. to "*bolditalic("T")[bold("g")])),
        x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_pmass_tg_plot 
@@ -1286,17 +1286,17 @@ npadd_pmass_ai_plot <- ggplot() +
   geom_point(data = subset(meta_results, myvar == "leaf_p_mass" & 
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3),
              aes(x = gs_ai, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.5, 2), breaks = seq(-0.5, 2, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" N+P response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - N+P add. resp. to "*bolditalic("MI")[bold("g")])),
        x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_pmass_ai_plot 
@@ -1307,17 +1307,17 @@ npadd_pmass_par_plot <- ggplot() +
   geom_point(data = subset(meta_results, myvar == "leaf_p_mass" & 
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3),
              aes(x = gs_par, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.5, 2), breaks = seq(-0.5, 2, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" N+P response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - N+P add. resp. to "*bolditalic("PAR")[bold("g")])),
        x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_pmass_par_plot 
@@ -1333,15 +1333,15 @@ pmass_clim_summary <- rbind(nadd_pmass_clim_summary,
          across(zval:ci.ub, ~ round(.x, digits = 4)))
 
 # Create plot
-# png("../plots/supp/CNP_figSX_pmass_climate.png", height = 14, width = 14,
-#     units = "in", res = 600)
+png("../plots/supplement/CNP_figS4_pmass_climate.png", height = 14, width = 15,
+    units = "in", res = 600)
 ggarrange(nadd_pmass_tg_plot, nadd_pmass_ai_plot, nadd_pmass_par_plot,
           padd_pmass_tg_plot, padd_pmass_ai_plot, padd_pmass_par_plot,
           npadd_pmass_tg_plot, npadd_pmass_ai_plot, npadd_pmass_par_plot,
           ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom",
           labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)"),
-          font.label = list(size = 22))
-# dev.off()
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 ##############################################################################
 # Parea climate moderators
@@ -1388,13 +1388,13 @@ nadd_parea_tg_plot <- ggplot() +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("area")]*bold(" N response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - N addition resp. to "*bolditalic("T")[bold("g")])),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_parea_tg_plot 
@@ -1405,17 +1405,17 @@ nadd_parea_ai_plot <- ggplot() +
   geom_point(data = subset(meta_results, myvar == "leaf_p_area" & 
                              nut_add == "n" & !is.na(gs_mat) & gs_ai < 3),
              aes(x = gs_ai, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "blue", shape = 21) +
+             alpha = 0.30, fill = "red", shape = 21) +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("area")]*bold(" N response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - N addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_parea_ai_plot 
@@ -1426,17 +1426,17 @@ nadd_parea_par_plot <- ggplot() +
   geom_point(data = subset(meta_results, myvar == "leaf_p_area" & 
                              nut_add == "n" & !is.na(gs_mat) & gs_ai < 3),
              aes(x = gs_par, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "blue", shape = 21) +
+             alpha = 0.30, fill = "red", shape = 21) +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("area")]*bold(" N response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - N addition resp. to "*bolditalic("PAR")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_parea_par_plot 
@@ -1488,13 +1488,13 @@ padd_parea_tg_plot <- mod_results(padd_parea_clim, mod = "gs_mat",
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.5, 2), breaks = seq(-0.5, 2, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("area")]*bold(" P response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - P addition resp. to "*bolditalic("T")[bold("g")])),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_parea_tg_plot 
@@ -1514,13 +1514,13 @@ padd_parea_ai_plot <- mod_results(padd_parea_clim, mod = "gs_ai",
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.5, 2), breaks = seq(-0.5, 2, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("area")]*bold(" P response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - P addition resp. to "*bolditalic("MI")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_parea_ai_plot 
@@ -1540,13 +1540,13 @@ padd_parea_par_plot <- mod_results(padd_parea_clim, mod = "gs_par",
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.5, 2), breaks = seq(-0.5, 2, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("area")]*bold(" P response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - P addition resp. to "*bolditalic("PAR")[bold("g")])),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_parea_par_plot 
@@ -1590,17 +1590,17 @@ npadd_parea_tg_plot <- ggplot() +
                              nut_add == "np" & !is.na(gs_mat) & 
                              gs_ai < 3 & logr > -1 & logr < 1.25),
              aes(x = gs_mat, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.5, 1.5), breaks = seq(-0.5, 1.5, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("area")]*bold(" N+P response to "*bolditalic("T")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - N+P add. resp. to "*bolditalic("T")[bold("g")])),
        x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_parea_tg_plot 
@@ -1614,20 +1614,20 @@ npadd_parea_ai_plot <- mod_results(npadd_parea_clim, mod = "gs_ai",
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & 
                              logr > -1 & logr < 1.25),
              aes(x = gs_ai, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
-              alpha = 0.3, fill = "magenta") +
-  geom_smooth(method = "loess", linewidth = 2, color = "magenta") +
+              alpha = 0.3, fill = "darkorange") +
+  geom_smooth(method = "loess", linewidth = 2, color = "darkorange") +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.5, 1.5), breaks = seq(-0.5, 1.5, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("area")]*bold(" N+P response to "*bolditalic("MI")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - N+P add. resp. to "*bolditalic("MI")[bold("g")])),
        x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_parea_ai_plot 
@@ -1641,20 +1641,20 @@ npadd_parea_par_plot <- mod_results(padd_parea_clim, mod = "gs_par",
                              nut_add == "np" & !is.na(gs_mat) & 
                              gs_ai < 3 & logr > -1 & logr < 1.25),
              aes(x = gs_par, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
-              alpha = 0.3, fill = "magenta") +
-  geom_smooth(method = "loess", linewidth = 2, color = "magenta") +
+              alpha = 0.3, fill = "darkorange") +
+  geom_smooth(method = "loess", linewidth = 2, color = "darkorange") +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.5, 1.5), breaks = seq(-0.5, 1.5, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bolditalic("P")[bold("area")]*bold(" N+P response to "*bolditalic("PAR")[bold("g")])),
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - N+P add. resp. to "*bolditalic("PAR")[bold("g")])),
        x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_parea_par_plot 
@@ -1671,15 +1671,15 @@ parea_clim_summary <- rbind(nadd_parea_clim_summary,
          across(zval:ci.ub, ~ round(.x, digits = 4)))
 
 # Create plot
-# png("../plots/supp/CNP_figSX_parea_climate.png", height = 14, width = 14,
-#     units = "in", res = 600)
+png("../plots/supplement/CNP_figS5_parea_climate.png", height = 14, width = 15,
+    units = "in", res = 600)
 ggarrange(nadd_parea_tg_plot, nadd_parea_ai_plot, nadd_parea_par_plot,
           padd_parea_tg_plot, padd_parea_ai_plot, padd_parea_par_plot,
           npadd_parea_tg_plot, npadd_parea_ai_plot, npadd_parea_par_plot,
           ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom",
           labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)"),
-          font.label = list(size = 22))
-# dev.off()
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 ##############################################################################
 # Leaf N:P climate moderators
@@ -1730,13 +1730,13 @@ nadd_leafnp_tg_plot <- mod_results(nadd_leafnp_clim, mod = "gs_mat",
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-0.5, 1), breaks = seq(-0.5, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bold("Leaf N:P N response to ")*bolditalic("T")[bold("g")]),
+  labs(title = expression(bold("Leaf N:P - N addition resp. to ")*bolditalic("T")[bold("g")]),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_leafnp_tg_plot 
@@ -1756,13 +1756,13 @@ nadd_leafnp_ai_plot <- mod_results(nadd_leafnp_clim, mod = "gs_ai",
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-0.5, 1), breaks = seq(-0.5, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bold("Leaf N:P N response to ")*bolditalic("MI")[bold("g")]),
+  labs(title = expression(bold("Leaf N:P - N addition resp. to ")*bolditalic("MI")[bold("g")]),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_leafnp_ai_plot 
@@ -1777,13 +1777,13 @@ nadd_leafnp_par_plot <- ggplot() +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-0.5, 1), breaks = seq(-0.5, 1, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bold("Leaf N:P N response to ")*bolditalic("PAR")[bold("g")]),
+  labs(title = expression(bold("Leaf N:P - N addition resp. to ")*bolditalic("PAR")[bold("g")]),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 nadd_leafnp_par_plot 
@@ -1834,13 +1834,13 @@ padd_leafnp_tg_plot <- mod_results(padd_leafnp_clim, mod = "gs_mat",
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-2, 0.5), breaks = seq(-2, 0.5, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bold("Leaf N:P P response to ")*bolditalic("T")[bold("g")]),
+  labs(title = expression(bold("Leaf N:P - P addition resp. to ")*bolditalic("T")[bold("g")]),
        x = "",
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_leafnp_tg_plot 
@@ -1860,13 +1860,13 @@ padd_leafnp_ai_plot <- mod_results(padd_leafnp_clim, mod = "gs_ai",
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-2, 0.5), breaks = seq(-2, 0.5, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bold("Leaf N:P P response to ")*bolditalic("MI")[bold("g")]),
+  labs(title = expression(bold("Leaf N:P - P addition resp. to ")*bolditalic("MI")[bold("g")]),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_leafnp_ai_plot 
@@ -1881,13 +1881,13 @@ padd_leafnp_par_plot <- ggplot() +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-2, 0.5), breaks = seq(-2, 0.5, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bold("Leaf N:P P response to ")*bolditalic("PAR")[bold("g")]),
+  labs(title = expression(bold("Leaf N:P - P addition resp. to ")*bolditalic("PAR")[bold("g")]),
        x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 padd_leafnp_par_plot 
@@ -1929,40 +1929,38 @@ npadd_leafnp_tg_plot <-  ggplot() +
   geom_point(data = subset(meta_results, myvar == "leaf_np" & 
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & logr > -1.45),
              aes(x = gs_mat, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
   scale_y_continuous(limits = c(-1.5, 0.5), breaks = seq(-1.5, 0.5, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bold("Leaf N:P N+P response to ")*bolditalic("T")[bold("g")]),
+  labs(title = expression(bold("Leaf N:P - N+P add. resp. to ")*bolditalic("T")[bold("g")]),
        x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_leafnp_tg_plot 
 
 # Aridity plot
-npadd_leafnp_ai_plot <- mod_results(padd_leafnp_clim, mod = "gs_ai",
-                                   group = "exp", subset = TRUE)$mod_table %>%
-  ggplot(aes(x = moderator, y = estimate)) +
+npadd_leafnp_ai_plot <- ggplot() +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_np" & 
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & logr > -1.45),
              aes(x = gs_ai, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
   scale_y_continuous(limits = c(-1.5, 0.5), breaks = seq(-1.5, 0.5, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bold("Leaf N:P N+P response to ")*bolditalic("MI")[bold("g")]),
+  labs(title = expression(bold("Leaf N:P - N+P add. resp. to ")*bolditalic("MI")[bold("g")]),
        x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
-  theme(title = element_text(size = 15.5),
+  theme(title = element_text(size = 14),
         axis.title = element_text(face = "bold", size = 22),
         axis.text = element_text(color = "black", size = 20))
 npadd_leafnp_ai_plot 
@@ -1973,11 +1971,11 @@ npadd_leafnp_par_plot <- ggplot() +
   geom_point(data = subset(meta_results, myvar == "leaf_np" & 
                              nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & logr > -1.45),
              aes(x = gs_par, y = logr, size = 1/logr_se), 
-             alpha = 0.30, fill = "magenta", shape = 21) +
+             alpha = 0.30, fill = "darkorange", shape = 21) +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
   scale_y_continuous(limits = c(-1.5, 0.5), breaks = seq(-1.5, 0.5, 0.5)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
-  labs(title = expression(bold("Leaf N:P N+P response to ")*bolditalic("PAR")[bold("g")]),
+  labs(title = expression(bold("Leaf N:P - N+P add. resp. to ")*bolditalic("PAR")[bold("g")]),
        x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
@@ -1999,15 +1997,15 @@ leafnp_clim_summary <- rbind(nadd_leafnp_clim_summary,
          across(zval:ci.ub, ~ round(.x, digits = 4)))
 
 # Write plots
-# png("../plots/supp/CNP_figSX_leafnp_climate.png", height = 14, width = 14.5,
-#     units = "in", res = 600)
+png("../plots/supplement/CNP_figS6_leafnp_climate.png", height = 14, width = 15.2,
+    units = "in", res = 600)
 ggarrange(nadd_leafnp_tg_plot, nadd_leafnp_ai_plot, nadd_leafnp_par_plot,
           padd_leafnp_tg_plot, padd_leafnp_ai_plot, padd_leafnp_par_plot,
           npadd_leafnp_tg_plot, npadd_leafnp_ai_plot, npadd_leafnp_par_plot,
           ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom",
           labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)"),
-          font.label = list(size = 22))
-# dev.off()
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 ##############################################################################
 # Total biomass climate moderators
@@ -2044,6 +2042,74 @@ nadd_tbio_clim_summary <- data.frame(trait = "tbio_gm2",
                                      coef(summary(nadd_tbio_clim)),
                                      row.names = NULL)
 
+# Temperature plot
+nadd_tbio_tg_plot <- mod_results(nadd_tbio_clim, mod = "gs_mat",
+                                   group = "exp", subset = TRUE)$mod_table %>%
+  ggplot(aes(x = moderator, y = estimate)) +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3 & logr > -0.75),
+             aes(x = gs_mat, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "red", shape = 21) +
+  geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
+              alpha = 0.3, fill = "red") +
+  geom_smooth(method = "loess", linewidth = 2, color = "red") +
+  scale_x_continuous(limits = c(5, 20), breaks = seq(5, 20, 5)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - N add. resp. to ")*bolditalic("T")[bold("g")]),
+       x = "",
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+nadd_tbio_tg_plot 
+
+# Aridity plot
+nadd_tbio_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
+                             nut_add == "n" & !is.na(gs_mat) & gs_ai < 3 & logr > -0.75),
+             aes(x = gs_ai, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "red", shape = 21) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - N add. resp. to ")*bolditalic("MI")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+nadd_tbio_ai_plot 
+
+# PAR plot
+nadd_tbio_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
+                             nut_add == "n" & !is.na(gs_mat) & gs_ai < 3 & logr > -0.75),
+             aes(x = gs_par, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "red", shape = 21) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - N add. resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+nadd_tbio_par_plot 
+
 ###############
 # P addition
 ###############
@@ -2075,6 +2141,70 @@ padd_tbio_clim_summary <- data.frame(trait = "tbio",
                                              "gs_ai", "gs_par"),
                                      coef(summary(padd_tbio_clim)),
                                      row.names = NULL)
+
+# Temperature plot
+padd_tbio_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_mat, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "blue", shape = 21) +
+  scale_x_continuous(limits = c(5, 20), breaks = seq(5, 20, 5)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - P add. resp. to ")*bolditalic("T")[bold("g")]),
+       x = "",
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+padd_tbio_tg_plot 
+
+# Aridity plot
+padd_tbio_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_ai, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "blue", shape = 21) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - P add. resp. to ")*bolditalic("MI")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+padd_tbio_ai_plot 
+
+# PAR plot
+padd_tbio_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_par, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "blue", shape = 21) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - P add. resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+padd_tbio_par_plot 
+
 
 ###############
 # N+P addition
@@ -2108,6 +2238,79 @@ npadd_tbio_clim_summary <- data.frame(trait = "tbio",
                                       coef(summary(npadd_tbio_clim)),
                                       row.names = NULL)
 
+# Temperature plot
+npadd_tbio_tg_plot <- mod_results(npadd_tbio_clim, mod = "gs_mat",
+                                 group = "exp", subset = TRUE)$mod_table %>%
+  ggplot(aes(x = moderator, y = estimate)) +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
+                             nut_add == "np" & !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_mat, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "darkorange", shape = 21) +
+  geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
+              alpha = 0.3, fill = "darkorange") +
+  geom_smooth(method = "loess", linewidth = 2, color = "darkorange") +
+  scale_x_continuous(limits = c(5, 20), breaks = seq(5, 20, 5)) +
+  scale_y_continuous(limits = c(-1.2, 1.2), breaks = seq(-1.2, 1.2, 0.6)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - N+P add. resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+npadd_tbio_tg_plot 
+
+# Aridity plot
+npadd_tbio_ai_plot <- mod_results(npadd_tbio_clim, mod = "gs_ai",
+                                 group = "exp", subset = TRUE)$mod_table %>%
+  ggplot(aes(x = moderator, y = estimate)) +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
+                             nut_add == "np" & !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_ai, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "darkorange", shape = 21) +
+  geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
+              alpha = 0.3, fill = "darkorange") +
+  geom_smooth(method = "loess", linewidth = 2, color = "darkorange") +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.2, 1.2), breaks = seq(-1.2, 1.2, 0.6)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - N add. resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+npadd_tbio_ai_plot 
+
+# PAR plot
+npadd_tbio_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
+                             nut_add == "np" & !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_par, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "darkorange", shape = 21) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.2, 1.2), breaks = seq(-1.2, 1.2, 0.6)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - N+P add. resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+npadd_tbio_par_plot 
+
 ###################
 # Merge total biomass results, plots
 ###################
@@ -2119,18 +2322,31 @@ tbio_clim_summary <- rbind(nadd_tbio_clim_summary,
          across(zval:ci.ub, ~ round(.x, digits = 4)))
 
 # Create plot
+png("../plots/supplement/CNP_figS7_tbio_climate.png", height = 14, width = 15,
+    units = "in", res = 600)
+ggarrange(nadd_tbio_tg_plot, nadd_tbio_ai_plot, nadd_tbio_par_plot,
+          padd_tbio_tg_plot, padd_tbio_ai_plot, padd_tbio_par_plot,
+          npadd_tbio_tg_plot, npadd_tbio_ai_plot, npadd_tbio_par_plot,
+          ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom",
+          labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)"),
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 
 ##############################################################################
 # Aboveground biomass (g/m2) climate moderators
 ##############################################################################
-
+###############
 # N addition
+###############
+
+# Visualize data distribution
 ggplot(data = meta_results %>% filter(nut_add == "n" & 
                                         myvar == "anpp" & 
                                         !is.na(gs_mat) & gs_ai < 3 & logr < 1.5)) +
   geom_point(aes(x = gs_mat, y = logr))
 
+# Model
 nadd_anpp_clim <- rma.mv(logr, 
                          logr_var,
                          method = "REML", 
@@ -2143,7 +2359,8 @@ nadd_anpp_clim <- rma.mv(logr,
                                     myvar == "anpp" & 
                                     !is.na(gs_mat) & gs_ai < 3 & logr < 1.5))
 
-nadd_agb_clim_summary <- data.frame(trait = "anpp",
+# Climate summary
+nadd_anpp_clim_summary <- data.frame(trait = "anpp",
                                     nut_add = "n",
                                     k = 111,
                                     mod = c("intrcpt", "gs_mat",
@@ -2151,12 +2368,80 @@ nadd_agb_clim_summary <- data.frame(trait = "anpp",
                                     coef(summary(nadd_anpp_clim)),
                                     row.names = NULL)
 
+# Temperature plot
+nadd_anpp_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "anpp" & 
+                             nut_add == "n" & !is.na(gs_mat) & gs_ai < 3 & logr < 1.5),
+             aes(x = gs_mat, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "red", shape = 21) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1.2, 1.2), breaks = seq(-1.2, 1.2, 0.6)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - N addition resp. to ")*bolditalic("T")[bold("g")]),
+       x = "",
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+nadd_anpp_tg_plot 
+
+# Aridity plot
+nadd_anpp_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "anpp" & 
+                             nut_add == "n" & !is.na(gs_mat) & gs_ai < 3 & logr < 1.5),
+             aes(x = gs_ai, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "red", shape = 21) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.2, 1.2), breaks = seq(-1.2, 1.2, 0.6)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - N addition resp. to ")*bolditalic("MI")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+nadd_anpp_ai_plot 
+
+# PAR plot
+nadd_anpp_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "anpp" & 
+                             nut_add == "n" & !is.na(gs_mat) & gs_ai < 3 & logr < 1.5),
+             aes(x = gs_par, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "red", shape = 21) +
+  scale_x_continuous(limits = c(450, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.2, 1.2), breaks = seq(-1.2, 1.2, 0.6)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - N addition resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+nadd_anpp_par_plot 
+
+###############
 # P addition
+###############
+
+# Visualize data distribution
 ggplot(data = meta_results %>% filter(nut_add == "p" & 
                                         myvar == "anpp" & 
                                         !is.na(gs_mat) & gs_ai < 3 & logr < 0.9 & logr > -0.8)) +
   geom_point(aes(x = gs_mat, y = logr))
 
+# Model
 padd_anpp_clim <- rma.mv(logr, 
                          logr_var,
                          method = "REML", 
@@ -2169,7 +2454,8 @@ padd_anpp_clim <- rma.mv(logr,
                                     myvar == "anpp" & 
                                     !is.na(gs_mat) & gs_ai < 3 & logr < 0.9 & logr > -0.8))
 
-padd_agb_clim_summary <- data.frame(trait = "anpp",
+# Climate summary
+padd_anpp_clim_summary <- data.frame(trait = "anpp",
                                     nut_add = "p",
                                     k = 104,
                                     mod = c("intrcpt", "gs_mat",
@@ -2177,12 +2463,81 @@ padd_agb_clim_summary <- data.frame(trait = "anpp",
                                     coef(summary(padd_anpp_clim)),
                                     row.names = NULL)
 
+# Temperature plot
+padd_anpp_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "anpp" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3 & logr < 0.9 & logr > -0.8),
+             aes(x = gs_mat, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "blue", shape = 21) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - P addition resp. to ")*bolditalic("T")[bold("g")]),
+       x = "",
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+padd_anpp_tg_plot 
+
+# Aridity plot
+padd_anpp_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "anpp" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3 & logr < 0.9 & logr > -0.8),
+             aes(x = gs_ai, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "blue", shape = 21) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - P addition resp. to ")*bolditalic("MI")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+padd_anpp_ai_plot 
+
+# PAR plot
+padd_anpp_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "anpp" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3 & logr < 0.9 & logr > -0.8),
+             aes(x = gs_par, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "blue", shape = 21) +
+  scale_x_continuous(limits = c(450, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - P addition resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+padd_anpp_par_plot
+
+
+###############
 # N+P addition
+###############
+
+# Visualize data distribution
 ggplot(data = meta_results %>% filter(nut_add == "np" & 
                                         myvar == "anpp" & 
                                         !is.na(gs_mat) & gs_ai < 3 & logr < 1.5 & logr > -0.5)) +
   geom_point(aes(x = gs_mat, y = logr))
 
+# Model
 npadd_anpp_clim <- rma.mv(logr, 
                           logr_var,
                           method = "REML", 
@@ -2195,7 +2550,8 @@ npadd_anpp_clim <- rma.mv(logr,
                                      myvar == "anpp" & 
                                      !is.na(gs_mat) & gs_ai < 3 & logr < 1.5 & logr > -0.5))
 
-npadd_agb_clim_summary <- data.frame(trait = "anpp",
+# Climate summary
+npadd_anpp_clim_summary <- data.frame(trait = "anpp",
                                      nut_add = "np",
                                      k = 102,
                                      mod = c("intrcpt", "gs_mat",
@@ -2203,23 +2559,104 @@ npadd_agb_clim_summary <- data.frame(trait = "anpp",
                                      coef(summary(npadd_anpp_clim)),
                                      row.names = NULL)
 
-## Merge Parea moderator results, with some light cleaning
-agb_clim_summary <- rbind(nadd_agb_clim_summary, 
-                           padd_agb_clim_summary, 
-                           npadd_agb_clim_summary) %>%
+# Temperature plot
+npadd_anpp_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "anpp" & 
+                             nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & logr < 1.5 & logr > -0.5),
+             aes(x = gs_mat, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "darkorange", shape = 21) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-0.5, 1.5), breaks = seq(-0.5, 1.5, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - N+P add. resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+npadd_anpp_tg_plot 
+
+# Aridity plot
+npadd_anpp_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "anpp" & 
+                             nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & logr < 1.5 & logr > -0.5),
+             aes(x = gs_ai, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "darkorange", shape = 21) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-0.5, 1.5), breaks = seq(-0.5, 1.5, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - N+P add. resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+npadd_anpp_ai_plot 
+
+# PAR plot
+npadd_anpp_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "anpp" & 
+                             nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & logr < 1.5 & logr > -0.5),
+             aes(x = gs_par, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "darkorange", shape = 21) +
+  scale_x_continuous(limits = c(450, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-0.5, 1.5), breaks = seq(-0.5, 1.5, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - N+P add. resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+npadd_anpp_par_plot
+
+
+###################
+# Merge ANPP results, plots
+###################
+## Merge ANPP moderator results, with some light cleaning
+anpp_clim_summary <- rbind(nadd_anpp_clim_summary, 
+                           padd_anpp_clim_summary, 
+                           npadd_anpp_clim_summary) %>%
   mutate(across(estimate:se, ~ round(.x, digits = 4)),
          across(zval:ci.ub, ~ round(.x, digits = 4)))
+
+# Create plot
+png("../plots/supplement/CNP_figS8_anpp_climate.png", height = 14, width = 15,
+    units = "in", res = 600)
+ggarrange(nadd_anpp_tg_plot, nadd_anpp_ai_plot, nadd_anpp_par_plot,
+          padd_anpp_tg_plot, padd_anpp_ai_plot, padd_anpp_par_plot,
+          npadd_anpp_tg_plot, npadd_anpp_ai_plot, npadd_anpp_par_plot,
+          ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom",
+          labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)"),
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 ##############################################################################
 # Belowground biomass climate moderators
 ##############################################################################
-
+###################
 # N addition
+###################
+# Visualize data distribution
 ggplot(data = meta_results %>% filter(nut_add == "n" & 
                                         myvar == "bnpp" & 
                                         !is.na(gs_mat) & gs_ai < 3 & logr > -0.9 & logr < 0.75)) +
   geom_point(aes(x = gs_mat, y = logr))
 
+# Model
 nadd_bnpp_clim <- rma.mv(logr, 
                         logr_var,
                         method = "REML", 
@@ -2232,6 +2669,7 @@ nadd_bnpp_clim <- rma.mv(logr,
                                    myvar == "bnpp" & 
                                    !is.na(gs_mat) & gs_ai < 3 & logr > -0.9 & logr < 0.75))
 
+# Climate summary
 nadd_bnpp_clim_summary <- data.frame(trait = "bnpp",
                                      nut_add = "n",
                                      k = 45,
@@ -2240,12 +2678,79 @@ nadd_bnpp_clim_summary <- data.frame(trait = "bnpp",
                                      coef(summary(nadd_bnpp_clim)),
                                      row.names = NULL)
 
+# Temperature plot
+nadd_bnpp_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "bnpp" & 
+                             nut_add == "n" & !is.na(gs_mat) & gs_ai < 3 & logr > -0.9 & logr < 0.75),
+             aes(x = gs_mat, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "red", shape = 21) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-0.6, 0.6), breaks = seq(-0.6, 0.6, 0.3)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - N addition resp. to ")*bolditalic("T")[bold("g")]),
+       x = "",
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+nadd_bnpp_tg_plot 
+
+# Aridity plot
+nadd_bnpp_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "bnpp" & 
+                             nut_add == "n" & !is.na(gs_mat) & gs_ai < 3 & logr > -0.9 & logr < 0.75),
+             aes(x = gs_ai, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "red", shape = 21) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-0.6, 0.6), breaks = seq(-0.6, 0.6, 0.3)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - N addition resp. to ")*bolditalic("MI")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+nadd_bnpp_ai_plot 
+
+# PAR plot
+nadd_bnpp_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "bnpp" & 
+                             nut_add == "n" & !is.na(gs_mat) & gs_ai < 3 & logr > -0.9 & logr < 0.75),
+             aes(x = gs_par, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "red", shape = 21) +
+  scale_x_continuous(limits = c(450, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-0.6, 0.6), breaks = seq(-0.6, 0.6, 0.3)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - N addition resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+nadd_bnpp_par_plot
+
+###################
 # P addition
+###################
+# Visualize data distribution
 ggplot(data = meta_results %>% filter(nut_add == "p" & 
                                         myvar == "bnpp" & 
                                         !is.na(gs_mat) & gs_ai < 3 & logr < 1)) +
   geom_point(aes(x = gs_mat, y = logr))
 
+# Model
 padd_bnpp_clim <- rma.mv(logr, 
                         logr_var,
                         method = "REML", 
@@ -2258,6 +2763,7 @@ padd_bnpp_clim <- rma.mv(logr,
                                    myvar == "bnpp" & 
                                    !is.na(gs_mat) & gs_ai < 3 & logr < 1))
 
+# Climate summary
 padd_bnpp_clim_summary <- data.frame(trait = "bnpp",
                                      nut_add = "p",
                                      k = 51,
@@ -2266,12 +2772,79 @@ padd_bnpp_clim_summary <- data.frame(trait = "bnpp",
                                      coef(summary(padd_bnpp_clim)),
                                      row.names = NULL)
 
+# Temperature plot
+padd_bnpp_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "bnpp" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3 & logr < 1),
+             aes(x = gs_mat, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "blue", shape = 21) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - P addition resp. to ")*bolditalic("T")[bold("g")]),
+       x = "",
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+padd_bnpp_tg_plot 
+
+# Aridity plot
+padd_bnpp_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "bnpp" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3 & logr < 1),
+             aes(x = gs_ai, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "blue", shape = 21) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - P addition resp. to ")*bolditalic("MI")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+padd_bnpp_ai_plot 
+
+# PAR plot
+padd_bnpp_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "bnpp" & 
+                             nut_add == "p" & !is.na(gs_mat) & gs_ai < 3 & logr < 1),
+             aes(x = gs_par, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "blue", shape = 21) +
+  scale_x_continuous(limits = c(450, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - P addition resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+padd_bnpp_par_plot
+
+###################
 # N+P addition
+###################
+# Visualize data distribution
 ggplot(data = meta_results %>% filter(nut_add == "np" & 
                                         myvar == "bnpp" & 
                                         !is.na(gs_mat) & gs_ai < 3 & logr > -2 & logr < 1)) +
   geom_point(aes(x = gs_mat, y = logr))
 
+# Model
 npadd_bnpp_clim <- rma.mv(logr, 
                          logr_var,
                          method = "REML", 
@@ -2284,6 +2857,7 @@ npadd_bnpp_clim <- rma.mv(logr,
                                     myvar == "bnpp" & 
                                     !is.na(gs_mat) & gs_ai < 3 & logr > -2 & logr < 1))
 
+# Climate summary
 npadd_bnpp_clim_summary <- data.frame(trait = "bnpp",
                                       nut_add = "np",
                                       k = 48,
@@ -2292,12 +2866,89 @@ npadd_bnpp_clim_summary <- data.frame(trait = "bnpp",
                                       coef(summary(npadd_bnpp_clim)),
                                       row.names = NULL)
 
-## Merge Parea moderator results, with some light cleaning
-bgb_clim_summary <- rbind(nadd_bnpp_clim_summary, 
-                          padd_bnpp_clim_summary, 
-                          npadd_bnpp_clim_summary) %>%
+# Temperature plot
+npadd_bnpp_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "bnpp" & 
+                             nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & logr > -2 & logr < 1),
+             aes(x = gs_mat, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "darkorange", shape = 21) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - N+P add. resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+npadd_bnpp_tg_plot 
+
+# Aridity plot
+npadd_bnpp_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "bnpp" & 
+                             nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & logr > -2 & logr < 1),
+             aes(x = gs_ai, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "darkorange", shape = 21) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - N+P add. resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+npadd_bnpp_ai_plot 
+
+# PAR plot
+npadd_bnpp_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results, myvar == "bnpp" & 
+                             nut_add == "np" & !is.na(gs_mat) & gs_ai < 3 & logr > -2 & logr < 1),
+             aes(x = gs_par, y = logr, size = 1/logr_se), 
+             alpha = 0.30, fill = "darkorange", shape = 21) +
+  scale_x_continuous(limits = c(450, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - N+P add. resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+npadd_bnpp_par_plot
+
+###################
+# Merge BNPP results, plots
+###################
+## Merge BNPP moderator results, with some light cleaning
+bnpp_clim_summary <- rbind(nadd_bnpp_clim_summary, 
+                           padd_bnpp_clim_summary, 
+                           npadd_bnpp_clim_summary) %>%
   mutate(across(estimate:se, ~ round(.x, digits = 4)),
          across(zval:ci.ub, ~ round(.x, digits = 4)))
+
+# Create plot
+png("../plots/supplement/CNP_figS9_bnpp_climate.png", height = 14, width = 15,
+    units = "in", res = 600)
+ggarrange(nadd_bnpp_tg_plot, nadd_bnpp_ai_plot, nadd_bnpp_par_plot,
+          padd_bnpp_tg_plot, padd_bnpp_ai_plot, padd_bnpp_par_plot,
+          npadd_bnpp_tg_plot, npadd_bnpp_ai_plot, npadd_bnpp_par_plot,
+          ncol = 3, nrow = 3, common.legend = TRUE, legend = "bottom",
+          labels = c("(a)", "(b)", "(c)", "(d)", "(e)", "(f)", "(g)", "(h)", "(i)"),
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 ##############################################################################
 # Root mass fraction climate moderators
