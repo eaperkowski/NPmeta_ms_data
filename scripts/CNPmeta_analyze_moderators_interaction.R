@@ -47,6 +47,69 @@ int_marea_clim_summary <- data.frame(trait = "marea",
                                      coef(summary(int_marea_clim)),
                                      row.names = NULL)
 
+# Temperature plot
+int_marea_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "lma" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi < 2),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_marea_tg_plot
+
+# Aridity plot
+int_marea_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "lma" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi < 2),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_marea_ai_plot 
+
+# PAR plot
+int_marea_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "lma" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi < 2),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("M")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_marea_par_plot
+
 ##############################################################################
 # Nmass climate moderators
 ##############################################################################
@@ -77,6 +140,69 @@ int_nmass_clim_summary <- data.frame(trait = "nmass",
                                              "gs_ai", "gs_par"),
                                      coef(summary(int_nmass_clim)),
                                      row.names = NULL)
+
+# Temperature plot
+int_nmass_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_n_mass" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi > -1.9),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_nmass_tg_plot
+
+# Aridity plot
+int_nmass_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_n_mass" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi > -1.9),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_nmass_ai_plot 
+
+# PAR plot
+int_nmass_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_n_mass" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi > -1.9),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_nmass_par_plot
 
 ##############################################################################
 # Narea climate moderators
@@ -109,6 +235,91 @@ int_narea_clim_summary <- data.frame(trait = "narea",
                                      coef(summary(int_narea_clim)),
                                      row.names = NULL)
 
+
+# Temperature plot
+int_narea_tg_plot <- mod_results(int_narea_clim, mod = "gs_mat",
+                                 group = "exp", subset = TRUE)$mod_table %>%
+  ggplot(aes(x = moderator, y = estimate)) +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_n_area" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
+              alpha = 0.3) +
+  geom_smooth(method = "loess", color = "black", linewidth = 2, 
+              linetype = "dashed") +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_narea_tg_plot
+
+# Aridity plot
+int_narea_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_n_area" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_narea_ai_plot 
+
+# PAR plot
+int_narea_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_n_area" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("N")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_narea_par_plot
+
+##############################################################################
+# Write figure S12
+##############################################################################
+png("../plots/supplement/CNP_figS12_leaf_clim_1.png", height = 14, width = 15,
+    units = "in", res = 600)
+ggarrange(int_marea_tg_plot, int_marea_ai_plot, int_marea_par_plot,
+          int_nmass_tg_plot, int_nmass_ai_plot, int_nmass_par_plot,
+          int_narea_tg_plot, int_narea_ai_plot, int_narea_par_plot,
+          common.legend = TRUE, legend = "bottom",
+          labels = c("(a)", "(b)", "(c)", 
+                     "(d)", "(e)", "(f)", 
+                     "(g)", "(h)", "(i)"),
+          font.label = list(size = 22), align = "hv")
+dev.off()
+
 ##############################################################################
 # Pmass climate moderators
 ##############################################################################
@@ -139,6 +350,69 @@ int_pmass_clim_summary <- data.frame(trait = "pmass",
                                              "gs_ai", "gs_par"),
                                      coef(summary(int_pmass_clim)),
                                      row.names = NULL)
+
+# Temperature plot
+int_pmass_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_p_mass" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_pmass_tg_plot
+
+# Aridity plot
+int_pmass_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_p_mass" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_pmass_ai_plot 
+
+# PAR plot
+int_pmass_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_p_mass" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_pmass_par_plot
 
 ##############################################################################
 # Parea climate moderators
@@ -171,6 +445,69 @@ int_parea_clim_summary <- data.frame(trait = "parea",
                                      coef(summary(int_parea_clim)),
                                      row.names = NULL)
 
+# Temperature plot
+int_parea_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_p_area" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_parea_tg_plot
+
+# Aridity plot
+int_parea_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_p_area" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_parea_ai_plot 
+
+# PAR plot
+int_parea_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_p_area" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bolditalic("P")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_parea_par_plot
+
 ##############################################################################
 # Leaf N:P climate moderators
 ##############################################################################
@@ -201,6 +538,95 @@ int_leafnp_clim_summary <- data.frame(trait = "leaf_np",
                                               "gs_ai", "gs_par"),
                                       coef(summary(int_leafnp_clim)),
                                       row.names = NULL)
+
+# Temperature plot
+int_leafnp_tg_plot <- mod_results(int_leafnp_clim, mod = "gs_mat",
+                                 group = "exp", subset = TRUE)$mod_table %>%
+  ggplot(aes(x = moderator, y = estimate)) +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_np" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  geom_ribbon(aes(ymax = upperCL, ymin = lowerCL),
+              alpha = 0.3) +
+  geom_smooth(method = "loess", color = "black", linewidth = 2, 
+              linetype = "dashed") +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("Leaf N:P - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = "Log-response ratio",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_leafnp_tg_plot
+
+# Aridity plot
+int_leafnp_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_np" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("Leaf N:P - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_leafnp_ai_plot 
+
+# PAR plot
+int_leafnp_par_plot <- mod_results(int_leafnp_clim, mod = "gs_par",
+                                  group = "exp", subset = TRUE)$mod_table %>%
+  ggplot(aes(x = moderator, y = estimate)) +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "leaf_np" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  geom_ribbon(aes(ymax = upperCL, ymin = lowerCL), alpha = 0.3) +
+  geom_smooth(method = "loess", color = "black", linewidth = 2) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("Leaf N:P - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_leafnp_par_plot
+
+
+##############################################################################
+# Write figure S13
+##############################################################################
+png("../plots/supplement/CNP_figS13_leaf_clim_2.png", height = 14, width = 15.5,
+    units = "in", res = 600)
+ggarrange(int_pmass_tg_plot, int_pmass_ai_plot, int_pmass_par_plot,
+          int_parea_tg_plot, int_parea_ai_plot, int_parea_par_plot,
+          int_leafnp_tg_plot, int_leafnp_ai_plot, int_leafnp_par_plot,
+          common.legend = TRUE, legend = "bottom",
+          labels = c("(a)", "(b)", "(c)", 
+                     "(d)", "(e)", "(f)", 
+                     "(g)", "(h)", "(i)"),
+          font.label = list(size = 22), align = "hv")
+dev.off()
 
 ##############################################################################
 # Total biomass climate moderators
@@ -233,6 +659,69 @@ int_tbio_clim_summary <- data.frame(trait = "tbio_gm2",
                                     coef(summary(int_tbio_clim)),
                                     row.names = NULL)
 
+# Temperature plot
+int_tbio_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "tbio_gm2" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi < 1.25),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = "",
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_tbio_tg_plot
+
+# Aridity plot
+int_tbio_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "tbio_gm2" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_tbio_ai_plot 
+
+# PAR plot
+int_tbio_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "tbio_gm2" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("Biomass - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_tbio_par_plot
+
 ##############################################################################
 # Aboveground biomass climate moderators
 ##############################################################################
@@ -263,6 +752,69 @@ int_anpp_clim_summary <- data.frame(trait = "anpp",
                                             "gs_ai", "gs_par"),
                                     coef(summary(int_anpp_clim)),
                                     row.names = NULL)
+
+# Temperature plot
+int_anpp_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "anpp" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi < 2 & dNPi > -2),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-2, 2), breaks = seq(-2, 2, 1)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_anpp_tg_plot
+
+# Aridity plot
+int_anpp_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "anpp" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi < 2 & dNPi > -2),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-2, 2), breaks = seq(-2, 2, 1)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_anpp_ai_plot 
+
+# PAR plot
+int_anpp_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "anpp" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi < 2 & dNPi > -2),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-2, 2), breaks = seq(-2, 2, 1)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("ANPP - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_anpp_par_plot
 
 ##############################################################################
 # Belowground biomass climate moderators
@@ -295,6 +847,84 @@ int_bnpp_clim_summary <- data.frame(trait = "bnpp",
                                     coef(summary(int_bnpp_clim)),
                                     row.names = NULL)
 
+# Temperature plot
+int_bnpp_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "bnpp" & 
+                             !is.na(gs_mat) & gs_ai < 3  & dNPi > -1),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_bnpp_tg_plot
+
+# Aridity plot
+int_bnpp_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "bnpp" & 
+                             !is.na(gs_mat) & gs_ai < 3 & dNPi > -1),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_bnpp_ai_plot 
+
+# PAR plot
+int_bnpp_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "bnpp" & 
+                             !is.na(gs_mat) & gs_ai < 3  & dNPi > -1),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1, 1), breaks = seq(-1, 1, 0.5)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("BNPP - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_bnpp_par_plot
+
+##############################################################################
+# Write figure S13
+##############################################################################
+png("../plots/supplement/CNP_figS14_bio_clim1.png", height = 14, width = 16,
+    units = "in", res = 600)
+ggarrange(int_tbio_tg_plot, int_tbio_ai_plot, int_tbio_par_plot,
+          int_anpp_tg_plot, int_anpp_ai_plot, int_anpp_par_plot,
+          int_bnpp_tg_plot, int_bnpp_ai_plot, int_bnpp_par_plot,
+          common.legend = TRUE, legend = "bottom",
+          labels = c("(a)", "(b)", "(c)", 
+                     "(d)", "(e)", "(f)", 
+                     "(g)", "(h)", "(i)"),
+          font.label = list(size = 22), align = "hv")
+dev.off()
+
 ##############################################################################
 # Root mass fraction climate moderators
 ##############################################################################
@@ -326,6 +956,69 @@ int_rmf_clim_summary <- data.frame(trait = "rmf",
                                    coef(summary(int_rmf_clim)),
                                    row.names = NULL)
 
+# Temperature plot
+int_rmf_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "rmf" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1.4, 1.4), breaks = seq(-1.4, 1.4, 0.7)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("RMF - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = "",
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_rmf_tg_plot
+
+# Aridity plot
+int_rmf_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "rmf" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.4, 1.4), breaks = seq(-1.4, 1.4, 0.7)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("RMF - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_rmf_ai_plot 
+
+# PAR plot
+int_rmf_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "rmf" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.4, 1.4), breaks = seq(-1.4, 1.4, 0.7)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("RMF - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = "",
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_rmf_par_plot
+
 ##############################################################################
 # Root:shoot climate moderators
 ##############################################################################
@@ -356,6 +1049,83 @@ int_rootshoot_clim_summary <- data.frame(trait = "rootshoot",
                                                  "gs_ai", "gs_par"),
                                          coef(summary(int_rootshoot_clim)),
                                          row.names = NULL)
+
+# Temperature plot
+int_rootshoot_tg_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "rootshoot" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_mat, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(5, 27), breaks = seq(5, 25, 5)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("R:S - interaction resp. to ")*bolditalic("T")[bold("g")]),
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_rootshoot_tg_plot
+
+# Aridity plot
+int_rootshoot_ai_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "rootshoot" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_ai, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(0, 3), breaks = seq(0, 3, 1)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("R:S - interaction resp. to ")*bolditalic("MI")[bold("g")]),
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_rootshoot_ai_plot 
+
+# PAR plot
+int_rootshoot_par_plot <- ggplot() +
+  geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
+  geom_point(data = subset(meta_results_int, response == "rootshoot" & 
+                             !is.na(gs_mat) & gs_ai < 3),
+             aes(x = gs_par, y = dNPi, size = 1/dNPi_se), 
+             alpha = 0.30) +
+  scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
+  labs(title = expression(bold("R:S - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       y = "",
+       size = expression(bold("Error"^"-1"))) +
+  guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
+  theme_classic(base_size = 20) +
+  theme(title = element_text(size = 14),
+        axis.title = element_text(face = "bold", size = 22),
+        axis.text = element_text(color = "black", size = 20))
+int_rootshoot_par_plot
+
+##############################################################################
+# Write figure S13
+##############################################################################
+png("../plots/supplement/CNP_figS15_bio_clim2.png", height = 10, width = 16,
+    units = "in", res = 600)
+ggarrange(int_rmf_tg_plot, int_rmf_ai_plot, int_rmf_par_plot,
+          int_rootshoot_tg_plot, int_rootshoot_ai_plot, int_rootshoot_par_plot,
+          common.legend = TRUE, legend = "bottom",
+          labels = c("(a)", "(b)", "(c)", 
+                     "(d)", "(e)", "(f)"),
+          font.label = list(size = 22), align = "hv")
+dev.off()
+
 
 ##############################################################################
 # Merge climate moderators and write to .csv

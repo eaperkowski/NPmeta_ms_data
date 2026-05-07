@@ -847,8 +847,7 @@ nadd_myc_plot <- ggplot(data = ind_pft_results %>%
   scale_shape_manual(values = c(21, 24),
                      labels = c("scavenging", "mining")) +
   scale_fill_manual(values = c("ivory", "red2"),
-                    labels = c("scavenging",
-                               "mining")) +
+                    labels = c("scavenging", "mining")) +
   scale_x_discrete(labels = c(expression(italic("J")["max"]),
                               expression(italic("V")["cmax"]),
                               expression(italic("R")["d"]),
