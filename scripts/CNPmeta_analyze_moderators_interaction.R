@@ -4,7 +4,8 @@ library(metafor)
 library(ggpubr)
 library(naniar) # to resolve NA/<NA> issue
 library(orchaRd)
-
+library(patchwork)
+ 
 # Load meta-analysis results
 meta_results_int <- read.csv("../data/CNPmeta_logr_results_int.csv") %>%
   mutate(myc_nas = ifelse(myc_assoc == "NM" | myc_assoc == "AM" |
@@ -13,8 +14,14 @@ meta_results_int <- read.csv("../data/CNPmeta_logr_results_int.csv") %>%
                           ifelse(myc_assoc == "EcM" | myc_assoc == "ErM" | 
                                    myc_assoc == "EcM-AM", "mining", NA)))
 
-# Check file structure
+# Check data structure
 head(meta_results_int)
+
+# Load pft moderator results
+pft_mods_int <- read.csv("../tables/CNPmeta_pft_moderators_int.csv")
+
+# Check data structure
+head(pft_mods_int)
 
 ##############################################################################
 # Marea climate moderators
@@ -58,8 +65,8 @@ int_marea_tg_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("M")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
-       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
-       y = "Log-response ratio",
+       x = "",
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
@@ -79,7 +86,7 @@ int_marea_ai_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("M")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("MI")[bold("g")]),
-       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -100,7 +107,7 @@ int_marea_par_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("M")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
-       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -152,8 +159,8 @@ int_nmass_tg_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
-       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
-       y = "Log-response ratio",
+       x = "",
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
@@ -173,7 +180,7 @@ int_nmass_ai_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("MI")[bold("g")]),
-       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -194,7 +201,7 @@ int_nmass_par_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("N")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
-       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -254,7 +261,7 @@ int_narea_tg_plot <- mod_results(int_narea_clim, mod = "gs_mat",
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("N")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
        x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
-       y = "Log-response ratio",
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
@@ -362,8 +369,8 @@ int_pmass_tg_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
-       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
-       y = "Log-response ratio",
+       x = "",
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
@@ -383,7 +390,7 @@ int_pmass_ai_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("MI")[bold("g")]),
-       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -404,7 +411,7 @@ int_pmass_par_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("P")[bold("mass")]*bold(" - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
-       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -456,8 +463,8 @@ int_parea_tg_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("P")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("T")[bold("g")]),
-       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
-       y = "Log-response ratio",
+       x = "",
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
@@ -477,7 +484,7 @@ int_parea_ai_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("P")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("MI")[bold("g")]),
-       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
+       x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -498,7 +505,7 @@ int_parea_par_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bolditalic("P")[bold("area")]*bold(" - interaction resp. to ")*bolditalic("PAR")[bold("g")]),
-       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
+       x = "",
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -557,7 +564,7 @@ int_leafnp_tg_plot <- mod_results(int_leafnp_clim, mod = "gs_mat",
   scale_size_continuous(limits = c(0, 30), range = c(1, 7)) +
   labs(title = expression(bold("Leaf N:P - interaction resp. to ")*bolditalic("T")[bold("g")]),
        x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
-       y = "Log-response ratio",
+       y = expression(bold("Int. effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
   theme_classic(base_size = 20) +
@@ -2120,3 +2127,364 @@ int_marea_pft_results %>%
   mutate(across(estimate:upperCL, ~round(as.numeric(.x), 3)),
          ci.range = str_c("[", sprintf("%.3f", lowerCL), ", ", sprintf("%.3f", upperCL), "]")) # %>%
   # write.csv("../data/CNPmeta_pft_moderators_int.csv", row.names = F)
+
+##############################################################################
+# Figure S18: PFT moderator plots
+##############################################################################
+
+# Leaf chemical traits - N fixation plot
+int_leaf_nfix_plot <- ggplot(data = pft_mods_int %>% 
+                            filter(trait %in% c("marea", "nmass", "narea",
+                                                "pmass", "parea", "leaf_np") & 
+                                     mod == "nfix"),
+                          aes(x = factor(trait, 
+                                         levels = c("leaf_np", "parea", "pmass", 
+                                                    "narea", "nmass", "marea")),  
+                              y = estimate, 
+                              shape = factor(comp, levels = c("Yes", "No")),
+                              fill = factor(comp, levels = c("Yes", "No")))) +
+  geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 4.5, xmax = 5.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_hline(yintercept = 0, linetype = "dashed", linewidth = 1) +
+  geom_text(aes(x = 1, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 2, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 3, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 4, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 5, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 6, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_errorbar(aes(ymin = lowerCL, ymax = upperCL),
+                position = position_dodge(width = 0.75),
+                width = 0.2, color = "black", size = 1) +
+  geom_point(position = position_dodge(width = 0.75), size = 5) +
+  scale_shape_manual(values = c(21, 23),
+                     labels = c(expression("N"["2"]*"-fixer"),
+                                "non-fixer")) +
+  scale_fill_manual(values = c("ivory", "black"),
+                    labels = c(expression("N"["2"]*"-fixer"),
+                               "non-fixer")) +
+  scale_x_discrete(labels = c("Leaf N:P",
+                              expression(italic("P")["area"]),
+                              expression(italic("P")["mass"]),
+                              expression(italic("N")["area"]),
+                              expression(italic("N")["mass"]),
+                              expression(italic("M")["area"]))) +
+  scale_y_continuous(limits = c(-1, 2), breaks = seq(-1, 2, 1)) +
+  coord_flip() +
+  labs(title = expression(bold("Leaf interaction resps. to N"["2"]*"-fixation ability")),
+       x = "",
+       y = "",
+       shape = expression(bold("N-fixation\nability"))) +   
+  theme_classic(base_size = 20) +
+  theme(legend.title = element_text(face = "bold", size = 20),
+        legend.text = element_text(size = 18),
+        axis.title.x = element_text(face = "bold", size = 22),
+        axis.text.y = element_text(size = 20, color = "black"),
+        axis.text.x = element_text(size = 20, color = "black"),
+        panel.grid = element_blank(),
+        title = element_text(face = "bold", size = 16)) +
+  guides(fill = "none")
+int_leaf_nfix_plot
+
+
+# Leaf chemical traits - mycorrhizal plot
+int_leaf_myc_plot <- ggplot(data = pft_mods_int %>% 
+                           filter(trait %in% c("marea", "nmass", "narea",
+                                               "pmass", "parea", "leaf_np") & 
+                                    mod == "myc_nas"),
+                         aes(x = factor(trait, 
+                                        levels = c("leaf_np", "parea", "pmass", 
+                                                   "narea", "nmass", "marea")),  
+                             y = estimate, 
+                             shape = factor(comp, levels = c("Scavenging", "Mining")),
+                             fill = factor(comp, levels = c("Scavenging", "Mining")))) +
+  geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 4.5, xmax = 5.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_hline(yintercept = 0, linetype = "dashed", linewidth = 1) +
+  geom_text(aes(x = 1, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 2, y = 1.85, label = "†"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 3, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 4, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 5, y = 1.85, label = "*"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 6, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_errorbar(aes(ymin = lowerCL, ymax = upperCL),
+                position = position_dodge(width = 0.75),
+                width = 0.2, color = "black", size = 1) +
+  geom_point(position = position_dodge(width = 0.75), size = 5) +
+  scale_shape_manual(values = c(21, 24),
+                     labels = c("scavenging", "mining")) +
+  scale_fill_manual(values = c("ivory", "black"),
+                    labels = c("scavenging", "mining")) +
+  scale_x_discrete(labels = c("Leaf N:P",
+                              expression(italic("P")["area"]),
+                              expression(italic("P")["mass"]),
+                              expression(italic("N")["area"]),
+                              expression(italic("N")["mass"]),
+                              expression(italic("M")["area"]))) +
+  scale_y_continuous(limits = c(-1, 2), breaks = seq(-1, 2, 1)) +
+  coord_flip() +
+  labs(title = "Leaf interaction resps. to myc. acq. strategy",
+       x = "",
+       y = "",
+       shape = expression(bold("Mycorrhizal acq.\nstrategy"))) +   
+  theme_classic(base_size = 20) +
+  theme(legend.title = element_text(face = "bold", size = 20),
+        legend.text = element_text(size = 18),
+        axis.title.x = element_text(face = "bold", size = 22),
+        axis.text.y = element_text(size = 20, color = "black"),
+        axis.text.x = element_text(size = 20, color = "black"),
+        panel.grid = element_blank(),
+        title = element_text(face = "bold", size = 16)) +
+  guides(fill = "none")
+int_leaf_myc_plot
+
+# Leaf chemical traits - photosynthetic pathway plot
+int_leaf_photo_plot <- ggplot(data = pft_mods_int %>% 
+                              filter(trait %in% c("marea", "nmass", "narea",
+                                                  "pmass", "parea", "leaf_np") & 
+                                       mod == "photo"),
+                            aes(x = factor(trait, 
+                                           levels = c("leaf_np", "parea", "pmass", 
+                                                      "narea", "nmass", "marea")), 
+                                y = estimate, 
+                                shape = factor(comp, levels = c("C3", "C4")),
+                                fill = factor(comp, levels = c("C3", "C4")))) +
+  geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 4.5, xmax = 5.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_hline(yintercept = 0, linetype = "dashed", linewidth = 1) +
+  geom_errorbar(aes(ymin = lowerCL, ymax = upperCL),
+                position = position_dodge(width = 0.75), width = 0.2, color = "black", size = 1) +
+  geom_point(position = position_dodge(width = 0.75), size = 5) +
+  geom_text(aes(x = 1, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 2, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 3, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 4, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 5, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 6, y = 1.85, label = "NS"), size = 7, fontface = "bold") +
+  scale_shape_manual(values = c(21, 22),
+                     labels = c(expression("C"["3"]),
+                                expression("C"["4"]))) +
+  scale_fill_manual(values = c("ivory", "black"),
+                    labels = c(expression("C"["3"]),
+                               expression("C"["4"]))) +
+  scale_x_discrete(labels = c("Leaf N:P",
+                              expression(italic("P")["area"]),
+                              expression(italic("P")["mass"]),
+                              expression(italic("N")["area"]),
+                              expression(italic("N")["mass"]),
+                              expression(italic("M")["area"]))) +
+  scale_y_continuous(limits = c(-1, 2), breaks = seq(-1, 2, 1)) +
+  coord_flip() +
+  labs(title = "Leaf interaction resps. to photo. pathway",
+       x = "",
+       y = expression(bold("Interaction effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
+       shape = expression(bold("Photo.\npathway"))) +   
+  theme_classic(base_size = 20) +
+  theme(legend.title = element_text(face = "bold", size = 20),
+        legend.text = element_text(size = 18),
+        axis.title.x = element_text(face = "bold", size = 22),
+        axis.text.y = element_text(size = 20, color = "black"),
+        axis.text.x = element_text(size = 20, color = "black"),
+        panel.grid = element_blank(),
+        title = element_text(face = "bold", size = 16)) +
+  guides(fill = "none")
+int_leaf_photo_plot
+
+# Photosynthetic traits - N fixation plot
+int_photo_nfix_plot <- ggplot(data = pft_mods_int %>% 
+                                filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                    "vcmax", "rd", "asat") & 
+                                         mod == "nfix"),
+                              aes(x = factor(trait, 
+                                             levels = c("ppue", "pnue", "jmax", 
+                                                        "vcmax", "rd", "asat")),  
+                                 y = estimate, 
+                                 shape = factor(comp, levels = c("Yes", "No")),
+                                 fill = factor(comp, levels = c("Yes", "No")))) +
+  geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 4.5, xmax = 5.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_hline(yintercept = 0, linetype = "dashed", linewidth = 1) +
+  geom_text(aes(x = 1, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 2, y = 1.55, label = "†"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 3, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 4, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 5, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 6, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_errorbar(aes(ymin = lowerCL, ymax = upperCL),
+                position = position_dodge(width = 0.75),
+                width = 0.2, color = "black", size = 1) +
+  geom_point(position = position_dodge(width = 0.75), size = 5) +
+  scale_shape_manual(values = c(21, 23),
+                     labels = c(expression("N"["2"]*"-fixer"),
+                                "non-fixer")) +
+  scale_fill_manual(values = c("ivory", "black"),
+                    labels = c(expression("N"["2"]*"-fixer"),
+                               "non-fixer")) +
+  scale_x_discrete(labels = c(expression(italic("PPUE")),
+                              expression(italic("PNUE")),
+                              expression(italic("J")["max"]),
+                              expression(italic("V")["cmax"]),
+                              expression(italic("R")["d"]),
+                              expression(italic("A")["sat"]))) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  coord_flip() +
+  labs(title = expression(bold("Photo. interaction resps. to N"["2"]*"-fixation ability")),
+       x = "",
+       y = "",
+       shape = expression(bold("N-fixation\nability"))) +   
+  theme_classic(base_size = 20) +
+  theme(legend.title = element_text(face = "bold", size = 20),
+        legend.text = element_text(size = 18),
+        axis.title.x = element_text(face = "bold", size = 22),
+        axis.text.y = element_text(size = 20, color = "black"),
+        axis.text.x = element_text(size = 20, color = "black"),
+        panel.grid = element_blank(),
+        title = element_text(face = "bold", size = 16)) +
+  guides(fill = "none")
+int_photo_nfix_plot
+
+
+# Photosynthetic traits - mycorrhizal plot
+int_photo_myc_plot <- ggplot(data = pft_mods_int %>% 
+                               filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                   "vcmax", "rd", "asat") & 
+                                        mod == "myc_nas"),
+                             aes(x = factor(trait, 
+                                            levels = c("ppue", "pnue", "jmax", 
+                                                       "vcmax", "rd", "asat")),  
+                                y = estimate, 
+                                shape = factor(comp, levels = c("Scavenging", "Mining")),
+                                fill = factor(comp, levels = c("Scavenging", "Mining")))) +
+  geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 4.5, xmax = 5.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_hline(yintercept = 0, linetype = "dashed", linewidth = 1) +
+  geom_text(aes(x = 1, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 2, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 3, y = 1.55, label = "*"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 4, y = 1.55, label = "*"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 5, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 6, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_errorbar(aes(ymin = lowerCL, ymax = upperCL),
+                position = position_dodge(width = 0.75),
+                width = 0.2, color = "black", size = 1) +
+  geom_point(position = position_dodge(width = 0.75), size = 5) +
+  scale_shape_manual(values = c(21, 24),
+                     labels = c("scavenging", "mining")) +
+  scale_fill_manual(values = c("ivory", "black"),
+                    labels = c("scavenging", "mining")) +
+  scale_x_discrete(labels = c(expression(italic("PPUE")),
+                              expression(italic("PNUE")),
+                              expression(italic("J")["max"]),
+                              expression(italic("V")["cmax"]),
+                              expression(italic("R")["d"]),
+                              expression(italic("A")["sat"]))) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  coord_flip() +
+  labs(title = "Photo. interaction resps. to myc. acq. strategy",
+       x = "",
+       y = "",
+       shape = expression(bold("Mycorrhizal acq.\nstrategy"))) +   
+  theme_classic(base_size = 20) +
+  theme(legend.title = element_text(face = "bold", size = 20),
+        legend.text = element_text(size = 18),
+        axis.title.x = element_text(face = "bold", size = 22),
+        axis.text.y = element_text(size = 20, color = "black"),
+        axis.text.x = element_text(size = 20, color = "black"),
+        panel.grid = element_blank(),
+        title = element_text(face = "bold", size = 16)) +
+  guides(fill = "none")
+int_photo_myc_plot
+
+# Photosynthetic traits - photosynthetic pathway plot
+int_photo_photo_plot <- ggplot(data = pft_mods_int %>% 
+                                filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                    "vcmax", "rd", "asat") & 
+                                         mod == "photo"),
+                              aes(x = factor(trait, 
+                                             levels = c("ppue", "pnue", "jmax", 
+                                                        "vcmax", "rd", "asat")),  
+                                  y = estimate, 
+                                  shape = factor(comp, levels = c("C3", "C4")),
+                                  fill = factor(comp, levels = c("C3", "C4")))) +
+  geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_rect(aes(xmin = 4.5, xmax = 5.5, ymin = -Inf, ymax = Inf),
+            fill = "lightgrey", alpha = 0.3) +
+  geom_hline(yintercept = 0, linetype = "dashed", linewidth = 1) +
+  geom_errorbar(aes(ymin = lowerCL, ymax = upperCL),
+                position = position_dodge(width = 0.75), width = 0.2, color = "black", size = 1) +
+  geom_point(position = position_dodge(width = 0.75), size = 5) +
+  geom_text(aes(x = 1, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 2, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 3, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 4, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 5, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  geom_text(aes(x = 6, y = 1.55, label = "NS"), size = 7, fontface = "bold") +
+  scale_shape_manual(values = c(21, 22),
+                     labels = c(expression("C"["3"]),
+                                expression("C"["4"]))) +
+  scale_fill_manual(values = c("ivory", "black"),
+                    labels = c(expression("C"["3"]),
+                               expression("C"["4"]))) +
+  scale_x_discrete(labels = c(expression(italic("PPUE")),
+                              expression(italic("PNUE")),
+                              expression(italic("J")["max"]),
+                              expression(italic("V")["cmax"]),
+                              expression(italic("R")["d"]),
+                              expression(italic("A")["sat"]))) +
+  scale_y_continuous(limits = c(-1.6, 1.6), breaks = seq(-1.6, 1.6, 0.8)) +
+  coord_flip() +
+  labs(title = "Photo. interaction resps. to photo. pathway",
+       x = "",
+       y = expression(bold("Interaction effect size (")*bar(bolditalic("d")[bold("NP")])*bold(")")),
+       shape = expression(bold("Photo.\npathway"))) +   
+  theme_classic(base_size = 20) +
+  theme(legend.title = element_text(face = "bold", size = 20),
+        legend.text = element_text(size = 18),
+        axis.title.x = element_text(face = "bold", size = 22),
+        axis.text.y = element_text(size = 20, color = "black"),
+        axis.text.x = element_text(size = 20, color = "black"),
+        panel.grid = element_blank(),
+        title = element_text(face = "bold", size = 16)) +
+  guides(fill = "none")
+int_photo_photo_plot
+
+
+#####################
+# Write plot
+#####################
+png("../plots/supplement/CNP_figS18_pft_int_responses.png", width = 18,
+    height = 18, units = "in", res = 600)
+(int_leaf_nfix_plot | int_photo_nfix_plot) /
+  (int_leaf_myc_plot | int_photo_myc_plot) /
+  (int_leaf_photo_plot | int_photo_photo_plot) +
+  plot_layout(guides = "collect") + 
+  plot_annotation(tag_levels = "a",
+                  tag_prefix = "(",
+                  tag_suffix = ")") &
+  theme(legend.spacing.y = unit(12, "cm"))
+dev.off()
+
+
+

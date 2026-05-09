@@ -17,7 +17,6 @@ meta_results <- read.csv("../data/CNPmeta_logr_results.csv")
 
 # Check file structure
 head(meta_results)
-head(meta_results_int)
 
 # Load PFT and climate moderator results (mainly for plots)
 pft_mods <- read.csv("../tables/CNPmeta_pft_moderators.csv")
@@ -3499,7 +3498,7 @@ npadd_rootshoot_tg_plot <- ggplot() +
   scale_y_continuous(limits = c(-0.8, 0.4), breaks = seq(-0.8, 0.4, 0.4)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
   labs(title = expression(bold("R:S - N+P add. resp. to ")*bolditalic("T")[bold("g")]),
-       x = "",
+       x = expression(bolditalic("T")[bold("g")]*bold(" ("*degree*"C)")),
        y = "Log-response ratio",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -3520,7 +3519,7 @@ npadd_rootshoot_ai_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.4, 1.4), breaks = seq(-1.4, 1.4, 0.7)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
   labs(title = expression(bold("R:S - N+P add. resp. to ")*bolditalic("MI")[bold("g")]),
-       x = "",
+       x = expression(bolditalic("MI")[bold("g")]*bold(" (unitless)")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
@@ -3541,7 +3540,7 @@ npadd_rootshoot_par_plot <- ggplot() +
   scale_y_continuous(limits = c(-1.4, 1.4), breaks = seq(-1.4, 1.4, 0.7)) +
   scale_size_continuous(limits = c(0, 224), range = c(1, 7)) +
   labs(title = expression(bold("R:S - N+P add. resp. to ")*bolditalic("PAR")[bold("g")]),
-       x = "",
+       x = expression(bolditalic("PAR")[bold("g")]*bold(" ("*mu*"mol"*" m"^"-2"*"s"^"-1"*")")),
        y = "",
        size = expression(bold("Error"^"-1"))) +
   guides(size = guide_legend(override.aes = list(fill = "grey", shape = 21))) +
