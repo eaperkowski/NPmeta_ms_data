@@ -14,9 +14,25 @@ library(ggpubr)
 library(naniar) # to resolve NA/<NA> issue
 
 # Read compiled dataset
-full_df <- read.csv("../data/CNPmeta_logr_results.csv") %>%
+full_df <- read.csv("../data/CNP_data_compiled.csv") %>%
   replace_with_na_all(~.x == "<NA>") %>%
   filter(treatment == "fnp")
+
+# Select filtering variables
+use_response <- c("anpp", "leaf_n_mass", "leaf_p_mass", "anet", "tbio_gm2", 
+                  "bnpp", "rootshoot", "lma", "lai", "rmf", "tla", "gsw", 
+                  "leaf_np", "asat", "leaf_n_area", "leaf_p_area", "vcmax", 
+                  "jmax", "jmax_vcmax", "rd", "leaf_pnue", "leaf_ppue", "amax")
+
+# Actual df with target variables
+full_df <- subset(full_df, response %in% use_response)
+
+# Look at NP addition ratios
+full_df %>%
+  filter(npk == "_110" & response == "leaf_np") %>%
+  mutate(np_add = n_t / p_t) %>%
+  summarize(min_npadd = min(np_add),
+            max_npaddp = max(np_add))
 
 # Add helper function for aggregating lnRRs across experiments
 # (determines meta-analytic mean)
@@ -34,49 +50,40 @@ experiment_summary <- full_df %>%
 # Species summary
 species_summary <- full_df %>% 
   distinct(species, family, growth_form, growth_duration,
-           photo_path, n_fixer, myc_assoc, .keep_all = TRUE) %>%
-  dplyr::select(species:myc_assoc) %>%
+           photo_path, n_fixer, myc_assoc, myc_nas, .keep_all = TRUE) %>%
+  dplyr::select(species:myc_nas) %>%
   slice(-1)
+
+# How many experiments?
+unique(experiment_summary$citation)
+
+# How many sites?
+unique(filter(experiment_summary, experiment_type == "field")$exp)
+
+# How many field experiments?
+unique(filter(experiment_summary, experiment_type == "field")$citation)
+unique(filter(experiment_summary, experiment_type == "greenhouse")$citation)
+unique(filter(experiment_summary, experiment_type == "chamber")$citation)
 
 #####################################################################
 # Set up and carry out N addition meta-analysis
 #####################################################################
 
 # Subset `full_df` to include only N addition treatments
-nfert_only <- full_df %>% filter(npk == "_100")
-head(nfert_only)
-
-# What traits are included?
-unique(nfert_only$response)
-
-# Which experiments are included?
-unique(nfert_only$citation)
-
-unique(nfert_only$response)
-
-# Select variables
-use_response_n <- c("anpp_n", "anpp_p", "anpp", "leaf_n_mass", "leaf_p_mass", "anet",
-                    "tbio_gm2", "bnpp", "rootshoot", "bgb", "lma",
-                    "lai", "rmf", "tla", "gsw", "agb", "leaf_np", "total_biomass",
-                    "asat", "leaf_wue", "leaf_n_area", "leaf_p_area", "vcmax", 
-                    "jmax", "jmax_vcmax", "rd", "leaf_pnue", "leaf_ppue",
-                    "leaf_structural_p", "leaf_metabolic_p", "leaf_nucleic_p",
-                    "leaf_residual_p", "amax", "leaf_pi", "leaf_nre", "leaf_pre", 
-                    "fine_root_biomass")
-
-nfert_responses <- nfert_only %>%
-  filter(response %in% use_response_n) %>%
+nfert_only <- full_df %>% filter(npk == "_100") %>%
   mutate(myvar = response) %>%
   mutate(myvar = ifelse(myvar %in% c("amax", "anet", "asat"),
                         "asat", myvar),
-         myvar = ifelse(myvar %in% c("bgb", "fine_root_biomass"),
-                        "bgb", myvar),
          myvar = ifelse(myvar %in% "lai", "tla", myvar))
 
-use_vars_n <- unique(nfert_responses$myvar)
+# Double check variable list
+unique(nfert_only$response)
+
+# Create vector for appending to meta-analysis results
+use_vars_n <- unique(nfert_only$myvar)
 
 # Calculate log-response ratios using `escalc` in `metafor`.
-nfert_lnRR <- nfert_responses %>% 
+nfert_lnRR <- nfert_only %>% 
   escalc(measure = "ROM",
          m1i = x_t, sd1i = sd_t, n1i = rep_t, 
          m2i = x_c, sd2i = sd_c, n2i = rep_c, 
@@ -84,29 +91,28 @@ nfert_lnRR <- nfert_responses %>%
          append = TRUE, 
          var.names = c("logr", "logr_var")) %>%
   mutate(logr_se = sqrt(logr_var) / sqrt(rep_t))  %>%
-  mutate(logr = ifelse(myvar == "sla", logr * -1, logr), 
-         myvar = ifelse(myvar == "sla", "lma", myvar),
-         logr = ifelse(myvar == "lma" & logr < -0.5, NA, logr),
-         logr = ifelse(myvar == "leaf_p_mass" & logr < -2, NA, logr),
-         logr = ifelse(myvar == "vcmax" & logr < -1, NA, logr),
-         logr = ifelse(myvar == "jmax" & logr > 1, NA, logr),
-         logr = ifelse(myvar == "jmax_vcmax" & logr > 0.3, NA, logr),
-         logr = ifelse(myvar == "leaf_pnue" & logr > 1.5, NA, logr),
-         logr = ifelse(myvar == "tbio_gm2" & logr < -0.6, NA, logr),
-         logr = ifelse(myvar == "rootshoot" & logr < -2, NA, logr))
+  mutate(logr = ifelse(myvar == "lma" & logr < -0.5, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "leaf_p_mass" & logr < -2, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "vcmax" & logr < -1, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "jmax" & logr > 1, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "jmax_vcmax" & logr > 0.3, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "leaf_pnue" & logr > 1.5, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "tbio_gm2" & logr < -0.6, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "rootshoot" & logr < -2, NA, logr)) # Remove strong outliers
 
-# Determine lnRR across multiple experiments. Takes into account
-# experiment variance and uses experiment identity as grouping
-# factor for random intercepts
-out_n <- purrr::map(as.list(use_vars_n),
-                    ~analyse_meta(nfert_lnRR %>%
-                                    rename(var = myvar), 
-                                  nam_target = .))
+# Determine lnRR across experiments. Accounts for experiment variance and
+# uses experiment as grouping factor for random intercepts
+out_n <- purrr::map(
+  as.list(use_vars_n),  
+  ~analyse_meta(nfert_lnRR %>% rename(var = myvar), nam_target = .))
+
+# Check model output
 names(out_n) <- use_vars_n
 
 # Extract summary statistics for each model
 out_n_modl <- lapply(out_n, `[[`, "modl")
 
+# Clean model results into tidy table
 out_n_modl_df <- data.frame(
   var = names(out_n_modl),
   nut_add = "n",
@@ -128,65 +134,52 @@ out_n_modl_df <- data.frame(
 #####################################################################
 
 # Subset `full_df` to include only P addition treatments
-pfert_only <- full_df %>% filter(npk == "_010")
-head(pfert_only)
-
-# What traits are included?
-unique(pfert_only$response)
-
-# Select variables
-use_response_p <- c("anpp_n", "anpp_p", "anpp", "leaf_n_mass", "leaf_p_mass", "anet",
-                    "tbio_gm2", "bnpp", "rootshoot", "bgb", "lma",
-                    "lai", "rmf", "tla", "gsw", "agb", "leaf_np", "total_biomass",
-                    "asat", "leaf_wue", "leaf_n_area", "leaf_p_area", "vcmax", 
-                    "jmax", "jmax_vcmax", "rd", "leaf_pnue", "leaf_ppue",
-                    "leaf_structural_p", "leaf_metabolic_p", "leaf_nucleic_p",
-                    "leaf_residual_p", "amax", "leaf_pi", "leaf_nre", "leaf_pre", 
-                    "fine_root_biomass")
-
-pfert_responses <- pfert_only %>%
-  filter(response %in% use_response_p) %>%
+pfert_only <- full_df %>% filter(npk == "_010") %>%
   mutate(myvar = response) %>%
   mutate(myvar = ifelse(myvar %in% c("amax", "anet", "asat"),
                         "asat", myvar),
-         myvar = ifelse(myvar %in% c("bgb", "fine_root_biomass"),
-                        "bgb", myvar),
          myvar = ifelse(myvar %in% "lai", "tla", myvar))
 
-use_vars_p <- unique(pfert_responses$myvar)
+# Double check variable list
+unique(pfert_only$response)
 
-# Calculate log-response ratios using `escalc` in `metafor`
-pfert_lnRR <- pfert_responses %>% 
+# Create vector for appending to meta-analysis results
+use_vars_p <- unique(pfert_only$myvar)
+
+# Calculate log-response ratios using `escalc` in `metafor`.
+pfert_lnRR <- pfert_only %>% 
   escalc(measure = "ROM",
          m1i = x_t, sd1i = sd_t, n1i = rep_t, 
          m2i = x_c, sd2i = sd_c, n2i = rep_c, 
          data = ., 
          append = TRUE, 
          var.names = c("logr", "logr_var")) %>%
-  mutate(logr_se = sqrt(logr_var) / sqrt(rep_t),
-         logr = ifelse(myvar == "lma" & logr < -1, NA, logr),
-         logr = ifelse(myvar == "lma" & logr > 0.7, NA, logr),
-         logr = ifelse(myvar == "leaf_n_area" & logr < -1, NA, logr),
-         logr = ifelse(myvar == "leaf_p_mass" & logr > 3, NA, logr),
-         logr = ifelse(myvar == "jmax_vcmax" & logr > 0.04, NA, logr),
-         logr = ifelse(myvar == "leaf_pnue" & logr > 1, NA, logr),
-         logr = ifelse(myvar == "leaf_ppue" & logr < -3, NA, logr),
-         logr = ifelse(myvar == "tbio_gm2" & logr > 1.5, NA, logr),
-         logr = ifelse(myvar == "anpp" & logr > 2, NA, logr),
-         logr = ifelse(myvar == "anpp" & logr < -0.8, NA, logr),
-         logr = ifelse(myvar == "rmf" & logr < -1, NA, logr))
+  mutate(logr_se = sqrt(logr_var) / sqrt(rep_t))  %>%
+  mutate(logr = ifelse(myvar == "lma" & logr < -1, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "lma" & logr > 0.7, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "leaf_n_area" & logr < -1, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "leaf_p_mass" & logr > 3, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "jmax_vcmax" & logr > 0.04, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "leaf_pnue" & logr > 1, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "leaf_ppue" & logr < -3, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "tbio_gm2" & logr > 1.5, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "anpp" & logr > 2, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "anpp" & logr < -0.8, NA, logr),# Remove strong outliers
+         logr = ifelse(myvar == "rmf" & logr < -1, NA, logr))# Remove strong outliers
 
-# Determine lnRR across multiple experiments. Takes into account
-# experiment variance and uses experiment identity as grouping
-# factor for random intercepts
-out_p <- purrr::map(as.list(use_vars_p),
-                    ~analyse_meta(pfert_lnRR %>%
-                                    rename(var = myvar), nam_target = .))
+# Determine lnRR across experiments. Accounts for experiment variance and
+# uses experiment as grouping factor for random intercepts
+out_p <- purrr::map(
+  as.list(use_vars_p),  
+  ~analyse_meta(pfert_lnRR %>% rename(var = myvar), nam_target = .))
+
+# Check model output
 names(out_p) <- use_vars_p
 
 # Extract summary statistics for each model
 out_p_modl <- lapply(out_p, `[[`, "modl")
 
+# Clean model results into tidy table
 out_p_modl_df <- data.frame(
   var = names(out_p_modl),
   nut_add = "p",
@@ -208,36 +201,20 @@ out_p_modl_df <- data.frame(
 #####################################################################
 
 # Subset `full_df` to include only N+P addition treatments
-npfert_only <- full_df %>% filter(npk == "_110")
-head(npfert_only)
-
-# What traits are included?
-unique(npfert_only$response)
-
-# Select variables
-use_response_np <- c("anpp_n", "anpp_p", "anpp", "leaf_n_mass", "leaf_p_mass", "anet",
-                    "tbio_gm2", "bnpp", "rootshoot", "bgb", "lma",
-                    "lai", "rmf", "tla", "gsw", "agb", "leaf_np", "total_biomass",
-                    "asat", "leaf_wue", "leaf_n_area", "leaf_p_area", "vcmax", 
-                    "jmax", "jmax_vcmax", "rd", "leaf_pnue", "leaf_ppue",
-                    "leaf_structural_p", "leaf_metabolic_p", "leaf_nucleic_p",
-                    "leaf_residual_p", "amax", "leaf_pi", "leaf_nre", "leaf_pre", 
-                    "fine_root_biomass")
-
-npfert_responses <- npfert_only %>%
-  filter(response %in% use_response_np) %>%
+npfert_only <- full_df %>% filter(npk == "_110") %>%
   mutate(myvar = response) %>%
   mutate(myvar = ifelse(myvar %in% c("amax", "anet", "asat"),
                         "asat", myvar),
-         myvar = ifelse(myvar %in% c("bgb", "fine_root_biomass"),
-                        "bgb", myvar),
          myvar = ifelse(myvar %in% "lai", "tla", myvar))
 
+# Double check variable list
+unique(npfert_only$response)
 
-use_vars_np <- unique(npfert_responses$myvar)
+# Create vector for appending to meta-analysis results
+use_vars_np <- unique(npfert_only$myvar)
 
-# Calculate log-response ratios using `escalc` in `metafor`
-npfert_lnRR <- npfert_responses %>% 
+# Calculate log-response ratios using `escalc` in `metafor`.
+npfert_lnRR <- npfert_only %>% 
   escalc(measure = "ROM",
          m1i = x_t, sd1i = sd_t, n1i = rep_t, 
          m2i = x_c, sd2i = sd_c, n2i = rep_c, 
@@ -245,26 +222,28 @@ npfert_lnRR <- npfert_responses %>%
          append = TRUE, 
          var.names = c("logr", "logr_var")) %>%
   mutate(logr_se = sqrt(logr_var) / sqrt(rep_t),
-         logr = ifelse(myvar == "asat" & logr < -2, NA, logr),
-         logr = ifelse(myvar == "vcmax" & logr > 1.4, NA, logr),
-         logr = ifelse(myvar == "jmax" & logr > 1.4, NA, logr),
-         logr = ifelse(myvar == "jmax_vcmax" & logr > 0.2, NA, logr),
-         logr = ifelse(myvar == "leaf_pnue" & logr < -2, NA, logr),
-         logr = ifelse(myvar == "anpp" & logr < -2, NA, logr),
-         logr = ifelse(myvar == "anpp" & logr > 3, NA, logr),
-         logr = ifelse(myvar == "bnpp" & logr < -3, NA, logr))
+         logr = ifelse(myvar == "asat" & logr < -2, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "vcmax" & logr > 1.4, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "jmax" & logr > 1.4, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "jmax_vcmax" & logr > 0.2, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "leaf_pnue" & logr < -2, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "anpp" & logr < -2, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "anpp" & logr > 3, NA, logr), # Remove strong outliers
+         logr = ifelse(myvar == "bnpp" & logr < -3, NA, logr)) # Remove strong outliers
 
-# Determine lnRR across multiple experiments. Takes into account
-# experiment variance and uses experiment identity as grouping
-# factor for random intercepts
-out_np <- purrr::map(as.list(use_vars_np),
-                    ~analyse_meta(npfert_lnRR %>%
-                                    rename(var = myvar), nam_target = .))
+# Determine lnRR across experiments. Accounts for experiment variance and
+# uses experiment as grouping factor for random intercepts
+out_np <- purrr::map(
+  as.list(use_vars_np),  
+  ~analyse_meta(npfert_lnRR %>% rename(var = myvar), nam_target = .))
+
+# Check model output
 names(out_np) <- use_vars_np
 
 # Extract summary statistics for each model
 out_np_modl <- lapply(out_np, `[[`, "modl")
 
+# Clean model results into tidy table
 out_np_modl_df <- data.frame(
   var = names(out_np_modl),
   nut_add = "np",
@@ -312,7 +291,6 @@ full_df_trt_long <- full_df %>%
                 x_p = x_t_p, sd_p = sd_t_p, rep_p = rep_t_p,
                 x_np = x_t_np, sd_np = sd_t_np, rep_np = rep_t_np)
 
-
 ###############################################################################
 # Calculate individual, main, and interaction effect sizes
 ###############################################################################
@@ -339,10 +317,10 @@ CNP_effect_sizes <- data.frame(
   full_join(experiment_summary, by = c("citation", "exp")) %>%
   replace_with_na_all(~.x == "none") %>%
   full_join(species_summary, by = "species") %>%
-  mutate(pft = str_c(photo_path, n_fixer, myc_assoc, sep = "_"),
+  mutate(pft = str_c(photo_path, n_fixer, myc_assoc, myc_nas, sep = "_"),
          dAB_se = sqrt(v_ab_int) / sqrt(rep_np)) %>%
   dplyr::select(citation, exp, latitude:experiment_type, 
-                species, family:myc_assoc, pft, response,
+                species, family:myc_nas, pft, response,
                 
                 # Individual effects
                 gNi = g_a, vNi = v_a, wNi = w_a,
@@ -363,18 +341,8 @@ CNP_effect_sizes <- data.frame(
 # `response` column
 ###############################################################################
 CNP_effect_sizes_reduced <- CNP_effect_sizes %>%
-  filter(response %in% c("anpp_n", "anpp_p", "anpp", "leaf_n_mass", "leaf_p_mass", "anet",
-         "tbio_gm2", "bnpp", "rootshoot", "bgb", "lma",
-         "lai", "rmf", "tla", "gsw", "agb", "leaf_np", "total_biomass",
-         "asat", "leaf_wue", "leaf_n_area", "leaf_p_area", "vcmax", 
-         "jmax", "jmax_vcmax", "rd", "leaf_pnue", "leaf_ppue",
-         "leaf_structural_p", "leaf_metabolic_p", "leaf_nucleic_p",
-         "leaf_residual_p", "amax", "leaf_pi", "leaf_nre", "leaf_pre", 
-         "fine_root_biomass")) %>%
   mutate(response = ifelse(response %in% c("amax", "anet", "asat"),
-                        "asat", response),
-         response = ifelse(response %in% c("bgb", "fine_root_biomass"),
-                           "bgb", response),
+                           "asat", response),
          response = ifelse(response %in% "lai", "tla", response)) %>%
   mutate(dNPi = ifelse(response == "leaf_n_area" & dNPi < -2.5, NA, dNPi),
          dNPi = ifelse(response == "leaf_p_mass" & dNPi < -2.5, NA, dNPi),
@@ -386,26 +354,29 @@ CNP_effect_sizes_reduced <- CNP_effect_sizes %>%
          dNPi = ifelse(response == "leaf_ppue" & dNPi < -4, NA, dNPi),
          dNPi = ifelse(response == "leaf_ppue" & dNPi > 2.5, NA, dNPi),
          dNPi = ifelse(response == "rootshoot" & dNPi < -2, NA, dNPi)) %>%
-  write.csv("../data/CNPmeta_logr_results_int.csv", row.names = F)
+  dplyr::select(citation, exp, response, latitude:myc_nas, gNi:dNPi_se) # %>%
+# write.csv("../data/CNPmeta_results_int.csv", row.names = F)
 
 ###############################################################################
 # Use helper fxn from `analyse_meta.R` to iterate through traits and determine
 # meta-analytic mean of the interaction effect size and associated 95% CI
 ###############################################################################
 
-# Determine interaction effect size across multiple experiments. 
-# Takes into account experiment variance and uses experiment 
-# identity as grouping factor for random intercepts
 use_vars_int <- unique(CNP_effect_sizes_reduced$response)
 
+# Determine Hedge's d interaction effect size across experiments. Accounts for 
+# experiment variance and uses experiment as grouping factor for random intercepts
 out_int <- purrr::map(as.list(use_vars_int),
                       ~analyse_meta_int(CNP_effect_sizes_reduced %>%
                                           rename(var = response), nam_target = .))
+
+# Assign names to model output
 names(out_int) <- use_vars_int
 
 # Extract summary statistics for each model
 out_int_modl <- lapply(out_int, `[[`, "modl")
 
+# Clean model results into tidy table
 out_int_modl_df <- data.frame(
   var = names(out_int_modl),
   nut_add = "int",
@@ -423,19 +394,17 @@ out_int_modl_df <- data.frame(
                        round(pval, digits = 3)))
 
 ##############################################################################
-# Plot prep
+# Model result datasets
 ##############################################################################
-# Add exp type to all data frames to merge together
-npfert_lnRR$nut_add <- "np"
-pfert_lnRR$nut_add <- "p"
-nfert_lnRR$nut_add <- "n"
 
-# Merge N, P, and NP meta results
+# Append lnRR results to compiled dataset
 nfert_lnRR %>%
   full_join(pfert_lnRR) %>%
   full_join(npfert_lnRR) %>%
-  write.csv("../data/CNPmeta_logr_results.csv", row.names = F)
-
+  mutate(nut_add = fert) %>%
+  dplyr::select(source, citation, myvar, site:npk, nut_add, n_c:p_units, background_n_mgkg,
+                olsenP_mgkg, duration:rep_t, logr:logr_se, doi) # %>%
+# write.csv("../data/CNPmeta_logr_results.csv", row.names = F)
 
 
 # Merge N, P, and NP meta results
@@ -444,35 +413,30 @@ out_n_modl_df %>%
   full_join(out_np_modl_df) %>%
   mutate(nut_add = factor(nut_add, levels = c("n", "p", "np")),
          var = factor(var, 
-                      levels = c("rootshoot", "rmf", "bgb", "bnpp", "anpp_p", 
-                                 "anpp_n", "agb", "anpp", "total_biomass", "tbio_gm2", 
-                                 "tla", "leaf_wue", "leaf_ppue", "leaf_pnue", "jmax_vcmax",
-                                 "jmax", "vcmax", "gsw", "rd", "asat", "leaf_residual_p", 
-                                 "leaf_structural_p", "leaf_nucleic_p", 
-                                 "leaf_metabolic_p", "leaf_pi", "leaf_pre",
-                                 "leaf_nre", "leaf_np", "leaf_p_area", "leaf_p_mass", 
+                      levels = c("rootshoot", "rmf", "bnpp", "anpp", "tbio_gm2", 
+                                 "tla", "leaf_ppue", "leaf_pnue", "jmax_vcmax",
+                                 "jmax", "vcmax", "gsw", "rd", "asat", 
+                                 "leaf_np", "leaf_p_area", "leaf_p_mass", 
                                  "leaf_n_area", "leaf_n_mass", "lma")),
          estimate_se = str_c(sprintf( "%.3f", estimate), "±", sprintf("%.3f", SE)),
          ci_range = str_c("[", sprintf("%.3f", ci.lb), ", ", sprintf("%.3f", ci.ub), "]")) %>%
   arrange(var, nut_add) %>%
   dplyr::select(var:SE, estimate_se, zval:pval, ci.lb, ci.ub, ci_range) # %>%
-  # write_excel_csv("../tables/CNPmeta_ci.csv")
+# write_excel_csv("../tables/CNPmeta_ci.csv")
 
 # Factor interaction effect size variables in a certain order
 out_int_modl_df %>%
   mutate(var = factor(var, 
-                      levels = c("rootshoot", "rmf", "bgb", "bnpp", "anpp_p", 
-                                 "anpp_n", "agb", "anpp", "total_biomass", "tbio_gm2", 
-                                 "tla", "leaf_wue", "leaf_ppue", "leaf_pnue", "jmax_vcmax",
-                                 "jmax", "vcmax", "gsw", "rd", "asat", "leaf_residual_p", 
-                                 "leaf_structural_p", "leaf_nucleic_p", 
-                                 "leaf_metabolic_p", "leaf_pi", "leaf_pre",
-                                 "leaf_nre", "leaf_np", "leaf_p_area", "leaf_p_mass", 
+                      levels = c("rootshoot", "rmf", "bnpp", "anpp", "tbio_gm2", 
+                                 "tla", "leaf_ppue", "leaf_pnue", "jmax_vcmax",
+                                 "jmax", "vcmax", "gsw", "rd", "asat", 
+                                 "leaf_np", "leaf_p_area", "leaf_p_mass", 
                                  "leaf_n_area", "leaf_n_mass", "lma")),
          int_type = ifelse(var %in% c("leaf_np", "anpp", "leaf_p_mass"),
-                           "synergistic", "additive"),
+                           "synergistic",
+                           ifelse(var == "jmax", "marg_syn", "additive")),
          estimate_se = str_c(sprintf( "%.3f", estimate), "±", sprintf("%.3f", SE)),
          ci_range = str_c("[", sprintf("%.3f", ci.lb), ", ", ci.ub, "]")) %>%
   arrange(var, nut_add) %>%
-  dplyr::select(var:SE, estimate_se, zval:pval, ci.lb, ci.ub, ci_range) # %>%
-  # write_excel_csv("../tables/CNPmeta_ci_int.csv")
+  dplyr::select(var:SE, estimate_se, zval:pval, ci.lb, ci.ub, ci_range, int_type) %>%
+  write_excel_csv("../tables/CNPmeta_ci_int.csv")

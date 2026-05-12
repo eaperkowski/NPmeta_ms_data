@@ -5,19 +5,14 @@ library(ggpubr)
 library(naniar) # to resolve NA/<NA> issue
 library(orchaRd)
 library(patchwork)
- 
+
 # Load meta-analysis results
-meta_results_int <- read.csv("../data/CNPmeta_logr_results_int.csv") %>%
-  mutate(myc_nas = ifelse(myc_assoc == "NM" | myc_assoc == "AM" |
-                            myc_assoc == "NM-AM", 
-                          "scavenging",
-                          ifelse(myc_assoc == "EcM" | myc_assoc == "ErM" | 
-                                   myc_assoc == "EcM-AM", "mining", NA)))
+meta_results_int <- read.csv("../data/CNPmeta_results_int.csv")
 
 # Check data structure
 head(meta_results_int)
 
-# Load pft moderator results
+# Load pft moderator results (for figs)
 pft_mods_int <- read.csv("../tables/CNPmeta_pft_moderators_int.csv")
 
 # Check data structure
@@ -548,7 +543,7 @@ int_leafnp_clim_summary <- data.frame(trait = "leaf_np",
 
 # Temperature plot
 int_leafnp_tg_plot <- mod_results(int_leafnp_clim, mod = "gs_mat",
-                                 group = "exp", subset = TRUE)$mod_table %>%
+                                  group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results_int, response == "leaf_np" & 
@@ -596,7 +591,7 @@ int_leafnp_ai_plot
 
 # PAR plot
 int_leafnp_par_plot <- mod_results(int_leafnp_clim, mod = "gs_par",
-                                  group = "exp", subset = TRUE)$mod_table %>%
+                                   group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results_int, response == "leaf_np" & 
@@ -1152,7 +1147,7 @@ int_marea_clim_summary %>%
          estimate_se = str_c(sprintf("%.3f", estimate), "±", sprintf("%.3f", se)),
          ci.range = str_c("[", sprintf("%.3f", ci.lb), ", ", sprintf("%.3f", ci.ub), "]")) %>%
   dplyr::select(trait:se, estimate_se, zval:ci.ub, ci.range) # %>%
-  #write_excel_csv("../data/CNPmeta_clim_moderators_int.csv")
+#write_excel_csv("../data/CNPmeta_clim_moderators_int.csv")
 
 ##############################################################################
 # Marea photosynthetic pathway
@@ -2126,7 +2121,7 @@ int_marea_pft_results %>%
   full_join(int_ppue_pft_results) %>%
   mutate(across(estimate:upperCL, ~round(as.numeric(.x), 3)),
          ci.range = str_c("[", sprintf("%.3f", lowerCL), ", ", sprintf("%.3f", upperCL), "]")) # %>%
-  # write.csv("../data/CNPmeta_pft_moderators_int.csv", row.names = F)
+# write.csv("../data/CNPmeta_pft_moderators_int.csv", row.names = F)
 
 ##############################################################################
 # Figure S18: PFT moderator plots
@@ -2134,15 +2129,15 @@ int_marea_pft_results %>%
 
 # Leaf chemical traits - N fixation plot
 int_leaf_nfix_plot <- ggplot(data = pft_mods_int %>% 
-                            filter(trait %in% c("marea", "nmass", "narea",
-                                                "pmass", "parea", "leaf_np") & 
-                                     mod == "nfix"),
-                          aes(x = factor(trait, 
-                                         levels = c("leaf_np", "parea", "pmass", 
-                                                    "narea", "nmass", "marea")),  
-                              y = estimate, 
-                              shape = factor(comp, levels = c("Yes", "No")),
-                              fill = factor(comp, levels = c("Yes", "No")))) +
+                               filter(trait %in% c("marea", "nmass", "narea",
+                                                   "pmass", "parea", "leaf_np") & 
+                                        mod == "nfix"),
+                             aes(x = factor(trait, 
+                                            levels = c("leaf_np", "parea", "pmass", 
+                                                       "narea", "nmass", "marea")),  
+                                 y = estimate, 
+                                 shape = factor(comp, levels = c("Yes", "No")),
+                                 fill = factor(comp, levels = c("Yes", "No")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -2192,15 +2187,15 @@ int_leaf_nfix_plot
 
 # Leaf chemical traits - mycorrhizal plot
 int_leaf_myc_plot <- ggplot(data = pft_mods_int %>% 
-                           filter(trait %in% c("marea", "nmass", "narea",
-                                               "pmass", "parea", "leaf_np") & 
-                                    mod == "myc_nas"),
-                         aes(x = factor(trait, 
-                                        levels = c("leaf_np", "parea", "pmass", 
-                                                   "narea", "nmass", "marea")),  
-                             y = estimate, 
-                             shape = factor(comp, levels = c("Scavenging", "Mining")),
-                             fill = factor(comp, levels = c("Scavenging", "Mining")))) +
+                              filter(trait %in% c("marea", "nmass", "narea",
+                                                  "pmass", "parea", "leaf_np") & 
+                                       mod == "myc_nas"),
+                            aes(x = factor(trait, 
+                                           levels = c("leaf_np", "parea", "pmass", 
+                                                      "narea", "nmass", "marea")),  
+                                y = estimate, 
+                                shape = factor(comp, levels = c("Scavenging", "Mining")),
+                                fill = factor(comp, levels = c("Scavenging", "Mining")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -2247,15 +2242,15 @@ int_leaf_myc_plot
 
 # Leaf chemical traits - photosynthetic pathway plot
 int_leaf_photo_plot <- ggplot(data = pft_mods_int %>% 
-                              filter(trait %in% c("marea", "nmass", "narea",
-                                                  "pmass", "parea", "leaf_np") & 
-                                       mod == "photo"),
-                            aes(x = factor(trait, 
-                                           levels = c("leaf_np", "parea", "pmass", 
-                                                      "narea", "nmass", "marea")), 
-                                y = estimate, 
-                                shape = factor(comp, levels = c("C3", "C4")),
-                                fill = factor(comp, levels = c("C3", "C4")))) +
+                                filter(trait %in% c("marea", "nmass", "narea",
+                                                    "pmass", "parea", "leaf_np") & 
+                                         mod == "photo"),
+                              aes(x = factor(trait, 
+                                             levels = c("leaf_np", "parea", "pmass", 
+                                                        "narea", "nmass", "marea")), 
+                                  y = estimate, 
+                                  shape = factor(comp, levels = c("C3", "C4")),
+                                  fill = factor(comp, levels = c("C3", "C4")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -2309,9 +2304,9 @@ int_photo_nfix_plot <- ggplot(data = pft_mods_int %>%
                               aes(x = factor(trait, 
                                              levels = c("ppue", "pnue", "jmax", 
                                                         "vcmax", "rd", "asat")),  
-                                 y = estimate, 
-                                 shape = factor(comp, levels = c("Yes", "No")),
-                                 fill = factor(comp, levels = c("Yes", "No")))) +
+                                  y = estimate, 
+                                  shape = factor(comp, levels = c("Yes", "No")),
+                                  fill = factor(comp, levels = c("Yes", "No")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -2367,9 +2362,9 @@ int_photo_myc_plot <- ggplot(data = pft_mods_int %>%
                              aes(x = factor(trait, 
                                             levels = c("ppue", "pnue", "jmax", 
                                                        "vcmax", "rd", "asat")),  
-                                y = estimate, 
-                                shape = factor(comp, levels = c("Scavenging", "Mining")),
-                                fill = factor(comp, levels = c("Scavenging", "Mining")))) +
+                                 y = estimate, 
+                                 shape = factor(comp, levels = c("Scavenging", "Mining")),
+                                 fill = factor(comp, levels = c("Scavenging", "Mining")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -2416,15 +2411,15 @@ int_photo_myc_plot
 
 # Photosynthetic traits - photosynthetic pathway plot
 int_photo_photo_plot <- ggplot(data = pft_mods_int %>% 
-                                filter(trait %in% c("ppue", "pnue", "jmax", 
-                                                    "vcmax", "rd", "asat") & 
-                                         mod == "photo"),
-                              aes(x = factor(trait, 
-                                             levels = c("ppue", "pnue", "jmax", 
-                                                        "vcmax", "rd", "asat")),  
-                                  y = estimate, 
-                                  shape = factor(comp, levels = c("C3", "C4")),
-                                  fill = factor(comp, levels = c("C3", "C4")))) +
+                                 filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                     "vcmax", "rd", "asat") & 
+                                          mod == "photo"),
+                               aes(x = factor(trait, 
+                                              levels = c("ppue", "pnue", "jmax", 
+                                                         "vcmax", "rd", "asat")),  
+                                   y = estimate, 
+                                   shape = factor(comp, levels = c("C3", "C4")),
+                                   fill = factor(comp, levels = c("C3", "C4")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),

@@ -4,35 +4,28 @@ library(metafor)
 library(ggpubr)
 library(naniar) # to resolve NA/<NA> issue
 library(orchaRd)
- 
+
 # Load meta-analysis results
 meta_results <- read.csv("../data/CNPmeta_logr_results.csv")
 meta_results_int <- read.csv("../data/CNPmeta_logr_results_int.csv")
 
 # Load meta-analysis confidence intervals
 meta_ci <- read.csv("../tables/CNPmeta_ci.csv") %>%
-  filter(var %in% c("leaf_np", "leaf_p_area", "leaf_p_mass", "leaf_n_area", "leaf_n_mass",
-                    "lma", "leaf_ppue", "leaf_pnue", "jmax_vcmax", "jmax", "vcmax", "gsw", "rd", "asat",
-                    "rootshoot", "rmf", "bgb", "bnpp", "agb", "anpp_p", "anpp_n", "anpp", "total_biomass",
-                    "tbio_gm2", "tla")) %>%
-  mutate(var = factor(var, levels = c("rootshoot", "rmf", "bgb", "bnpp", "agb", "anpp_p", "anpp_n",
-                                      "anpp", "total_biomass", "tbio_gm2", "leaf_ppue", "leaf_pnue", 
-                                      "jmax_vcmax", "jmax", "vcmax", "gsw", "rd", "asat",
+  mutate(var = factor(var, levels = c("rootshoot", "rmf", "bnpp", "anpp", "tbio_gm2", 
+                                      "tla", "leaf_ppue", "leaf_pnue", "jmax_vcmax",
+                                      "jmax", "vcmax", "gsw", "rd", "asat", 
                                       "leaf_np", "leaf_p_area", "leaf_p_mass", 
-                                      "leaf_n_area", "leaf_n_mass", "lma", "tla")),
+                                      "leaf_n_area", "leaf_n_mass", "lma")),
          nut_add = factor(nut_add, levels = c("np", "p", "n")),
          ci_range_plot = str_c("[", sprintf("%.3f", ci.lb), ", ", sprintf("%.3f", ci.ub), "]"),
          k_plot = str_c("(", k, ")"))
 
 meta_ci_int <- read.csv("../tables/CNPmeta_ci_int.csv") %>%
-  filter(var %in% c("leaf_np", "leaf_p_area", "leaf_p_mass", "leaf_n_area", "leaf_n_mass",
-                    "lma", "leaf_ppue", "leaf_pnue", "jmax_vcmax", "jmax", "vcmax", "gsw", "rd", "asat",
-                    "rootshoot", "rmf", "bgb", "bnpp", "agb", "anpp", "total_biomass", "tla", "tbio_gm2", "tla")) %>%
-  mutate(var = factor(var, levels = c("leaf_np", "leaf_p_area", "leaf_p_mass", 
-                                      "leaf_n_area", "leaf_n_mass",
-                                      "lma", "leaf_ppue", "leaf_pnue", 
-                                      "jmax_vcmax", "jmax", "vcmax", "gsw", "rd", "asat", "rootshoot",
-                                      "rmf", "bgb", "bnpp", "agb", "anpp", "total_biomass", "tbio_gm2", "tla")),
+  mutate(var = factor(var, levels = c("rootshoot", "rmf", "bnpp", "anpp", "tbio_gm2", 
+                                      "tla", "leaf_ppue", "leaf_pnue", "jmax_vcmax",
+                                      "jmax", "vcmax", "gsw", "rd", "asat", 
+                                      "leaf_np", "leaf_p_area", "leaf_p_mass", 
+                                      "leaf_n_area", "leaf_n_mass", "lma")),
          ci_range_plot = str_c("[", sprintf("%.3f", ci.lb), ", ", sprintf("%.3f", ci.ub), "]"),
          k_plot = str_c("(", k, ")"),
          int_type = ifelse(var == "anpp" | var == "leaf_np" | var == "jmax",
@@ -154,17 +147,17 @@ chemistry_int_plot
 # Photosynthesis individual plot
 #####################################################################
 photo_ind_plot <- ggplot(data = meta_ci %>% 
-                                    drop_na(var) %>% 
-                                    filter(var %in% c("asat",
-                                                      "rd",
-                                                      "gsw",
-                                                      "vcmax", 
-                                                      "jmax",
-                                                      "leaf_pnue", 
-                                                      "leaf_ppue")),
-                                  aes(x = var, y = estimate, 
-                                      group = factor(nut_add, 
-                                                     levels = c("np", "p", "n")))) +
+                           drop_na(var) %>% 
+                           filter(var %in% c("asat",
+                                             "rd",
+                                             "gsw",
+                                             "vcmax", 
+                                             "jmax",
+                                             "leaf_pnue", 
+                                             "leaf_ppue")),
+                         aes(x = var, y = estimate, 
+                             group = factor(nut_add, 
+                                            levels = c("np", "p", "n")))) +
   geom_rect(aes(xmin = 1.5, xmax = 2.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 3.5, xmax = 4.5, ymin = -Inf, ymax = Inf),
@@ -215,15 +208,15 @@ photo_ind_plot
 # Photosynthesis interaction plot
 #####################################################################
 photo_int_plot <- ggplot(data = meta_ci_int %>% 
-                               drop_na(var) %>% 
-                               filter(var %in% c("asat",
-                                                 "rd",
-                                                 "gsw",
-                                                 "vcmax", 
-                                                 "jmax",
-                                                 "leaf_pnue", 
-                                                 "leaf_ppue")),
-                             aes(x = var, y = estimate)) +
+                           drop_na(var) %>% 
+                           filter(var %in% c("asat",
+                                             "rd",
+                                             "gsw",
+                                             "vcmax", 
+                                             "jmax",
+                                             "leaf_pnue", 
+                                             "leaf_ppue")),
+                         aes(x = var, y = estimate)) +
   geom_rect(aes(xmin = 1.5, xmax = 2.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 3.5, xmax = 4.5, ymin = -Inf, ymax = Inf),
@@ -319,14 +312,14 @@ bio_ind_plot
 # Biomass interaction plot
 #####################################################################
 bio_int_plot <- ggplot(data = meta_ci_int %>% 
-                           drop_na(var) %>% 
-                           filter(var %in% c("rootshoot", 
-                                             "rmf", 
-                                             "bnpp",
-                                             "anpp",
-                                             "tbio_gm2",
-                                             "tla")),
-                         aes(x = var, y = estimate)) +
+                         drop_na(var) %>% 
+                         filter(var %in% c("rootshoot", 
+                                           "rmf", 
+                                           "bnpp",
+                                           "anpp",
+                                           "tbio_gm2",
+                                           "tla")),
+                       aes(x = var, y = estimate)) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -359,38 +352,36 @@ bio_int_plot <- ggplot(data = meta_ci_int %>%
         panel.grid = element_blank())
 bio_int_plot
 
-
 #####################################################################
 # Figure 2: Individual effects 
 #####################################################################
 
-png("../plots/CNP_fig2_ind_responses.png", height = 16, width = 10,
-    units = "in", res = 600)
+# png("../plots/CNP_fig2_ind_responses.png", height = 16, width = 10,
+#     units = "in", res = 600)
 ggarrange(chemistry_ind_plot, photo_ind_plot, bio_ind_plot,
           ncol = 1, nrow = 3, align = "hv",
           common.legend = TRUE, legend = "bottom",
           labels = c("(a)", "(b)", "(c)"),
           font.label = list(size = 20, face = "bold"))
-dev.off()
-
+# dev.off()
 
 #####################################################################
 # Figure 3: Interaction effects 
 #####################################################################
 
-png("../plots/CNP_fig3_int_responses.png", height = 16, width = 8,
-    units = "in", res = 600)
+# png("../plots/CNP_fig3_int_responses.png", height = 16, width = 8,
+#     units = "in", res = 600)
 ggarrange(chemistry_int_plot, photo_int_plot, bio_int_plot,
           ncol = 1, nrow = 3, align = "hv",
           common.legend = TRUE, legend = "bottom",
           labels = c("(a)", "(b)", "(c)"),
           font.label = list(size = 20, face = "bold"))
-dev.off()
+# dev.off()
 
 #####################################################################
 # Narea -- climate moderators
 #####################################################################
-ggplot(data = meta_results %>% filter(fert == "n" & 
+ggplot(data = meta_results %>% filter(nut_add == "n" & 
                                         myvar == "leaf_n_area" & 
                                         !is.na(gs_mat))) +
   geom_point(aes(x = gs_mat, y = logr))
@@ -405,7 +396,7 @@ nadd_narea_clim <- rma.mv(logr,
                           slab = exp, 
                           control = list(stepadj = 0.3), 
                           data = meta_results %>% 
-                            filter(fert == "n" & 
+                            filter(nut_add == "n" & 
                                      myvar == "leaf_n_area" & 
                                      !is.na(gs_mat) & gs_ai < 3 & logr > -1 & logr < 0.95))
 
@@ -590,7 +581,7 @@ parea_par_plot
 # Leaf N:P interaction -- climate moderators
 #####################################################################
 ggplot(data = meta_results_int %>% filter(response == "leaf_np" & 
-                                        !is.na(gs_mat) & gs_ai < 3)) +
+                                            !is.na(gs_mat) & gs_ai < 3)) +
   geom_point(aes(x = gs_mat, y = dNPi))
 
 # Model
@@ -607,7 +598,7 @@ int_leafnp_clim <- rma.mv(yi = dNPi,
 
 # Leaf N:P interaction - temperature plot
 leafnp_int_tg_plot <- mod_results(int_leafnp_clim, mod = "gs_mat",
-                             group = "exp", subset = TRUE)$mod_table %>%
+                                  group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results_int, response == "leaf_np" & 
@@ -679,13 +670,12 @@ leafnp_int_par_plot <- mod_results(int_leafnp_clim, mod = "gs_par",
         axis.text = element_text(color = "black", size = 20))
 leafnp_int_par_plot 
 
-
 #####################################################################
 # Figure 4: climate responses
 #####################################################################
 
-png("../plots/CNP_fig4_climate_responses.png", height = 14, width = 15,
-    units = "in", res = 600)
+# png("../plots/CNP_fig4_climate_responses.png", height = 14, width = 15,
+#     units = "in", res = 600)
 ggarrange(narea_tg_plot, narea_ai_plot, narea_par_plot,
           parea_tg_plot, parea_ai_plot, parea_par_plot,
           leafnp_int_tg_plot, leafnp_int_ai_plot, leafnp_int_par_plot,
@@ -694,7 +684,7 @@ ggarrange(narea_tg_plot, narea_ai_plot, narea_par_plot,
                      "(d)", "(e)", "(f)", 
                      "(g)", "(h)", "(i)"),
           font.label = list(size = 22), align = "hv")
-dev.off()
+# dev.off()
 
 #####################################################################
 # N addition: Photosynthetic pathway
@@ -760,15 +750,15 @@ nadd_photo_plot
 #####################################################################
 # Plot
 nadd_nfix_plot <- ggplot(data = ind_pft_results %>% 
-                            filter(trait %in% c("nmass", "narea",
-                                                "asat", "rd",
-                                                "vcmax", "jmax") & nut_add == "n" & mod == "nfix"),
-                          aes(x = factor(trait, 
-                                         levels = c("jmax", "vcmax", "rd", "asat", 
-                                                    "narea", "nmass")), 
-                              y = estimate, 
-                              shape = factor(comp, levels = c("Yes", "No")),
-                              fill = factor(comp, levels = c("Yes", "No")))) +
+                           filter(trait %in% c("nmass", "narea",
+                                               "asat", "rd",
+                                               "vcmax", "jmax") & nut_add == "n" & mod == "nfix"),
+                         aes(x = factor(trait, 
+                                        levels = c("jmax", "vcmax", "rd", "asat", 
+                                                   "narea", "nmass")), 
+                             y = estimate, 
+                             shape = factor(comp, levels = c("Yes", "No")),
+                             fill = factor(comp, levels = c("Yes", "No")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -790,8 +780,8 @@ nadd_nfix_plot <- ggplot(data = ind_pft_results %>%
                      labels = c(expression("N"["2"]*"-fixer"),
                                 "non-fixer")) +
   scale_fill_manual(values = c("red2", "ivory"),
-                     labels = c(expression("N"["2"]*"-fixer"),
-                                "non-fixer")) +
+                    labels = c(expression("N"["2"]*"-fixer"),
+                               "non-fixer")) +
   scale_x_discrete(labels = c(expression(italic("J")["max"]),
                               expression(italic("V")["cmax"]),
                               expression(italic("R")["d"]),
@@ -873,15 +863,15 @@ nadd_myc_plot
 #####################################################################
 # Figure 5: N addition PFT moderators
 #####################################################################
-png("../plots/CNP_fig5_Nadd_pft_responses.png", height = 16, width = 8.5,
-    units = "in", res = 600)
+# png("../plots/CNP_fig5_Nadd_pft_responses.png", height = 16, width = 8.5,
+#     units = "in", res = 600)
 ggarrange(nadd_nfix_plot, nadd_myc_plot, nadd_photo_plot,
           nrow = 3, labels = c("(a)", "(b)", "(c)"), align = "hv",
           font.label = list(size = 20))
-dev.off()
+# dev.off()
 
 #####################################################################
-# N addition: Photosynthetic pathway
+# P addition: Photosynthetic pathway
 #####################################################################
 # Plot
 padd_photo_plot <- ggplot(data = ind_pft_results %>% 
@@ -999,7 +989,7 @@ padd_nfix_plot <- ggplot(data = ind_pft_results %>%
 padd_nfix_plot
 
 #####################################################################
-# N addition: Mycorrhizal acquisition strategy
+# P addition: Mycorrhizal acquisition strategy
 #####################################################################
 # Plot
 padd_myc_plot <- ggplot(data = ind_pft_results %>% 
@@ -1058,14 +1048,9 @@ padd_myc_plot
 #####################################################################
 # Figure 5: P addition PFT moderators
 #####################################################################
-png("../plots/CNP_fig6_Padd_pft_responses.png", height = 16, width = 8.5,
-    units = "in", res = 600)
+# png("../plots/CNP_fig6_Padd_pft_responses.png", height = 16, width = 8.5,
+#     units = "in", res = 600)
 ggarrange(padd_nfix_plot, padd_myc_plot, padd_photo_plot,
           nrow = 3, labels = c("(a)", "(b)", "(c)"), align = "hv",
           font.label = list(size = 20))
-dev.off()
-
-
-
-
-
+# dev.off()

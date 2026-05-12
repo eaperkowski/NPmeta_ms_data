@@ -212,7 +212,7 @@ padd_marea_ai_plot
 
 # PAR plot
 padd_marea_par_plot <- mod_results(padd_marea_clim, mod = "gs_par",
-                                 group = "exp", subset = TRUE)$mod_table %>%
+                                   group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "lma" & 
@@ -250,17 +250,17 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_marea_clim <- rma.mv(logr, 
-                          logr_var,
-                          method = "REML", 
-                          random = ~ 1 | exp, 
-                          mods = ~ gs_mat + gs_ai + gs_par,
-                          slab = exp, 
-                          control = list(stepadj = 0.3), 
-                          data = meta_results %>% 
-                            filter(nut_add == "np" & 
-                                     myvar == "lma" & 
-                                     !is.na(gs_mat) & gs_ai < 3 & logr > -0.5 & 
-                                     logr < 0.4))
+                           logr_var,
+                           method = "REML", 
+                           random = ~ 1 | exp, 
+                           mods = ~ gs_mat + gs_ai + gs_par,
+                           slab = exp, 
+                           control = list(stepadj = 0.3), 
+                           data = meta_results %>% 
+                             filter(nut_add == "np" & 
+                                      myvar == "lma" & 
+                                      !is.na(gs_mat) & gs_ai < 3 & logr > -0.5 & 
+                                      logr < 0.4))
 
 # Climate summary
 npadd_marea_clim_summary <- data.frame(trait = "marea",
@@ -273,7 +273,7 @@ npadd_marea_clim_summary <- data.frame(trait = "marea",
 
 # Temperature plot
 npadd_marea_tg_plot <- mod_results(npadd_marea_clim, mod = "gs_mat",
-                                  group = "exp", subset = TRUE)$mod_table %>%
+                                   group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "lma" & 
@@ -301,7 +301,7 @@ npadd_marea_tg_plot
 
 # Aridity plot
 npadd_marea_ai_plot <- mod_results(npadd_marea_clim, mod = "gs_ai",
-                                  group = "exp", subset = TRUE)$mod_table %>%
+                                   group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "lma" & 
@@ -606,7 +606,7 @@ npadd_nmass_clim_summary <- data.frame(trait = "nmass",
 
 # Temperature plot
 npadd_nmass_tg_plot <- mod_results(npadd_nmass_clim, mod = "gs_mat",
-                                  group = "exp", subset = TRUE)$mod_table %>%
+                                   group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_n_mass" & 
@@ -733,7 +733,7 @@ nadd_narea_clim_summary <- data.frame(trait = "narea",
 
 # Temperature plot
 nadd_narea_tg_plot <- mod_results(nadd_narea_clim, mod = "gs_mat",
-                             group = "exp", subset = TRUE)$mod_table %>%
+                                  group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_n_area" & 
@@ -760,7 +760,7 @@ nadd_narea_tg_plot
 
 # Aridity plot
 nadd_narea_ai_plot <- mod_results(nadd_narea_clim, mod = "gs_ai",
-                             group = "exp", subset = TRUE)$mod_table %>%
+                                  group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_n_area" & 
@@ -787,9 +787,9 @@ nadd_narea_ai_plot
 
 # PAR plot
 nadd_narea_par_plot <- ggplot(data = subset(meta_results, myvar == "leaf_n_area" & 
-                                         nut_add == "n" & !is.na(gs_par) & gs_ai < 3 & 
-                                         logr > -1 & logr < 0.95),
-                         aes(x = gs_par, y = logr, size = 1/logr_se)) +
+                                              nut_add == "n" & !is.na(gs_par) & gs_ai < 3 & 
+                                              logr > -1 & logr < 0.95),
+                              aes(x = gs_par, y = logr, size = 1/logr_se)) +
   geom_point(alpha = 0.30, fill = "red", shape = 21) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   scale_x_continuous(limits = c(500, 1000), breaks = seq(500, 1000, 100)) +
@@ -1258,7 +1258,7 @@ npadd_pmass_clim_summary <- data.frame(trait = "pmass",
 
 # Temperature plot
 npadd_pmass_tg_plot <- mod_results(npadd_pmass_clim, mod = "gs_mat",
-                                  group = "exp", subset = TRUE)$mod_table %>%
+                                   group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_p_mass" & 
@@ -1477,7 +1477,7 @@ padd_parea_clim_summary <- data.frame(trait = "parea",
 
 # Temperature plot
 padd_parea_tg_plot <- mod_results(padd_parea_clim, mod = "gs_mat",
-                             group = "exp", subset = TRUE)$mod_table %>%
+                                  group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_p_area" & 
@@ -1503,7 +1503,7 @@ padd_parea_tg_plot
 
 # Aridity plot
 padd_parea_ai_plot <- mod_results(padd_parea_clim, mod = "gs_ai",
-                             group = "exp", subset = TRUE)$mod_table %>%
+                                  group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_p_area" & 
@@ -1529,7 +1529,7 @@ padd_parea_ai_plot
 
 # PAR plot
 padd_parea_par_plot <- mod_results(padd_parea_clim, mod = "gs_par",
-                              group = "exp", subset = TRUE)$mod_table %>%
+                                   group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_p_area" & 
@@ -1609,7 +1609,7 @@ npadd_parea_tg_plot
 
 # Aridity plot
 npadd_parea_ai_plot <- mod_results(npadd_parea_clim, mod = "gs_ai",
-                                  group = "exp", subset = TRUE)$mod_table %>%
+                                   group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_p_area" & 
@@ -1636,7 +1636,7 @@ npadd_parea_ai_plot
 
 # PAR plot
 npadd_parea_par_plot <- mod_results(padd_parea_clim, mod = "gs_par",
-                                   group = "exp", subset = TRUE)$mod_table %>%
+                                    group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_p_area" & 
@@ -1697,25 +1697,25 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_leafnp_clim <- rma.mv(logr, 
-                          logr_var,
-                          method = "REML", 
-                          random = ~ 1 | exp, 
-                          mods = ~ gs_mat + gs_ai + gs_par,
-                          slab = exp, 
-                          control = list(stepadj = 0.3), 
-                          data = meta_results %>% 
-                            filter(nut_add == "n" & 
-                                     myvar == "leaf_np" & 
-                                     !is.na(gs_mat) & gs_ai < 3))
+                           logr_var,
+                           method = "REML", 
+                           random = ~ 1 | exp, 
+                           mods = ~ gs_mat + gs_ai + gs_par,
+                           slab = exp, 
+                           control = list(stepadj = 0.3), 
+                           data = meta_results %>% 
+                             filter(nut_add == "n" & 
+                                      myvar == "leaf_np" & 
+                                      !is.na(gs_mat) & gs_ai < 3))
 
 # Climate summary
 nadd_leafnp_clim_summary <- data.frame(trait = "leaf_np",
-                                      nut_add = "n",
-                                      k = 84,
-                                      mod = c("intrcpt", "gs_mat",
-                                              "gs_ai", "gs_par"),
-                                      coef(summary(nadd_leafnp_clim)),
-                                      row.names = NULL)
+                                       nut_add = "n",
+                                       k = 84,
+                                       mod = c("intrcpt", "gs_mat",
+                                               "gs_ai", "gs_par"),
+                                       coef(summary(nadd_leafnp_clim)),
+                                       row.names = NULL)
 
 # Temperature plot
 nadd_leafnp_tg_plot <- mod_results(nadd_leafnp_clim, mod = "gs_mat",
@@ -1745,7 +1745,7 @@ nadd_leafnp_tg_plot
 
 # Aridity plot
 nadd_leafnp_ai_plot <- mod_results(nadd_leafnp_clim, mod = "gs_ai",
-                                  group = "exp", subset = TRUE)$mod_table %>%
+                                   group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "leaf_np" & 
@@ -1801,25 +1801,25 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_leafnp_clim <- rma.mv(logr, 
-                          logr_var,
-                          method = "REML", 
-                          random = ~ 1 | exp, 
-                          mods = ~ gs_mat + gs_ai + gs_par,
-                          slab = exp, 
-                          control = list(stepadj = 0.3), 
-                          data = meta_results %>% 
-                            filter(nut_add == "p" & 
-                                     myvar == "leaf_np" & 
-                                     !is.na(gs_mat) & gs_ai < 3 & logr > -1.6))
+                           logr_var,
+                           method = "REML", 
+                           random = ~ 1 | exp, 
+                           mods = ~ gs_mat + gs_ai + gs_par,
+                           slab = exp, 
+                           control = list(stepadj = 0.3), 
+                           data = meta_results %>% 
+                             filter(nut_add == "p" & 
+                                      myvar == "leaf_np" & 
+                                      !is.na(gs_mat) & gs_ai < 3 & logr > -1.6))
 
 # Climate summary
 padd_leafnp_clim_summary <- data.frame(trait = "leaf_np",
-                                      nut_add = "p",
-                                      k = 83,
-                                      mod = c("intrcpt", "gs_mat",
-                                              "gs_ai", "gs_par"),
-                                      coef(summary(padd_leafnp_clim)),
-                                      row.names = NULL)
+                                       nut_add = "p",
+                                       k = 83,
+                                       mod = c("intrcpt", "gs_mat",
+                                               "gs_ai", "gs_par"),
+                                       coef(summary(padd_leafnp_clim)),
+                                       row.names = NULL)
 
 # Temperature plot
 padd_leafnp_tg_plot <- mod_results(padd_leafnp_clim, mod = "gs_mat",
@@ -1905,25 +1905,25 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_leafnp_clim <- rma.mv(logr, 
-                           logr_var,
-                           method = "REML", 
-                           random = ~ 1 | exp, 
-                           mods = ~ gs_mat + gs_ai + gs_par,
-                           slab = exp, 
-                           control = list(stepadj = 0.3), 
-                           data = meta_results %>% 
-                             filter(nut_add == "np" & 
-                                      myvar == "leaf_np" & 
-                                      !is.na(gs_mat) & gs_ai < 3 & logr > -1.45))
+                            logr_var,
+                            method = "REML", 
+                            random = ~ 1 | exp, 
+                            mods = ~ gs_mat + gs_ai + gs_par,
+                            slab = exp, 
+                            control = list(stepadj = 0.3), 
+                            data = meta_results %>% 
+                              filter(nut_add == "np" & 
+                                       myvar == "leaf_np" & 
+                                       !is.na(gs_mat) & gs_ai < 3 & logr > -1.45))
 
 # Climate summary
 npadd_leafnp_clim_summary <- data.frame(trait = "leaf_np",
-                                       nut_add = "np",
-                                       k = 83,
-                                       mod = c("intrcpt", "gs_mat",
-                                               "gs_ai", "gs_par"),
-                                       coef(summary(npadd_leafnp_clim)),
-                                       row.names = NULL)
+                                        nut_add = "np",
+                                        k = 83,
+                                        mod = c("intrcpt", "gs_mat",
+                                                "gs_ai", "gs_par"),
+                                        coef(summary(npadd_leafnp_clim)),
+                                        row.names = NULL)
 
 # Temperature plot
 npadd_leafnp_tg_plot <-  ggplot() +
@@ -1993,8 +1993,8 @@ npadd_leafnp_par_plot
 ###################
 # Merge leaf N:P moderator results, with some light cleaning
 leafnp_clim_summary <- rbind(nadd_leafnp_clim_summary, 
-                            padd_leafnp_clim_summary, 
-                            npadd_leafnp_clim_summary) %>%
+                             padd_leafnp_clim_summary, 
+                             npadd_leafnp_clim_summary) %>%
   mutate(across(estimate:se, ~ round(.x, digits = 4)),
          across(zval:ci.ub, ~ round(.x, digits = 4)))
 
@@ -2024,16 +2024,16 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_tbio_clim <- rma.mv(logr, 
-                          logr_var,
-                          method = "REML", 
-                          random = ~ 1 | exp, 
-                          mods = ~ gs_mat + gs_ai + gs_par,
-                          slab = exp, 
-                          control = list(stepadj = 0.3), 
-                          data = meta_results %>% 
-                            filter(nut_add == "n" & 
-                                     myvar == "tbio_gm2" & 
-                                     !is.na(gs_mat) & gs_ai < 3 & logr > -0.75))
+                         logr_var,
+                         method = "REML", 
+                         random = ~ 1 | exp, 
+                         mods = ~ gs_mat + gs_ai + gs_par,
+                         slab = exp, 
+                         control = list(stepadj = 0.3), 
+                         data = meta_results %>% 
+                           filter(nut_add == "n" & 
+                                    myvar == "tbio_gm2" & 
+                                    !is.na(gs_mat) & gs_ai < 3 & logr > -0.75))
 
 # Climate summary
 nadd_tbio_clim_summary <- data.frame(trait = "tbio_gm2",
@@ -2046,7 +2046,7 @@ nadd_tbio_clim_summary <- data.frame(trait = "tbio_gm2",
 
 # Temperature plot
 nadd_tbio_tg_plot <- mod_results(nadd_tbio_clim, mod = "gs_mat",
-                                   group = "exp", subset = TRUE)$mod_table %>%
+                                 group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
@@ -2220,16 +2220,16 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_tbio_clim <- rma.mv(logr, 
-                           logr_var,
-                           method = "REML", 
-                           random = ~ 1 | exp, 
-                           mods = ~ gs_mat + gs_ai + gs_par,
-                           slab = exp, 
-                           control = list(stepadj = 0.3), 
-                           data = meta_results %>% 
-                             filter(nut_add == "np" & 
-                                      myvar == "tbio_gm2" & 
-                                      !is.na(gs_mat) & gs_ai < 3))
+                          logr_var,
+                          method = "REML", 
+                          random = ~ 1 | exp, 
+                          mods = ~ gs_mat + gs_ai + gs_par,
+                          slab = exp, 
+                          control = list(stepadj = 0.3), 
+                          data = meta_results %>% 
+                            filter(nut_add == "np" & 
+                                     myvar == "tbio_gm2" & 
+                                     !is.na(gs_mat) & gs_ai < 3))
 
 # Climate summary
 npadd_tbio_clim_summary <- data.frame(trait = "tbio",
@@ -2242,7 +2242,7 @@ npadd_tbio_clim_summary <- data.frame(trait = "tbio",
 
 # Temperature plot
 npadd_tbio_tg_plot <- mod_results(npadd_tbio_clim, mod = "gs_mat",
-                                 group = "exp", subset = TRUE)$mod_table %>%
+                                  group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
@@ -2268,7 +2268,7 @@ npadd_tbio_tg_plot
 
 # Aridity plot
 npadd_tbio_ai_plot <- mod_results(npadd_tbio_clim, mod = "gs_ai",
-                                 group = "exp", subset = TRUE)$mod_table %>%
+                                  group = "exp", subset = TRUE)$mod_table %>%
   ggplot(aes(x = moderator, y = estimate)) +
   geom_hline(yintercept = 0, color = "black", linetype = "dashed") +
   geom_point(data = subset(meta_results, myvar == "tbio_gm2" & 
@@ -2318,8 +2318,8 @@ npadd_tbio_par_plot
 ###################
 # Merge total biomass moderator results, with some light cleaning
 tbio_clim_summary <- rbind(nadd_tbio_clim_summary, 
-                            padd_tbio_clim_summary, 
-                            npadd_tbio_clim_summary) %>%
+                           padd_tbio_clim_summary, 
+                           npadd_tbio_clim_summary) %>%
   mutate(across(estimate:se, ~ round(.x, digits = 4)),
          across(zval:ci.ub, ~ round(.x, digits = 4)))
 
@@ -2363,12 +2363,12 @@ nadd_anpp_clim <- rma.mv(logr,
 
 # Climate summary
 nadd_anpp_clim_summary <- data.frame(trait = "anpp",
-                                    nut_add = "n",
-                                    k = 111,
-                                    mod = c("intrcpt", "gs_mat",
-                                            "gs_ai", "gs_par"),
-                                    coef(summary(nadd_anpp_clim)),
-                                    row.names = NULL)
+                                     nut_add = "n",
+                                     k = 111,
+                                     mod = c("intrcpt", "gs_mat",
+                                             "gs_ai", "gs_par"),
+                                     coef(summary(nadd_anpp_clim)),
+                                     row.names = NULL)
 
 # Temperature plot
 nadd_anpp_tg_plot <- ggplot() +
@@ -2458,12 +2458,12 @@ padd_anpp_clim <- rma.mv(logr,
 
 # Climate summary
 padd_anpp_clim_summary <- data.frame(trait = "anpp",
-                                    nut_add = "p",
-                                    k = 104,
-                                    mod = c("intrcpt", "gs_mat",
-                                            "gs_ai", "gs_par"),
-                                    coef(summary(padd_anpp_clim)),
-                                    row.names = NULL)
+                                     nut_add = "p",
+                                     k = 104,
+                                     mod = c("intrcpt", "gs_mat",
+                                             "gs_ai", "gs_par"),
+                                     coef(summary(padd_anpp_clim)),
+                                     row.names = NULL)
 
 # Temperature plot
 padd_anpp_tg_plot <- ggplot() +
@@ -2554,12 +2554,12 @@ npadd_anpp_clim <- rma.mv(logr,
 
 # Climate summary
 npadd_anpp_clim_summary <- data.frame(trait = "anpp",
-                                     nut_add = "np",
-                                     k = 102,
-                                     mod = c("intrcpt", "gs_mat",
-                                             "gs_ai", "gs_par"),
-                                     coef(summary(npadd_anpp_clim)),
-                                     row.names = NULL)
+                                      nut_add = "np",
+                                      k = 102,
+                                      mod = c("intrcpt", "gs_mat",
+                                              "gs_ai", "gs_par"),
+                                      coef(summary(npadd_anpp_clim)),
+                                      row.names = NULL)
 
 # Temperature plot
 npadd_anpp_tg_plot <- ggplot() +
@@ -2660,16 +2660,16 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_bnpp_clim <- rma.mv(logr, 
-                        logr_var,
-                        method = "REML", 
-                        random = ~ 1 | exp, 
-                        mods = ~ gs_mat + gs_ai + gs_par,
-                        slab = exp, 
-                        control = list(stepadj = 0.3), 
-                        data = meta_results %>% 
-                          filter(nut_add == "n" & 
-                                   myvar == "bnpp" & 
-                                   !is.na(gs_mat) & gs_ai < 3 & logr > -0.9 & logr < 0.75))
+                         logr_var,
+                         method = "REML", 
+                         random = ~ 1 | exp, 
+                         mods = ~ gs_mat + gs_ai + gs_par,
+                         slab = exp, 
+                         control = list(stepadj = 0.3), 
+                         data = meta_results %>% 
+                           filter(nut_add == "n" & 
+                                    myvar == "bnpp" & 
+                                    !is.na(gs_mat) & gs_ai < 3 & logr > -0.9 & logr < 0.75))
 
 # Climate summary
 nadd_bnpp_clim_summary <- data.frame(trait = "bnpp",
@@ -2754,16 +2754,16 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_bnpp_clim <- rma.mv(logr, 
-                        logr_var,
-                        method = "REML", 
-                        random = ~ 1 | exp, 
-                        mods = ~ gs_mat + gs_ai + gs_par,
-                        slab = exp, 
-                        control = list(stepadj = 0.3), 
-                        data = meta_results %>% 
-                          filter(nut_add == "p" & 
-                                   myvar == "bnpp" & 
-                                   !is.na(gs_mat) & gs_ai < 3 & logr < 1))
+                         logr_var,
+                         method = "REML", 
+                         random = ~ 1 | exp, 
+                         mods = ~ gs_mat + gs_ai + gs_par,
+                         slab = exp, 
+                         control = list(stepadj = 0.3), 
+                         data = meta_results %>% 
+                           filter(nut_add == "p" & 
+                                    myvar == "bnpp" & 
+                                    !is.na(gs_mat) & gs_ai < 3 & logr < 1))
 
 # Climate summary
 padd_bnpp_clim_summary <- data.frame(trait = "bnpp",
@@ -2848,16 +2848,16 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_bnpp_clim <- rma.mv(logr, 
-                         logr_var,
-                         method = "REML", 
-                         random = ~ 1 | exp, 
-                         mods = ~ gs_mat + gs_ai + gs_par,
-                         slab = exp, 
-                         control = list(stepadj = 0.3), 
-                         data = meta_results %>% 
-                           filter(nut_add == "np" & 
-                                    myvar == "bnpp" & 
-                                    !is.na(gs_mat) & gs_ai < 3 & logr > -2 & logr < 1))
+                          logr_var,
+                          method = "REML", 
+                          random = ~ 1 | exp, 
+                          mods = ~ gs_mat + gs_ai + gs_par,
+                          slab = exp, 
+                          control = list(stepadj = 0.3), 
+                          data = meta_results %>% 
+                            filter(nut_add == "np" & 
+                                     myvar == "bnpp" & 
+                                     !is.na(gs_mat) & gs_ai < 3 & logr > -2 & logr < 1))
 
 # Climate summary
 npadd_bnpp_clim_summary <- data.frame(trait = "bnpp",
@@ -3279,16 +3279,16 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_rootshoot_clim <- rma.mv(logr, 
-                        logr_var,
-                        method = "REML", 
-                        random = ~ 1 | exp, 
-                        mods = ~ gs_mat + gs_ai + gs_par,
-                        slab = exp, 
-                        control = list(stepadj = 0.3), 
-                        data = meta_results %>% 
-                          filter(nut_add == "n" & 
-                                   myvar == "rootshoot" & 
-                                   !is.na(gs_mat) & gs_ai < 3 & logr > -1.5))
+                              logr_var,
+                              method = "REML", 
+                              random = ~ 1 | exp, 
+                              mods = ~ gs_mat + gs_ai + gs_par,
+                              slab = exp, 
+                              control = list(stepadj = 0.3), 
+                              data = meta_results %>% 
+                                filter(nut_add == "n" & 
+                                         myvar == "rootshoot" & 
+                                         !is.na(gs_mat) & gs_ai < 3 & logr > -1.5))
 
 # Climate summary
 nadd_rootshoot_clim_summary <- data.frame(trait = "rootshoot",
@@ -3362,7 +3362,7 @@ nadd_rootshoot_par_plot <- ggplot() +
         axis.text = element_text(color = "black", size = 20))
 nadd_rootshoot_par_plot
 
- ###############
+###############
 # P addition
 ###############
 # Visualize data distribution
@@ -3467,16 +3467,16 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_rootshoot_clim <- rma.mv(logr, 
-                         logr_var,
-                         method = "REML", 
-                         random = ~ 1 | exp, 
-                         mods = ~ gs_mat + gs_ai + gs_par,
-                         slab = exp, 
-                         control = list(stepadj = 0.3), 
-                         data = meta_results %>% 
-                           filter(nut_add == "np" & 
-                                    myvar == "rootshoot" & 
-                                    !is.na(gs_mat) & gs_ai < 3))
+                               logr_var,
+                               method = "REML", 
+                               random = ~ 1 | exp, 
+                               mods = ~ gs_mat + gs_ai + gs_par,
+                               slab = exp, 
+                               control = list(stepadj = 0.3), 
+                               data = meta_results %>% 
+                                 filter(nut_add == "np" & 
+                                          myvar == "rootshoot" & 
+                                          !is.na(gs_mat) & gs_ai < 3))
 
 # Climate summary
 npadd_rootshoot_clim_summary <- data.frame(trait = "rootshoot",
@@ -3589,7 +3589,7 @@ marea_clim_summary %>%
          estimate_se = str_c(sprintf("%.3f", estimate), "±", sprintf("%.3f", se)),
          ci_range = str_c("[", sprintf("%.3f", ci.lb), ", ", sprintf("%.3f", ci.ub), "]")) %>%
   dplyr::select(trait:mod, estimate, se, estimate_se, zval, pval, ci.lb, ci.ub, ci_range) # %>%
-  # write_excel_csv("../data/CNPmeta_clim_moderators.csv")
+# write_excel_csv("../data/CNPmeta_clim_moderators.csv")
 
 ##############################################################################
 # Marea plant functional type moderators
@@ -3668,16 +3668,16 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_marea_pft <- rma.mv(logr, 
-                          logr_var,
-                          method = "REML", 
-                          random = ~ 1 | exp, 
-                          mods = ~ photo_path + myc_nas + n_fixer,
-                          slab = exp, 
-                          control = list(stepadj = 0.3), 
-                          data = meta_results %>% 
-                            filter(nut_add == "p" & 
-                                     myvar == "lma" & 
-                                     !is.na(photo_path)))
+                         logr_var,
+                         method = "REML", 
+                         random = ~ 1 | exp, 
+                         mods = ~ photo_path + myc_nas + n_fixer,
+                         slab = exp, 
+                         control = list(stepadj = 0.3), 
+                         data = meta_results %>% 
+                           filter(nut_add == "p" & 
+                                    myvar == "lma" & 
+                                    !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 padd_marea_photo <- data.frame(trait = "marea", 
@@ -3730,48 +3730,48 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_marea_pft <- rma.mv(logr, 
-                           logr_var,
-                           method = "REML", 
-                           random = ~ 1 | exp, 
-                           mods = ~ photo_path + myc_nas + n_fixer,
-                           slab = exp, 
-                           control = list(stepadj = 0.3), 
-                           data = meta_results %>% 
-                             filter(nut_add == "np" & 
-                                      myvar == "lma" & 
-                                      !is.na(photo_path) & logr > -1 & logr < 1))
+                          logr_var,
+                          method = "REML", 
+                          random = ~ 1 | exp, 
+                          mods = ~ photo_path + myc_nas + n_fixer,
+                          slab = exp, 
+                          control = list(stepadj = 0.3), 
+                          data = meta_results %>% 
+                            filter(nut_add == "np" & 
+                                     myvar == "lma" & 
+                                     !is.na(photo_path) & logr > -1 & logr < 1))
 
 # Extract photosynthetic pathway summary statistics
 npadd_marea_photo <- data.frame(trait = "marea", 
-                               nut_add = "np",
-                               mod = "photo",
-                               mod_results(npadd_marea_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(npadd_marea_pft))[2,3],
-                               p = coef(summary(npadd_marea_pft))[2, 4]) %>%
+                                nut_add = "np",
+                                mod = "photo",
+                                mod_results(npadd_marea_pft, 
+                                            mod = "photo_path", 
+                                            group = "exp")$mod_table,
+                                z = coef(summary(npadd_marea_pft))[2,3],
+                                p = coef(summary(npadd_marea_pft))[2, 4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 npadd_marea_myc <- data.frame(trait = "marea", 
-                             nut_add = "np",
-                             mod = "myc_nas",
-                             mod_results(npadd_marea_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(npadd_marea_pft))[3,3],
-                             p = coef(summary(npadd_marea_pft))[3,4]) %>%
+                              nut_add = "np",
+                              mod = "myc_nas",
+                              mod_results(npadd_marea_pft, 
+                                          mod = "myc_nas", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(npadd_marea_pft))[3,3],
+                              p = coef(summary(npadd_marea_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 npadd_marea_nfix <- data.frame(trait = "marea", 
-                              nut_add = "np",
-                              mod = "nfix",
-                              mod_results(npadd_marea_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(npadd_marea_pft))[4,3],
-                              p = coef(summary(npadd_marea_pft))[4,4]) %>%
+                               nut_add = "np",
+                               mod = "nfix",
+                               mod_results(npadd_marea_pft, 
+                                           mod = "n_fixer", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(npadd_marea_pft))[4,3],
+                               p = coef(summary(npadd_marea_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -3784,8 +3784,8 @@ npadd_marea_pft_results <- npadd_marea_photo %>%
 # Merge Marea moderator results, with some light cleaning
 #############
 marea_pft_summary <- rbind(nadd_marea_pft_results, 
-                             padd_marea_pft_results, 
-                             npadd_marea_pft_results) %>%
+                           padd_marea_pft_results, 
+                           npadd_marea_pft_results) %>%
   mutate(estimate = round(estimate, digits = 3),
          across(z:upperCL, ~ round(.x, digits = 3)),
          p = as.character(ifelse(p < 0.001, "<0.001", p)),
@@ -3832,24 +3832,24 @@ nadd_nmass_photo <- data.frame(trait = "nmass",
 
 # Extract mycorrhizal acquisition strategy summary statistics
 nadd_nmass_myc <- data.frame(trait = "nmass", 
-                              nut_add = "n",
-                              mod = "myc_nas",
-                              mod_results(nadd_nmass_pft, 
-                                          mod = "myc_nas", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(nadd_nmass_pft))[3,3],
-                              p = coef(summary(nadd_nmass_pft))[3,4]) %>%
+                             nut_add = "n",
+                             mod = "myc_nas",
+                             mod_results(nadd_nmass_pft, 
+                                         mod = "myc_nas", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(nadd_nmass_pft))[3,3],
+                             p = coef(summary(nadd_nmass_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 nadd_nmass_nfix <- data.frame(trait = "nmass", 
-                               nut_add = "n",
-                               mod = "nfix",
-                               mod_results(nadd_nmass_pft, 
-                                           mod = "n_fixer", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(nadd_nmass_pft))[4,3],
-                               p = coef(summary(nadd_nmass_pft))[4,4]) %>%
+                              nut_add = "n",
+                              mod = "nfix",
+                              mod_results(nadd_nmass_pft, 
+                                          mod = "n_fixer", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(nadd_nmass_pft))[4,3],
+                              p = coef(summary(nadd_nmass_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -3869,16 +3869,16 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_nmass_pft <- rma.mv(logr, 
-                           logr_var,
-                           method = "REML", 
-                           random = ~ 1 | exp, 
-                           mods = ~ photo_path + myc_nas + n_fixer,
-                           slab = exp, 
-                           control = list(stepadj = 0.3), 
-                           data = meta_results %>% 
-                             filter(nut_add == "p" & 
-                                      myvar == "leaf_n_mass" & 
-                                      !is.na(photo_path)))
+                         logr_var,
+                         method = "REML", 
+                         random = ~ 1 | exp, 
+                         mods = ~ photo_path + myc_nas + n_fixer,
+                         slab = exp, 
+                         control = list(stepadj = 0.3), 
+                         data = meta_results %>% 
+                           filter(nut_add == "p" & 
+                                    myvar == "leaf_n_mass" & 
+                                    !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 padd_nmass_photo <- data.frame(trait = "nmass", 
@@ -3943,35 +3943,35 @@ npadd_nmass_pft <- rma.mv(logr,
 
 # Extract photosynthetic pathway summary statistics
 npadd_nmass_photo <- data.frame(trait = "nmass", 
-                               nut_add = "np",
-                               mod = "photo",
-                               mod_results(npadd_nmass_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(npadd_nmass_pft))[2,3],
-                               p = coef(summary(npadd_nmass_pft))[2, 4]) %>%
+                                nut_add = "np",
+                                mod = "photo",
+                                mod_results(npadd_nmass_pft, 
+                                            mod = "photo_path", 
+                                            group = "exp")$mod_table,
+                                z = coef(summary(npadd_nmass_pft))[2,3],
+                                p = coef(summary(npadd_nmass_pft))[2, 4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 npadd_nmass_myc <- data.frame(trait = "nmass", 
-                             nut_add = "np",
-                             mod = "myc_nas",
-                             mod_results(npadd_nmass_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(npadd_nmass_pft))[3,3],
-                             p = coef(summary(npadd_nmass_pft))[3,4]) %>%
+                              nut_add = "np",
+                              mod = "myc_nas",
+                              mod_results(npadd_nmass_pft, 
+                                          mod = "myc_nas", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(npadd_nmass_pft))[3,3],
+                              p = coef(summary(npadd_nmass_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 npadd_nmass_nfix <- data.frame(trait = "nmass", 
-                              nut_add = "np",
-                              mod = "nfix",
-                              mod_results(npadd_nmass_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(npadd_nmass_pft))[4,3],
-                              p = coef(summary(npadd_nmass_pft))[4,4]) %>%
+                               nut_add = "np",
+                               mod = "nfix",
+                               mod_results(npadd_nmass_pft, 
+                                           mod = "n_fixer", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(npadd_nmass_pft))[4,3],
+                               p = coef(summary(npadd_nmass_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -3984,8 +3984,8 @@ npadd_nmass_pft_results <- npadd_nmass_photo %>%
 # Merge Nmass moderator results, with some light cleaning
 #############
 nmass_pft_summary <- rbind(nadd_nmass_pft_results, 
-                             padd_nmass_pft_results, 
-                             npadd_nmass_pft_results) %>%
+                           padd_nmass_pft_results, 
+                           npadd_nmass_pft_results) %>%
   mutate(estimate = round(estimate, digits = 3),
          across(z:upperCL, ~ round(.x, digits = 3)),
          p = as.character(ifelse(p < 0.001, "<0.001", p)),
@@ -4020,35 +4020,35 @@ nadd_narea_pft <- rma.mv(logr,
 
 # Extract photosynthetic pathway summary statistics
 nadd_narea_photo <- data.frame(trait = "narea", 
-                             nut_add = "n",
-                             mod = "photo",
-                             mod_results(nadd_narea_pft, 
-                                         mod = "photo_path", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(nadd_narea_pft))[2,3],
-                             p = coef(summary(nadd_narea_pft))[2,4]) %>%
+                               nut_add = "n",
+                               mod = "photo",
+                               mod_results(nadd_narea_pft, 
+                                           mod = "photo_path", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(nadd_narea_pft))[2,3],
+                               p = coef(summary(nadd_narea_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 nadd_narea_myc <- data.frame(trait = "narea", 
-                              nut_add = "n",
-                              mod = "myc_nas",
-                              mod_results(nadd_narea_pft, 
-                                          mod = "myc_nas", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(nadd_narea_pft))[3,3],
-                              p = coef(summary(nadd_narea_pft))[3,4]) %>%
+                             nut_add = "n",
+                             mod = "myc_nas",
+                             mod_results(nadd_narea_pft, 
+                                         mod = "myc_nas", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(nadd_narea_pft))[3,3],
+                             p = coef(summary(nadd_narea_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 nadd_narea_nfix <- data.frame(trait = "narea", 
-                               nut_add = "n",
-                               mod = "nfix",
-                               mod_results(nadd_narea_pft, 
-                                           mod = "n_fixer", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(nadd_narea_pft))[4,3],
-                               p = coef(summary(nadd_narea_pft))[4,4]) %>%
+                              nut_add = "n",
+                              mod = "nfix",
+                              mod_results(nadd_narea_pft, 
+                                          mod = "n_fixer", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(nadd_narea_pft))[4,3],
+                              p = coef(summary(nadd_narea_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -4092,24 +4092,24 @@ padd_narea_photo <- data.frame(trait = "narea",
 
 # Extract mycorrhizal acquisition strategy summary statistics
 padd_narea_myc <- data.frame(trait = "narea", 
-                              nut_add = "p",
-                              mod = "myc_nas",
-                              mod_results(padd_narea_pft, 
-                                          mod = "myc_nas", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(padd_narea_pft))[3,3],
-                              p = coef(summary(padd_narea_pft))[3,4]) %>%
+                             nut_add = "p",
+                             mod = "myc_nas",
+                             mod_results(padd_narea_pft, 
+                                         mod = "myc_nas", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(padd_narea_pft))[3,3],
+                             p = coef(summary(padd_narea_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 padd_narea_nfix <- data.frame(trait = "narea", 
-                               nut_add = "p",
-                               mod = "nfix",
-                               mod_results(padd_narea_pft, 
-                                           mod = "n_fixer", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(padd_narea_pft))[4,3],
-                               p = coef(summary(padd_narea_pft))[4,4]) %>%
+                              nut_add = "p",
+                              mod = "nfix",
+                              mod_results(padd_narea_pft, 
+                                          mod = "n_fixer", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(padd_narea_pft))[4,3],
+                              p = coef(summary(padd_narea_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -4612,48 +4612,48 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_leafnp_pft <- rma.mv(logr, 
-                         logr_var,
-                         method = "REML", 
-                         random = ~ 1 | exp, 
-                         mods = ~ photo_path + myc_nas + n_fixer,
-                         slab = exp, 
-                         control = list(stepadj = 0.3), 
-                         data = meta_results %>% 
-                           filter(nut_add == "n" & 
-                                    myvar == "leaf_np" & 
-                                    !is.na(photo_path)))
+                          logr_var,
+                          method = "REML", 
+                          random = ~ 1 | exp, 
+                          mods = ~ photo_path + myc_nas + n_fixer,
+                          slab = exp, 
+                          control = list(stepadj = 0.3), 
+                          data = meta_results %>% 
+                            filter(nut_add == "n" & 
+                                     myvar == "leaf_np" & 
+                                     !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 nadd_leafnp_photo <- data.frame(trait = "leaf_np", 
-                               nut_add = "n",
-                               mod = "photo",
-                               mod_results(nadd_leafnp_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(nadd_leafnp_pft))[2,3],
-                               p = coef(summary(nadd_leafnp_pft))[2,4]) %>%
+                                nut_add = "n",
+                                mod = "photo",
+                                mod_results(nadd_leafnp_pft, 
+                                            mod = "photo_path", 
+                                            group = "exp")$mod_table,
+                                z = coef(summary(nadd_leafnp_pft))[2,3],
+                                p = coef(summary(nadd_leafnp_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 nadd_leafnp_myc <- data.frame(trait = "leaf_np", 
-                             nut_add = "n",
-                             mod = "myc_nas",
-                             mod_results(nadd_leafnp_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(nadd_leafnp_pft))[3,3],
-                             p = coef(summary(nadd_leafnp_pft))[3,4]) %>%
+                              nut_add = "n",
+                              mod = "myc_nas",
+                              mod_results(nadd_leafnp_pft, 
+                                          mod = "myc_nas", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(nadd_leafnp_pft))[3,3],
+                              p = coef(summary(nadd_leafnp_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 nadd_leafnp_nfix <- data.frame(trait = "leaf_np", 
-                              nut_add = "n",
-                              mod = "nfix",
-                              mod_results(nadd_leafnp_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(nadd_leafnp_pft))[4,3],
-                              p = coef(summary(nadd_leafnp_pft))[4,4]) %>%
+                               nut_add = "n",
+                               mod = "nfix",
+                               mod_results(nadd_leafnp_pft, 
+                                           mod = "n_fixer", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(nadd_leafnp_pft))[4,3],
+                               p = coef(summary(nadd_leafnp_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -4674,48 +4674,48 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_leafnp_pft <- rma.mv(logr, 
-                         logr_var,
-                         method = "REML", 
-                         random = ~ 1 | exp, 
-                         mods = ~ photo_path + myc_nas + n_fixer,
-                         slab = exp, 
-                         control = list(stepadj = 0.3), 
-                         data = meta_results %>% 
-                           filter(nut_add == "p" & 
-                                    myvar == "leaf_np" & 
-                                    !is.na(photo_path)))
+                          logr_var,
+                          method = "REML", 
+                          random = ~ 1 | exp, 
+                          mods = ~ photo_path + myc_nas + n_fixer,
+                          slab = exp, 
+                          control = list(stepadj = 0.3), 
+                          data = meta_results %>% 
+                            filter(nut_add == "p" & 
+                                     myvar == "leaf_np" & 
+                                     !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 padd_leafnp_photo <- data.frame(trait = "leaf_np", 
-                               nut_add = "p",
-                               mod = "photo",
-                               mod_results(padd_leafnp_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(padd_leafnp_pft))[2,3],
-                               p = coef(summary(padd_leafnp_pft))[2,4]) %>%
+                                nut_add = "p",
+                                mod = "photo",
+                                mod_results(padd_leafnp_pft, 
+                                            mod = "photo_path", 
+                                            group = "exp")$mod_table,
+                                z = coef(summary(padd_leafnp_pft))[2,3],
+                                p = coef(summary(padd_leafnp_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 padd_leafnp_myc <- data.frame(trait = "leaf_np", 
-                             nut_add = "p",
-                             mod = "myc_nas",
-                             mod_results(padd_leafnp_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(padd_leafnp_pft))[3,3],
-                             p = coef(summary(padd_leafnp_pft))[3,4]) %>%
+                              nut_add = "p",
+                              mod = "myc_nas",
+                              mod_results(padd_leafnp_pft, 
+                                          mod = "myc_nas", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(padd_leafnp_pft))[3,3],
+                              p = coef(summary(padd_leafnp_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 padd_leafnp_nfix <- data.frame(trait = "leaf_np", 
-                              nut_add = "p",
-                              mod = "nfix",
-                              mod_results(padd_leafnp_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(padd_leafnp_pft))[4,3],
-                              p = coef(summary(padd_leafnp_pft))[4,4]) %>%
+                               nut_add = "p",
+                               mod = "nfix",
+                               mod_results(padd_leafnp_pft, 
+                                           mod = "n_fixer", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(padd_leafnp_pft))[4,3],
+                               p = coef(summary(padd_leafnp_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -4736,16 +4736,16 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_leafnp_pft <- rma.mv(logr, 
-                          logr_var,
-                          method = "REML", 
-                          random = ~ 1 | exp, 
-                          mods = ~ photo_path + myc_nas + n_fixer,
-                          slab = exp, 
-                          control = list(stepadj = 0.3), 
-                          data = meta_results %>% 
-                            filter(nut_add == "np" & 
-                                     myvar == "leaf_np" & 
-                                     !is.na(photo_path)))
+                           logr_var,
+                           method = "REML", 
+                           random = ~ 1 | exp, 
+                           mods = ~ photo_path + myc_nas + n_fixer,
+                           slab = exp, 
+                           control = list(stepadj = 0.3), 
+                           data = meta_results %>% 
+                             filter(nut_add == "np" & 
+                                      myvar == "leaf_np" & 
+                                      !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 npadd_leafnp_photo <- data.frame(trait = "leaf_np", 
@@ -4991,8 +4991,8 @@ npadd_asat_pft_results <- npadd_asat_photo %>%
 # Merge Asat moderator results, with some light cleaning
 #############
 asat_pft_summary <- rbind(nadd_asat_pft_results, 
-                             padd_asat_pft_results, 
-                             npadd_asat_pft_results) %>%
+                          padd_asat_pft_results, 
+                          npadd_asat_pft_results) %>%
   mutate(estimate = round(estimate, digits = 3),
          across(z:upperCL, ~ round(.x, digits = 3)),
          p = as.character(ifelse(p < 0.001, "<0.001", p))) %>%
@@ -5014,48 +5014,48 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_gsw_pft <- rma.mv(logr, 
-                         logr_var,
-                         method = "REML", 
-                         random = ~ 1 | exp, 
-                         mods = ~ photo_path + myc_nas + n_fixer,
-                         slab = exp, 
-                         control = list(stepadj = 0.3), 
-                         data = meta_results %>% 
-                           filter(nut_add == "n" & 
-                                    myvar == "gsw" & 
-                                    !is.na(photo_path)))
+                       logr_var,
+                       method = "REML", 
+                       random = ~ 1 | exp, 
+                       mods = ~ photo_path + myc_nas + n_fixer,
+                       slab = exp, 
+                       control = list(stepadj = 0.3), 
+                       data = meta_results %>% 
+                         filter(nut_add == "n" & 
+                                  myvar == "gsw" & 
+                                  !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 nadd_gsw_photo <- data.frame(trait = "gsw", 
-                               nut_add = "n",
-                               mod = "photo",
-                               mod_results(nadd_gsw_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(nadd_gsw_pft))[2,3],
-                               p = coef(summary(nadd_gsw_pft))[2,4]) %>%
+                             nut_add = "n",
+                             mod = "photo",
+                             mod_results(nadd_gsw_pft, 
+                                         mod = "photo_path", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(nadd_gsw_pft))[2,3],
+                             p = coef(summary(nadd_gsw_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 nadd_gsw_myc <- data.frame(trait = "gsw", 
-                             nut_add = "n",
-                             mod = "myc_nas",
-                             mod_results(nadd_gsw_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(nadd_gsw_pft))[3,3],
-                             p = coef(summary(nadd_gsw_pft))[3,4]) %>%
+                           nut_add = "n",
+                           mod = "myc_nas",
+                           mod_results(nadd_gsw_pft, 
+                                       mod = "myc_nas", 
+                                       group = "exp")$mod_table,
+                           z = coef(summary(nadd_gsw_pft))[3,3],
+                           p = coef(summary(nadd_gsw_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 nadd_gsw_nfix <- data.frame(trait = "gsw", 
-                              nut_add = "n",
-                              mod = "nfix",
-                              mod_results(nadd_gsw_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(nadd_gsw_pft))[4,3],
-                              p = coef(summary(nadd_gsw_pft))[4,4]) %>%
+                            nut_add = "n",
+                            mod = "nfix",
+                            mod_results(nadd_gsw_pft, 
+                                        mod = "n_fixer", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(nadd_gsw_pft))[4,3],
+                            p = coef(summary(nadd_gsw_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5089,35 +5089,35 @@ padd_gsw_pft <- rma.mv(logr,
 
 # Extract photosynthetic pathway summary statistics
 padd_gsw_photo <- data.frame(trait = "gsw", 
-                               nut_add = "p",
-                               mod = "photo",
-                               mod_results(padd_gsw_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(padd_gsw_pft))[2,3],
-                               p = coef(summary(padd_gsw_pft))[2,4]) %>%
+                             nut_add = "p",
+                             mod = "photo",
+                             mod_results(padd_gsw_pft, 
+                                         mod = "photo_path", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(padd_gsw_pft))[2,3],
+                             p = coef(summary(padd_gsw_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 padd_gsw_myc <- data.frame(trait = "gsw", 
-                             nut_add = "p",
-                             mod = "myc_nas",
-                             mod_results(padd_gsw_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(padd_gsw_pft))[3,3],
-                             p = coef(summary(padd_gsw_pft))[3,4]) %>%
+                           nut_add = "p",
+                           mod = "myc_nas",
+                           mod_results(padd_gsw_pft, 
+                                       mod = "myc_nas", 
+                                       group = "exp")$mod_table,
+                           z = coef(summary(padd_gsw_pft))[3,3],
+                           p = coef(summary(padd_gsw_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 padd_gsw_nfix <- data.frame(trait = "gsw", 
-                              nut_add = "p",
-                              mod = "nfix",
-                              mod_results(padd_gsw_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(padd_gsw_pft))[4,3],
-                              p = coef(summary(padd_gsw_pft))[4,4]) %>%
+                            nut_add = "p",
+                            mod = "nfix",
+                            mod_results(padd_gsw_pft, 
+                                        mod = "n_fixer", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(padd_gsw_pft))[4,3],
+                            p = coef(summary(padd_gsw_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5151,35 +5151,35 @@ npadd_gsw_pft <- rma.mv(logr,
 
 # Extract photosynthetic pathway summary statistics
 npadd_gsw_photo <- data.frame(trait = "gsw", 
-                                nut_add = "np",
-                                mod = "photo",
-                                mod_results(npadd_gsw_pft, 
-                                            mod = "photo_path", 
-                                            group = "exp")$mod_table,
-                                z = coef(summary(npadd_gsw_pft))[2,3],
-                                p = coef(summary(npadd_gsw_pft))[2, 4]) %>%
+                              nut_add = "np",
+                              mod = "photo",
+                              mod_results(npadd_gsw_pft, 
+                                          mod = "photo_path", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(npadd_gsw_pft))[2,3],
+                              p = coef(summary(npadd_gsw_pft))[2, 4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 npadd_gsw_myc <- data.frame(trait = "gsw", 
-                              nut_add = "np",
-                              mod = "myc_nas",
-                              mod_results(npadd_gsw_pft, 
-                                          mod = "myc_nas", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(npadd_gsw_pft))[3,3],
-                              p = coef(summary(npadd_gsw_pft))[3,4]) %>%
+                            nut_add = "np",
+                            mod = "myc_nas",
+                            mod_results(npadd_gsw_pft, 
+                                        mod = "myc_nas", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(npadd_gsw_pft))[3,3],
+                            p = coef(summary(npadd_gsw_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 npadd_gsw_nfix <- data.frame(trait = "gsw", 
-                               nut_add = "np",
-                               mod = "nfix",
-                               mod_results(npadd_gsw_pft, 
-                                           mod = "n_fixer", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(npadd_gsw_pft))[4,3],
-                               p = coef(summary(npadd_gsw_pft))[4,4]) %>%
+                             nut_add = "np",
+                             mod = "nfix",
+                             mod_results(npadd_gsw_pft, 
+                                         mod = "n_fixer", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(npadd_gsw_pft))[4,3],
+                             p = coef(summary(npadd_gsw_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5192,8 +5192,8 @@ npadd_gsw_pft_results <- npadd_gsw_photo %>%
 # Merge gsw moderator results, with some light cleaning
 #############
 gsw_pft_summary <- rbind(nadd_gsw_pft_results, 
-                           padd_gsw_pft_results, 
-                           npadd_gsw_pft_results) %>%
+                         padd_gsw_pft_results, 
+                         npadd_gsw_pft_results) %>%
   mutate(estimate = round(estimate, digits = 3),
          across(z:upperCL, ~ round(.x, digits = 3)),
          p = as.character(ifelse(p < 0.001, "<0.001", p))) %>%
@@ -5215,48 +5215,48 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_rd_pft <- rma.mv(logr, 
-                       logr_var,
-                       method = "REML", 
-                       random = ~ 1 | exp, 
-                       mods = ~ photo_path + myc_nas + n_fixer,
-                       slab = exp, 
-                       control = list(stepadj = 0.3), 
-                       data = meta_results %>% 
-                         filter(nut_add == "n" & 
-                                  myvar == "rd" & 
-                                  !is.na(photo_path) & logr < 1))
+                      logr_var,
+                      method = "REML", 
+                      random = ~ 1 | exp, 
+                      mods = ~ photo_path + myc_nas + n_fixer,
+                      slab = exp, 
+                      control = list(stepadj = 0.3), 
+                      data = meta_results %>% 
+                        filter(nut_add == "n" & 
+                                 myvar == "rd" & 
+                                 !is.na(photo_path) & logr < 1))
 
 # Extract photosynthetic pathway summary statistics
 nadd_rd_photo <- data.frame(trait = "rd", 
-                             nut_add = "n",
-                             mod = "photo",
-                             mod_results(nadd_rd_pft, 
-                                         mod = "photo_path", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(nadd_rd_pft))[2,3],
-                             p = coef(summary(nadd_rd_pft))[2,4]) %>%
+                            nut_add = "n",
+                            mod = "photo",
+                            mod_results(nadd_rd_pft, 
+                                        mod = "photo_path", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(nadd_rd_pft))[2,3],
+                            p = coef(summary(nadd_rd_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 nadd_rd_myc <- data.frame(trait = "rd", 
-                           nut_add = "n",
-                           mod = "myc_nas",
-                           mod_results(nadd_rd_pft, 
-                                       mod = "myc_nas", 
-                                       group = "exp")$mod_table,
-                           z = coef(summary(nadd_rd_pft))[3,3],
-                           p = coef(summary(nadd_rd_pft))[3,4]) %>%
+                          nut_add = "n",
+                          mod = "myc_nas",
+                          mod_results(nadd_rd_pft, 
+                                      mod = "myc_nas", 
+                                      group = "exp")$mod_table,
+                          z = coef(summary(nadd_rd_pft))[3,3],
+                          p = coef(summary(nadd_rd_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 nadd_rd_nfix <- data.frame(trait = "rd", 
-                            nut_add = "n",
-                            mod = "nfix",
-                            mod_results(nadd_rd_pft, 
-                                        mod = "n_fixer", 
-                                        group = "exp")$mod_table,
-                            z = coef(summary(nadd_rd_pft))[4,3],
-                            p = coef(summary(nadd_rd_pft))[4,4]) %>%
+                           nut_add = "n",
+                           mod = "nfix",
+                           mod_results(nadd_rd_pft, 
+                                       mod = "n_fixer", 
+                                       group = "exp")$mod_table,
+                           z = coef(summary(nadd_rd_pft))[4,3],
+                           p = coef(summary(nadd_rd_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5264,7 +5264,7 @@ nadd_rd_pft_results <- nadd_rd_photo %>%
   rbind(nadd_rd_myc) %>% 
   rbind(nadd_rd_nfix) %>%
   mutate(k = 31)
-  
+
 
 ##############
 # P addition
@@ -5278,48 +5278,48 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_rd_pft <- rma.mv(logr, 
-                       logr_var,
-                       method = "REML", 
-                       random = ~ 1 | exp, 
-                       mods = ~ photo_path + myc_nas + n_fixer,
-                       slab = exp, 
-                       control = list(stepadj = 0.3), 
-                       data = meta_results %>% 
-                         filter(nut_add == "p" & 
-                                  myvar == "rd" & 
-                                  !is.na(photo_path) & logr < 1 & logr > -1))
+                      logr_var,
+                      method = "REML", 
+                      random = ~ 1 | exp, 
+                      mods = ~ photo_path + myc_nas + n_fixer,
+                      slab = exp, 
+                      control = list(stepadj = 0.3), 
+                      data = meta_results %>% 
+                        filter(nut_add == "p" & 
+                                 myvar == "rd" & 
+                                 !is.na(photo_path) & logr < 1 & logr > -1))
 
 # Extract photosynthetic pathway summary statistics
 padd_rd_photo <- data.frame(trait = "rd", 
-                             nut_add = "p",
-                             mod = "photo",
-                             mod_results(padd_rd_pft, 
-                                         mod = "photo_path", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(padd_rd_pft))[2,3],
-                             p = coef(summary(padd_rd_pft))[2,4]) %>%
+                            nut_add = "p",
+                            mod = "photo",
+                            mod_results(padd_rd_pft, 
+                                        mod = "photo_path", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(padd_rd_pft))[2,3],
+                            p = coef(summary(padd_rd_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 padd_rd_myc <- data.frame(trait = "rd", 
-                           nut_add = "p",
-                           mod = "myc_nas",
-                           mod_results(padd_rd_pft, 
-                                       mod = "myc_nas", 
-                                       group = "exp")$mod_table,
-                           z = coef(summary(padd_rd_pft))[3,3],
-                           p = coef(summary(padd_rd_pft))[3,4]) %>%
+                          nut_add = "p",
+                          mod = "myc_nas",
+                          mod_results(padd_rd_pft, 
+                                      mod = "myc_nas", 
+                                      group = "exp")$mod_table,
+                          z = coef(summary(padd_rd_pft))[3,3],
+                          p = coef(summary(padd_rd_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 padd_rd_nfix <- data.frame(trait = "rd", 
-                            nut_add = "p",
-                            mod = "nfix",
-                            mod_results(padd_rd_pft, 
-                                        mod = "n_fixer", 
-                                        group = "exp")$mod_table,
-                            z = coef(summary(padd_rd_pft))[4,3],
-                            p = coef(summary(padd_rd_pft))[4,4]) %>%
+                           nut_add = "p",
+                           mod = "nfix",
+                           mod_results(padd_rd_pft, 
+                                       mod = "n_fixer", 
+                                       group = "exp")$mod_table,
+                           z = coef(summary(padd_rd_pft))[4,3],
+                           p = coef(summary(padd_rd_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5340,48 +5340,48 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_rd_pft <- rma.mv(logr, 
-                        logr_var,
-                        method = "REML", 
-                        random = ~ 1 | exp, 
-                        mods = ~ photo_path + myc_nas + n_fixer,
-                        slab = exp, 
-                        control = list(stepadj = 0.3), 
-                        data = meta_results %>% 
-                          filter(nut_add == "np" & 
-                                   myvar == "rd" & 
-                                   !is.na(photo_path)))
+                       logr_var,
+                       method = "REML", 
+                       random = ~ 1 | exp, 
+                       mods = ~ photo_path + myc_nas + n_fixer,
+                       slab = exp, 
+                       control = list(stepadj = 0.3), 
+                       data = meta_results %>% 
+                         filter(nut_add == "np" & 
+                                  myvar == "rd" & 
+                                  !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 npadd_rd_photo <- data.frame(trait = "rd", 
-                              nut_add = "np",
-                              mod = "photo",
-                              mod_results(npadd_rd_pft, 
-                                          mod = "photo_path", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(npadd_rd_pft))[2,3],
-                              p = coef(summary(npadd_rd_pft))[2, 4]) %>%
+                             nut_add = "np",
+                             mod = "photo",
+                             mod_results(npadd_rd_pft, 
+                                         mod = "photo_path", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(npadd_rd_pft))[2,3],
+                             p = coef(summary(npadd_rd_pft))[2, 4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 npadd_rd_myc <- data.frame(trait = "rd", 
-                            nut_add = "np",
-                            mod = "myc_nas",
-                            mod_results(npadd_rd_pft, 
-                                        mod = "myc_nas", 
-                                        group = "exp")$mod_table,
-                            z = coef(summary(npadd_rd_pft))[3,3],
-                            p = coef(summary(npadd_rd_pft))[3,4]) %>%
+                           nut_add = "np",
+                           mod = "myc_nas",
+                           mod_results(npadd_rd_pft, 
+                                       mod = "myc_nas", 
+                                       group = "exp")$mod_table,
+                           z = coef(summary(npadd_rd_pft))[3,3],
+                           p = coef(summary(npadd_rd_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 npadd_rd_nfix <- data.frame(trait = "rd", 
-                             nut_add = "np",
-                             mod = "nfix",
-                             mod_results(npadd_rd_pft, 
-                                         mod = "n_fixer", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(npadd_rd_pft))[4,3],
-                             p = coef(summary(npadd_rd_pft))[4,4]) %>%
+                            nut_add = "np",
+                            mod = "nfix",
+                            mod_results(npadd_rd_pft, 
+                                        mod = "n_fixer", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(npadd_rd_pft))[4,3],
+                            p = coef(summary(npadd_rd_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5417,48 +5417,48 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_vcmax_pft <- rma.mv(logr, 
-                        logr_var,
-                        method = "REML", 
-                        random = ~ 1 | exp, 
-                        mods = ~ photo_path + myc_nas + n_fixer,
-                        slab = exp, 
-                        control = list(stepadj = 0.3), 
-                        data = meta_results %>% 
-                          filter(nut_add == "n" & 
-                                   myvar == "vcmax" & 
-                                   !is.na(photo_path)))
+                         logr_var,
+                         method = "REML", 
+                         random = ~ 1 | exp, 
+                         mods = ~ photo_path + myc_nas + n_fixer,
+                         slab = exp, 
+                         control = list(stepadj = 0.3), 
+                         data = meta_results %>% 
+                           filter(nut_add == "n" & 
+                                    myvar == "vcmax" & 
+                                    !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 nadd_vcmax_photo <- data.frame(trait = "vcmax", 
-                              nut_add = "n",
-                              mod = "photo",
-                              mod_results(nadd_vcmax_pft, 
-                                          mod = "photo_path", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(nadd_vcmax_pft))[2,3],
-                              p = coef(summary(nadd_vcmax_pft))[2,4]) %>%
+                               nut_add = "n",
+                               mod = "photo",
+                               mod_results(nadd_vcmax_pft, 
+                                           mod = "photo_path", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(nadd_vcmax_pft))[2,3],
+                               p = coef(summary(nadd_vcmax_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 nadd_vcmax_myc <- data.frame(trait = "vcmax", 
-                            nut_add = "n",
-                            mod = "myc_nas",
-                            mod_results(nadd_vcmax_pft, 
-                                        mod = "myc_nas", 
-                                        group = "exp")$mod_table,
-                            z = coef(summary(nadd_vcmax_pft))[3,3],
-                            p = coef(summary(nadd_vcmax_pft))[3,4]) %>%
+                             nut_add = "n",
+                             mod = "myc_nas",
+                             mod_results(nadd_vcmax_pft, 
+                                         mod = "myc_nas", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(nadd_vcmax_pft))[3,3],
+                             p = coef(summary(nadd_vcmax_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 nadd_vcmax_nfix <- data.frame(trait = "vcmax", 
-                             nut_add = "n",
-                             mod = "nfix",
-                             mod_results(nadd_vcmax_pft, 
-                                         mod = "n_fixer", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(nadd_vcmax_pft))[4,3],
-                             p = coef(summary(nadd_vcmax_pft))[4,4]) %>%
+                              nut_add = "n",
+                              mod = "nfix",
+                              mod_results(nadd_vcmax_pft, 
+                                          mod = "n_fixer", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(nadd_vcmax_pft))[4,3],
+                              p = coef(summary(nadd_vcmax_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5479,48 +5479,48 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_vcmax_pft <- rma.mv(logr, 
-                        logr_var,
-                        method = "REML", 
-                        random = ~ 1 | exp, 
-                        mods = ~ photo_path + myc_nas + n_fixer,
-                        slab = exp, 
-                        control = list(stepadj = 0.3), 
-                        data = meta_results %>% 
-                          filter(nut_add == "p" & 
-                                   myvar == "vcmax" & 
-                                   !is.na(photo_path)))
+                         logr_var,
+                         method = "REML", 
+                         random = ~ 1 | exp, 
+                         mods = ~ photo_path + myc_nas + n_fixer,
+                         slab = exp, 
+                         control = list(stepadj = 0.3), 
+                         data = meta_results %>% 
+                           filter(nut_add == "p" & 
+                                    myvar == "vcmax" & 
+                                    !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 padd_vcmax_photo <- data.frame(trait = "vcmax", 
-                              nut_add = "p",
-                              mod = "photo",
-                              mod_results(padd_vcmax_pft, 
-                                          mod = "photo_path", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(padd_vcmax_pft))[2,3],
-                              p = coef(summary(padd_vcmax_pft))[2,4]) %>%
+                               nut_add = "p",
+                               mod = "photo",
+                               mod_results(padd_vcmax_pft, 
+                                           mod = "photo_path", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(padd_vcmax_pft))[2,3],
+                               p = coef(summary(padd_vcmax_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 padd_vcmax_myc <- data.frame(trait = "vcmax", 
-                            nut_add = "p",
-                            mod = "myc_nas",
-                            mod_results(padd_vcmax_pft, 
-                                        mod = "myc_nas", 
-                                        group = "exp")$mod_table,
-                            z = coef(summary(padd_vcmax_pft))[3,3],
-                            p = coef(summary(padd_vcmax_pft))[3,4]) %>%
+                             nut_add = "p",
+                             mod = "myc_nas",
+                             mod_results(padd_vcmax_pft, 
+                                         mod = "myc_nas", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(padd_vcmax_pft))[3,3],
+                             p = coef(summary(padd_vcmax_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 padd_vcmax_nfix <- data.frame(trait = "vcmax", 
-                             nut_add = "p",
-                             mod = "nfix",
-                             mod_results(padd_vcmax_pft, 
-                                         mod = "n_fixer", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(padd_vcmax_pft))[4,3],
-                             p = coef(summary(padd_vcmax_pft))[4,4]) %>%
+                              nut_add = "p",
+                              mod = "nfix",
+                              mod_results(padd_vcmax_pft, 
+                                          mod = "n_fixer", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(padd_vcmax_pft))[4,3],
+                              p = coef(summary(padd_vcmax_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5541,48 +5541,48 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_vcmax_pft <- rma.mv(logr, 
-                         logr_var,
-                         method = "REML", 
-                         random = ~ 1 | exp, 
-                         mods = ~ photo_path + myc_nas + n_fixer,
-                         slab = exp, 
-                         control = list(stepadj = 0.3), 
-                         data = meta_results %>% 
-                           filter(nut_add == "np" & 
-                                    myvar == "vcmax" & 
-                                    !is.na(photo_path)))
+                          logr_var,
+                          method = "REML", 
+                          random = ~ 1 | exp, 
+                          mods = ~ photo_path + myc_nas + n_fixer,
+                          slab = exp, 
+                          control = list(stepadj = 0.3), 
+                          data = meta_results %>% 
+                            filter(nut_add == "np" & 
+                                     myvar == "vcmax" & 
+                                     !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 npadd_vcmax_photo <- data.frame(trait = "vcmax", 
-                               nut_add = "np",
-                               mod = "photo",
-                               mod_results(npadd_vcmax_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(npadd_vcmax_pft))[2,3],
-                               p = coef(summary(npadd_vcmax_pft))[2, 4]) %>%
+                                nut_add = "np",
+                                mod = "photo",
+                                mod_results(npadd_vcmax_pft, 
+                                            mod = "photo_path", 
+                                            group = "exp")$mod_table,
+                                z = coef(summary(npadd_vcmax_pft))[2,3],
+                                p = coef(summary(npadd_vcmax_pft))[2, 4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 npadd_vcmax_myc <- data.frame(trait = "vcmax", 
-                             nut_add = "np",
-                             mod = "myc_nas",
-                             mod_results(npadd_vcmax_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(npadd_vcmax_pft))[3,3],
-                             p = coef(summary(npadd_vcmax_pft))[3,4]) %>%
+                              nut_add = "np",
+                              mod = "myc_nas",
+                              mod_results(npadd_vcmax_pft, 
+                                          mod = "myc_nas", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(npadd_vcmax_pft))[3,3],
+                              p = coef(summary(npadd_vcmax_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 npadd_vcmax_nfix <- data.frame(trait = "vcmax", 
-                              nut_add = "np",
-                              mod = "nfix",
-                              mod_results(npadd_vcmax_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(npadd_vcmax_pft))[4,3],
-                              p = coef(summary(npadd_vcmax_pft))[4,4]) %>%
+                               nut_add = "np",
+                               mod = "nfix",
+                               mod_results(npadd_vcmax_pft, 
+                                           mod = "n_fixer", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(npadd_vcmax_pft))[4,3],
+                               p = coef(summary(npadd_vcmax_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5595,8 +5595,8 @@ npadd_vcmax_pft_results <- npadd_vcmax_photo %>%
 # Merge Vcmax moderator results, with some light cleaning
 #############
 vcmax_pft_summary <- rbind(nadd_vcmax_pft_results, 
-                             padd_vcmax_pft_results, 
-                             npadd_vcmax_pft_results) %>%
+                           padd_vcmax_pft_results, 
+                           npadd_vcmax_pft_results) %>%
   mutate(estimate = round(estimate, digits = 3),
          across(z:upperCL, ~ round(.x, digits = 3)),
          p = as.character(ifelse(p < 0.001, "<0.001", p))) %>%
@@ -5618,48 +5618,48 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_jmax_pft <- rma.mv(logr, 
-                         logr_var,
-                         method = "REML", 
-                         random = ~ 1 | exp, 
-                         mods = ~ photo_path + myc_nas + n_fixer,
-                         slab = exp, 
-                         control = list(stepadj = 0.3), 
-                         data = meta_results %>% 
-                           filter(nut_add == "n" & 
-                                    myvar == "jmax" & 
-                                    !is.na(photo_path)))
+                        logr_var,
+                        method = "REML", 
+                        random = ~ 1 | exp, 
+                        mods = ~ photo_path + myc_nas + n_fixer,
+                        slab = exp, 
+                        control = list(stepadj = 0.3), 
+                        data = meta_results %>% 
+                          filter(nut_add == "n" & 
+                                   myvar == "jmax" & 
+                                   !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 nadd_jmax_photo <- data.frame(trait = "jmax", 
-                               nut_add = "n",
-                               mod = "photo",
-                               mod_results(nadd_jmax_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(nadd_jmax_pft))[2,3],
-                               p = coef(summary(nadd_jmax_pft))[2,4]) %>%
+                              nut_add = "n",
+                              mod = "photo",
+                              mod_results(nadd_jmax_pft, 
+                                          mod = "photo_path", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(nadd_jmax_pft))[2,3],
+                              p = coef(summary(nadd_jmax_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 nadd_jmax_myc <- data.frame(trait = "jmax", 
-                             nut_add = "n",
-                             mod = "myc_nas",
-                             mod_results(nadd_jmax_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(nadd_jmax_pft))[3,3],
-                             p = coef(summary(nadd_jmax_pft))[3,4]) %>%
+                            nut_add = "n",
+                            mod = "myc_nas",
+                            mod_results(nadd_jmax_pft, 
+                                        mod = "myc_nas", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(nadd_jmax_pft))[3,3],
+                            p = coef(summary(nadd_jmax_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 nadd_jmax_nfix <- data.frame(trait = "jmax", 
-                              nut_add = "n",
-                              mod = "nfix",
-                              mod_results(nadd_jmax_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(nadd_jmax_pft))[4,3],
-                              p = coef(summary(nadd_jmax_pft))[4,4]) %>%
+                             nut_add = "n",
+                             mod = "nfix",
+                             mod_results(nadd_jmax_pft, 
+                                         mod = "n_fixer", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(nadd_jmax_pft))[4,3],
+                             p = coef(summary(nadd_jmax_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5680,48 +5680,48 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_jmax_pft <- rma.mv(logr, 
-                         logr_var,
-                         method = "REML", 
-                         random = ~ 1 | exp, 
-                         mods = ~ photo_path + myc_nas + n_fixer,
-                         slab = exp, 
-                         control = list(stepadj = 0.3), 
-                         data = meta_results %>% 
-                           filter(nut_add == "p" & 
-                                    myvar == "jmax" & 
-                                    !is.na(photo_path)))
+                        logr_var,
+                        method = "REML", 
+                        random = ~ 1 | exp, 
+                        mods = ~ photo_path + myc_nas + n_fixer,
+                        slab = exp, 
+                        control = list(stepadj = 0.3), 
+                        data = meta_results %>% 
+                          filter(nut_add == "p" & 
+                                   myvar == "jmax" & 
+                                   !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 padd_jmax_photo <- data.frame(trait = "jmax", 
-                               nut_add = "p",
-                               mod = "photo",
-                               mod_results(padd_jmax_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(padd_jmax_pft))[2,3],
-                               p = coef(summary(padd_jmax_pft))[2,4]) %>%
+                              nut_add = "p",
+                              mod = "photo",
+                              mod_results(padd_jmax_pft, 
+                                          mod = "photo_path", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(padd_jmax_pft))[2,3],
+                              p = coef(summary(padd_jmax_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 padd_jmax_myc <- data.frame(trait = "jmax", 
-                             nut_add = "p",
-                             mod = "myc_nas",
-                             mod_results(padd_jmax_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(padd_jmax_pft))[3,3],
-                             p = coef(summary(padd_jmax_pft))[3,4]) %>%
+                            nut_add = "p",
+                            mod = "myc_nas",
+                            mod_results(padd_jmax_pft, 
+                                        mod = "myc_nas", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(padd_jmax_pft))[3,3],
+                            p = coef(summary(padd_jmax_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 padd_jmax_nfix <- data.frame(trait = "jmax", 
-                              nut_add = "p",
-                              mod = "nfix",
-                              mod_results(padd_jmax_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(padd_jmax_pft))[4,3],
-                              p = coef(summary(padd_jmax_pft))[4,4]) %>%
+                             nut_add = "p",
+                             mod = "nfix",
+                             mod_results(padd_jmax_pft, 
+                                         mod = "n_fixer", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(padd_jmax_pft))[4,3],
+                             p = coef(summary(padd_jmax_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5742,48 +5742,48 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_jmax_pft <- rma.mv(logr, 
-                          logr_var,
-                          method = "REML", 
-                          random = ~ 1 | exp, 
-                          mods = ~ photo_path + myc_nas + n_fixer,
-                          slab = exp, 
-                          control = list(stepadj = 0.3), 
-                          data = meta_results %>% 
-                            filter(nut_add == "np" & 
-                                     myvar == "jmax" & 
-                                     !is.na(photo_path)))
+                         logr_var,
+                         method = "REML", 
+                         random = ~ 1 | exp, 
+                         mods = ~ photo_path + myc_nas + n_fixer,
+                         slab = exp, 
+                         control = list(stepadj = 0.3), 
+                         data = meta_results %>% 
+                           filter(nut_add == "np" & 
+                                    myvar == "jmax" & 
+                                    !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 npadd_jmax_photo <- data.frame(trait = "jmax", 
-                                nut_add = "np",
-                                mod = "photo",
-                                mod_results(npadd_jmax_pft, 
-                                            mod = "photo_path", 
-                                            group = "exp")$mod_table,
-                                z = coef(summary(npadd_jmax_pft))[2,3],
-                                p = coef(summary(npadd_jmax_pft))[2, 4]) %>%
+                               nut_add = "np",
+                               mod = "photo",
+                               mod_results(npadd_jmax_pft, 
+                                           mod = "photo_path", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(npadd_jmax_pft))[2,3],
+                               p = coef(summary(npadd_jmax_pft))[2, 4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 npadd_jmax_myc <- data.frame(trait = "jmax", 
-                              nut_add = "np",
-                              mod = "myc_nas",
-                              mod_results(npadd_jmax_pft, 
-                                          mod = "myc_nas", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(npadd_jmax_pft))[3,3],
-                              p = coef(summary(npadd_jmax_pft))[3,4]) %>%
+                             nut_add = "np",
+                             mod = "myc_nas",
+                             mod_results(npadd_jmax_pft, 
+                                         mod = "myc_nas", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(npadd_jmax_pft))[3,3],
+                             p = coef(summary(npadd_jmax_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 npadd_jmax_nfix <- data.frame(trait = "jmax", 
-                               nut_add = "np",
-                               mod = "nfix",
-                               mod_results(npadd_jmax_pft, 
-                                           mod = "n_fixer", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(npadd_jmax_pft))[4,3],
-                               p = coef(summary(npadd_jmax_pft))[4,4]) %>%
+                              nut_add = "np",
+                              mod = "nfix",
+                              mod_results(npadd_jmax_pft, 
+                                          mod = "n_fixer", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(npadd_jmax_pft))[4,3],
+                              p = coef(summary(npadd_jmax_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5796,8 +5796,8 @@ npadd_jmax_pft_results <- npadd_jmax_photo %>%
 # Merge Jmax moderator results, with some light cleaning
 #############
 jmax_pft_summary <- rbind(nadd_jmax_pft_results, 
-                              padd_jmax_pft_results, 
-                              npadd_jmax_pft_results) %>%
+                          padd_jmax_pft_results, 
+                          npadd_jmax_pft_results) %>%
   mutate(estimate = round(estimate, digits = 3),
          across(z:upperCL, ~ round(.x, digits = 3)),
          p = as.character(ifelse(p < 0.001, "<0.001", p))) %>%
@@ -5819,48 +5819,48 @@ ggplot(data = meta_results %>% filter(nut_add == "n" &
 
 # Model
 nadd_jmaxvcmax_pft <- rma.mv(logr, 
-                        logr_var,
-                        method = "REML", 
-                        random = ~ 1 | exp, 
-                        mods = ~ photo_path + myc_nas + n_fixer,
-                        slab = exp, 
-                        control = list(stepadj = 0.3), 
-                        data = meta_results %>% 
-                          filter(nut_add == "n" & 
-                                   myvar == "jmax_vcmax" & 
-                                   !is.na(photo_path)))
+                             logr_var,
+                             method = "REML", 
+                             random = ~ 1 | exp, 
+                             mods = ~ photo_path + myc_nas + n_fixer,
+                             slab = exp, 
+                             control = list(stepadj = 0.3), 
+                             data = meta_results %>% 
+                               filter(nut_add == "n" & 
+                                        myvar == "jmax_vcmax" & 
+                                        !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 nadd_jmaxvcmax_photo <- data.frame(trait = "jmax_vcmax", 
-                              nut_add = "n",
-                              mod = "photo",
-                              mod_results(nadd_jmaxvcmax_pft, 
-                                          mod = "photo_path", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(nadd_jmaxvcmax_pft))[2,3],
-                              p = coef(summary(nadd_jmaxvcmax_pft))[2,4]) %>%
+                                   nut_add = "n",
+                                   mod = "photo",
+                                   mod_results(nadd_jmaxvcmax_pft, 
+                                               mod = "photo_path", 
+                                               group = "exp")$mod_table,
+                                   z = coef(summary(nadd_jmaxvcmax_pft))[2,3],
+                                   p = coef(summary(nadd_jmaxvcmax_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 nadd_jmaxvcmax_myc <- data.frame(trait = "jmax_vcmax", 
-                            nut_add = "n",
-                            mod = "myc_nas",
-                            mod_results(nadd_jmaxvcmax_pft, 
-                                        mod = "myc_nas", 
-                                        group = "exp")$mod_table,
-                            z = coef(summary(nadd_jmaxvcmax_pft))[3,3],
-                            p = coef(summary(nadd_jmaxvcmax_pft))[3,4]) %>%
+                                 nut_add = "n",
+                                 mod = "myc_nas",
+                                 mod_results(nadd_jmaxvcmax_pft, 
+                                             mod = "myc_nas", 
+                                             group = "exp")$mod_table,
+                                 z = coef(summary(nadd_jmaxvcmax_pft))[3,3],
+                                 p = coef(summary(nadd_jmaxvcmax_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 nadd_jmaxvcmax_nfix <- data.frame(trait = "jmax_vcmax", 
-                             nut_add = "n",
-                             mod = "nfix",
-                             mod_results(nadd_jmaxvcmax_pft, 
-                                         mod = "n_fixer", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(nadd_jmaxvcmax_pft))[4,3],
-                             p = coef(summary(nadd_jmaxvcmax_pft))[4,4]) %>%
+                                  nut_add = "n",
+                                  mod = "nfix",
+                                  mod_results(nadd_jmaxvcmax_pft, 
+                                              mod = "n_fixer", 
+                                              group = "exp")$mod_table,
+                                  z = coef(summary(nadd_jmaxvcmax_pft))[4,3],
+                                  p = coef(summary(nadd_jmaxvcmax_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5881,48 +5881,48 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_jmaxvcmax_pft <- rma.mv(logr, 
-                        logr_var,
-                        method = "REML", 
-                        random = ~ 1 | exp, 
-                        mods = ~ photo_path + myc_nas + n_fixer,
-                        slab = exp, 
-                        control = list(stepadj = 0.3), 
-                        data = meta_results %>% 
-                          filter(nut_add == "p" & 
-                                   myvar == "jmax_vcmax" & 
-                                   !is.na(photo_path)))
+                             logr_var,
+                             method = "REML", 
+                             random = ~ 1 | exp, 
+                             mods = ~ photo_path + myc_nas + n_fixer,
+                             slab = exp, 
+                             control = list(stepadj = 0.3), 
+                             data = meta_results %>% 
+                               filter(nut_add == "p" & 
+                                        myvar == "jmax_vcmax" & 
+                                        !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 padd_jmaxvcmax_photo <- data.frame(trait = "jmax_vcmax", 
-                              nut_add = "p",
-                              mod = "photo",
-                              mod_results(padd_jmaxvcmax_pft, 
-                                          mod = "photo_path", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(padd_jmaxvcmax_pft))[2,3],
-                              p = coef(summary(padd_jmaxvcmax_pft))[2,4]) %>%
+                                   nut_add = "p",
+                                   mod = "photo",
+                                   mod_results(padd_jmaxvcmax_pft, 
+                                               mod = "photo_path", 
+                                               group = "exp")$mod_table,
+                                   z = coef(summary(padd_jmaxvcmax_pft))[2,3],
+                                   p = coef(summary(padd_jmaxvcmax_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 padd_jmaxvcmax_myc <- data.frame(trait = "jmax_vcmax", 
-                            nut_add = "p",
-                            mod = "myc_nas",
-                            mod_results(padd_jmaxvcmax_pft, 
-                                        mod = "myc_nas", 
-                                        group = "exp")$mod_table,
-                            z = coef(summary(padd_jmaxvcmax_pft))[3,3],
-                            p = coef(summary(padd_jmaxvcmax_pft))[3,4]) %>%
+                                 nut_add = "p",
+                                 mod = "myc_nas",
+                                 mod_results(padd_jmaxvcmax_pft, 
+                                             mod = "myc_nas", 
+                                             group = "exp")$mod_table,
+                                 z = coef(summary(padd_jmaxvcmax_pft))[3,3],
+                                 p = coef(summary(padd_jmaxvcmax_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 padd_jmaxvcmax_nfix <- data.frame(trait = "jmax_vcmax", 
-                             nut_add = "p",
-                             mod = "nfix",
-                             mod_results(padd_jmaxvcmax_pft, 
-                                         mod = "n_fixer", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(padd_jmaxvcmax_pft))[4,3],
-                             p = coef(summary(padd_jmaxvcmax_pft))[4,4]) %>%
+                                  nut_add = "p",
+                                  mod = "nfix",
+                                  mod_results(padd_jmaxvcmax_pft, 
+                                              mod = "n_fixer", 
+                                              group = "exp")$mod_table,
+                                  z = coef(summary(padd_jmaxvcmax_pft))[4,3],
+                                  p = coef(summary(padd_jmaxvcmax_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5943,48 +5943,48 @@ ggplot(data = meta_results %>% filter(nut_add == "np" &
 
 # Model
 npadd_jmaxvcmax_pft <- rma.mv(logr, 
-                         logr_var,
-                         method = "REML", 
-                         random = ~ 1 | exp, 
-                         mods = ~ photo_path + myc_nas + n_fixer,
-                         slab = exp, 
-                         control = list(stepadj = 0.3), 
-                         data = meta_results %>% 
-                           filter(nut_add == "np" & 
-                                    myvar == "jmax_vcmax" & 
-                                    !is.na(photo_path)))
+                              logr_var,
+                              method = "REML", 
+                              random = ~ 1 | exp, 
+                              mods = ~ photo_path + myc_nas + n_fixer,
+                              slab = exp, 
+                              control = list(stepadj = 0.3), 
+                              data = meta_results %>% 
+                                filter(nut_add == "np" & 
+                                         myvar == "jmax_vcmax" & 
+                                         !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 npadd_jmaxvcmax_photo <- data.frame(trait = "jmax_vcmax", 
-                               nut_add = "np",
-                               mod = "photo",
-                               mod_results(npadd_jmaxvcmax_pft, 
-                                           mod = "photo_path", 
-                                           group = "exp")$mod_table,
-                               z = coef(summary(npadd_jmaxvcmax_pft))[2,3],
-                               p = coef(summary(npadd_jmaxvcmax_pft))[2, 4]) %>%
+                                    nut_add = "np",
+                                    mod = "photo",
+                                    mod_results(npadd_jmaxvcmax_pft, 
+                                                mod = "photo_path", 
+                                                group = "exp")$mod_table,
+                                    z = coef(summary(npadd_jmaxvcmax_pft))[2,3],
+                                    p = coef(summary(npadd_jmaxvcmax_pft))[2, 4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 npadd_jmaxvcmax_myc <- data.frame(trait = "jmax_vcmax", 
-                             nut_add = "np",
-                             mod = "myc_nas",
-                             mod_results(npadd_jmaxvcmax_pft, 
-                                         mod = "myc_nas", 
-                                         group = "exp")$mod_table,
-                             z = coef(summary(npadd_jmaxvcmax_pft))[3,3],
-                             p = coef(summary(npadd_jmaxvcmax_pft))[3,4]) %>%
+                                  nut_add = "np",
+                                  mod = "myc_nas",
+                                  mod_results(npadd_jmaxvcmax_pft, 
+                                              mod = "myc_nas", 
+                                              group = "exp")$mod_table,
+                                  z = coef(summary(npadd_jmaxvcmax_pft))[3,3],
+                                  p = coef(summary(npadd_jmaxvcmax_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 npadd_jmaxvcmax_nfix <- data.frame(trait = "jmax_vcmax", 
-                              nut_add = "np",
-                              mod = "nfix",
-                              mod_results(npadd_jmaxvcmax_pft, 
-                                          mod = "n_fixer", 
-                                          group = "exp")$mod_table,
-                              z = coef(summary(npadd_jmaxvcmax_pft))[4,3],
-                              p = coef(summary(npadd_jmaxvcmax_pft))[4,4]) %>%
+                                   nut_add = "np",
+                                   mod = "nfix",
+                                   mod_results(npadd_jmaxvcmax_pft, 
+                                               mod = "n_fixer", 
+                                               group = "exp")$mod_table,
+                                   z = coef(summary(npadd_jmaxvcmax_pft))[4,3],
+                                   p = coef(summary(npadd_jmaxvcmax_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -5997,8 +5997,8 @@ npadd_jmaxvcmax_pft_results <- npadd_jmaxvcmax_photo %>%
 # Merge Jmax:Vcmax moderator results, with some light cleaning
 #############
 jmaxvcmax_pft_summary <- rbind(nadd_jmaxvcmax_pft_results, 
-                                  padd_jmaxvcmax_pft_results, 
-                                  npadd_jmaxvcmax_pft_results) %>%
+                               padd_jmaxvcmax_pft_results, 
+                               npadd_jmaxvcmax_pft_results) %>%
   mutate(estimate = round(estimate, digits = 3),
          across(z:upperCL, ~ round(.x, digits = 3)),
          p = as.character(ifelse(p < 0.001, "<0.001", p))) %>%
@@ -6033,35 +6033,35 @@ nadd_pnue_pft <- rma.mv(logr,
 
 # Extract photosynthetic pathway summary statistics
 nadd_pnue_photo <- data.frame(trait = "pnue", 
-                                   nut_add = "n",
-                                   mod = "photo",
-                                   mod_results(nadd_pnue_pft, 
-                                               mod = "photo_path", 
-                                               group = "exp")$mod_table,
-                                   z = coef(summary(nadd_pnue_pft))[2,3],
-                                   p = coef(summary(nadd_pnue_pft))[2,4]) %>%
+                              nut_add = "n",
+                              mod = "photo",
+                              mod_results(nadd_pnue_pft, 
+                                          mod = "photo_path", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(nadd_pnue_pft))[2,3],
+                              p = coef(summary(nadd_pnue_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 nadd_pnue_myc <- data.frame(trait = "pnue", 
-                                 nut_add = "n",
-                                 mod = "myc_nas",
-                                 mod_results(nadd_pnue_pft, 
-                                             mod = "myc_nas", 
-                                             group = "exp")$mod_table,
-                                 z = coef(summary(nadd_pnue_pft))[3,3],
-                                 p = coef(summary(nadd_pnue_pft))[3,4]) %>%
+                            nut_add = "n",
+                            mod = "myc_nas",
+                            mod_results(nadd_pnue_pft, 
+                                        mod = "myc_nas", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(nadd_pnue_pft))[3,3],
+                            p = coef(summary(nadd_pnue_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 nadd_pnue_nfix <- data.frame(trait = "pnue", 
-                                  nut_add = "n",
-                                  mod = "nfix",
-                                  mod_results(nadd_pnue_pft, 
-                                              mod = "n_fixer", 
-                                              group = "exp")$mod_table,
-                                  z = coef(summary(nadd_pnue_pft))[4,3],
-                                  p = coef(summary(nadd_pnue_pft))[4,4]) %>%
+                             nut_add = "n",
+                             mod = "nfix",
+                             mod_results(nadd_pnue_pft, 
+                                         mod = "n_fixer", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(nadd_pnue_pft))[4,3],
+                             p = coef(summary(nadd_pnue_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -6082,48 +6082,48 @@ ggplot(data = meta_results %>% filter(nut_add == "p" &
 
 # Model
 padd_pnue_pft <- rma.mv(logr, 
-                             logr_var,
-                             method = "REML", 
-                             random = ~ 1 | exp, 
-                             mods = ~ photo_path + myc_nas + n_fixer,
-                             slab = exp, 
-                             control = list(stepadj = 0.3), 
-                             data = meta_results %>% 
-                               filter(nut_add == "p" & 
-                                        myvar == "leaf_pnue" & 
-                                        !is.na(photo_path)))
+                        logr_var,
+                        method = "REML", 
+                        random = ~ 1 | exp, 
+                        mods = ~ photo_path + myc_nas + n_fixer,
+                        slab = exp, 
+                        control = list(stepadj = 0.3), 
+                        data = meta_results %>% 
+                          filter(nut_add == "p" & 
+                                   myvar == "leaf_pnue" & 
+                                   !is.na(photo_path)))
 
 # Extract photosynthetic pathway summary statistics
 padd_pnue_photo <- data.frame(trait = "pnue", 
-                                   nut_add = "p",
-                                   mod = "photo",
-                                   mod_results(padd_pnue_pft, 
-                                               mod = "photo_path", 
-                                               group = "exp")$mod_table,
-                                   z = coef(summary(padd_pnue_pft))[2,3],
-                                   p = coef(summary(padd_pnue_pft))[2,4]) %>%
+                              nut_add = "p",
+                              mod = "photo",
+                              mod_results(padd_pnue_pft, 
+                                          mod = "photo_path", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(padd_pnue_pft))[2,3],
+                              p = coef(summary(padd_pnue_pft))[2,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 padd_pnue_myc <- data.frame(trait = "pnue", 
-                                 nut_add = "p",
-                                 mod = "myc_nas",
-                                 mod_results(padd_pnue_pft, 
-                                             mod = "myc_nas", 
-                                             group = "exp")$mod_table,
-                                 z = coef(summary(padd_pnue_pft))[3,3],
-                                 p = coef(summary(padd_pnue_pft))[3,4]) %>%
+                            nut_add = "p",
+                            mod = "myc_nas",
+                            mod_results(padd_pnue_pft, 
+                                        mod = "myc_nas", 
+                                        group = "exp")$mod_table,
+                            z = coef(summary(padd_pnue_pft))[3,3],
+                            p = coef(summary(padd_pnue_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 padd_pnue_nfix <- data.frame(trait = "pnue", 
-                                  nut_add = "p",
-                                  mod = "nfix",
-                                  mod_results(padd_pnue_pft, 
-                                              mod = "n_fixer", 
-                                              group = "exp")$mod_table,
-                                  z = coef(summary(padd_pnue_pft))[4,3],
-                                  p = coef(summary(padd_pnue_pft))[4,4]) %>%
+                             nut_add = "p",
+                             mod = "nfix",
+                             mod_results(padd_pnue_pft, 
+                                         mod = "n_fixer", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(padd_pnue_pft))[4,3],
+                             p = coef(summary(padd_pnue_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -6157,35 +6157,35 @@ npadd_pnue_pft <- rma.mv(logr,
 
 # Extract photosynthetic pathway summary statistics
 npadd_pnue_photo <- data.frame(trait = "pnue", 
-                                    nut_add = "np",
-                                    mod = "photo",
-                                    mod_results(npadd_pnue_pft, 
-                                                mod = "photo_path", 
-                                                group = "exp")$mod_table,
-                                    z = coef(summary(npadd_pnue_pft))[2,3],
-                                    p = coef(summary(npadd_pnue_pft))[2, 4]) %>%
+                               nut_add = "np",
+                               mod = "photo",
+                               mod_results(npadd_pnue_pft, 
+                                           mod = "photo_path", 
+                                           group = "exp")$mod_table,
+                               z = coef(summary(npadd_pnue_pft))[2,3],
+                               p = coef(summary(npadd_pnue_pft))[2, 4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract mycorrhizal acquisition strategy summary statistics
 npadd_pnue_myc <- data.frame(trait = "pnue", 
-                                  nut_add = "np",
-                                  mod = "myc_nas",
-                                  mod_results(npadd_pnue_pft, 
-                                              mod = "myc_nas", 
-                                              group = "exp")$mod_table,
-                                  z = coef(summary(npadd_pnue_pft))[3,3],
-                                  p = coef(summary(npadd_pnue_pft))[3,4]) %>%
+                             nut_add = "np",
+                             mod = "myc_nas",
+                             mod_results(npadd_pnue_pft, 
+                                         mod = "myc_nas", 
+                                         group = "exp")$mod_table,
+                             z = coef(summary(npadd_pnue_pft))[3,3],
+                             p = coef(summary(npadd_pnue_pft))[3,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Extract N-fixation ability summary statistics
 npadd_pnue_nfix <- data.frame(trait = "pnue", 
-                                   nut_add = "np",
-                                   mod = "nfix",
-                                   mod_results(npadd_pnue_pft, 
-                                               mod = "n_fixer", 
-                                               group = "exp")$mod_table,
-                                   z = coef(summary(npadd_pnue_pft))[4,3],
-                                   p = coef(summary(npadd_pnue_pft))[4,4]) %>%
+                              nut_add = "np",
+                              mod = "nfix",
+                              mod_results(npadd_pnue_pft, 
+                                          mod = "n_fixer", 
+                                          group = "exp")$mod_table,
+                              z = coef(summary(npadd_pnue_pft))[4,3],
+                              p = coef(summary(npadd_pnue_pft))[4,4]) %>%
   dplyr::select(trait, nut_add, mod, comp = name, estimate, z, p, lowerCL, upperCL)
 
 # Merge summary statistics into single data frame
@@ -6426,8 +6426,8 @@ marea_pft_summary %>%
   mutate(ci_range = str_c("[", 
                           sprintf("%.3f", lowerCL), ", ", 
                           sprintf("%.3f", upperCL), "]")) # %>%
-  # write.csv("../table/CNPmeta_pft_moderators.csv", 
-  #           row.names = F)
+# write.csv("../table/CNPmeta_pft_moderators.csv", 
+#           row.names = F)
 
 ##############################################################################
 # Figure S16
@@ -6497,15 +6497,15 @@ nadd_nfix_plot
 
 # Mycorrhizal plot
 nadd_myc_plot <- ggplot(data = pft_mods %>% 
-                           filter(trait %in% c("marea", "nmass", "narea",
-                                               "pmass", "parea", "leaf_np") & 
-                                    nut_add == "n" & mod == "myc_nas"),
-                         aes(x = factor(trait, 
-                                        levels = c("leaf_np", "parea", "pmass", 
-                                                   "narea", "nmass", "marea")),  
-                             y = estimate, 
-                             shape = factor(comp, levels = c("Scavenging", "Mining")),
-                             fill = factor(comp, levels = c("Scavenging", "Mining")))) +
+                          filter(trait %in% c("marea", "nmass", "narea",
+                                              "pmass", "parea", "leaf_np") & 
+                                   nut_add == "n" & mod == "myc_nas"),
+                        aes(x = factor(trait, 
+                                       levels = c("leaf_np", "parea", "pmass", 
+                                                  "narea", "nmass", "marea")),  
+                            y = estimate, 
+                            shape = factor(comp, levels = c("Scavenging", "Mining")),
+                            fill = factor(comp, levels = c("Scavenging", "Mining")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -6784,15 +6784,15 @@ padd_photo_plot
 ################
 # N fixation plot
 npadd_nfix_plot <- ggplot(data = pft_mods %>% 
-                           filter(trait %in% c("marea", "nmass", "narea",
-                                               "pmass", "parea", "leaf_np") & 
-                                    nut_add == "np" & mod == "nfix"),
-                         aes(x = factor(trait, 
-                                        levels = c("leaf_np", "parea", "pmass", 
-                                                   "narea", "nmass", "marea")),  
-                             y = estimate, 
-                             shape = factor(comp, levels = c("Yes", "No")),
-                             fill = factor(comp, levels = c("Yes", "No")))) +
+                            filter(trait %in% c("marea", "nmass", "narea",
+                                                "pmass", "parea", "leaf_np") & 
+                                     nut_add == "np" & mod == "nfix"),
+                          aes(x = factor(trait, 
+                                         levels = c("leaf_np", "parea", "pmass", 
+                                                    "narea", "nmass", "marea")),  
+                              y = estimate, 
+                              shape = factor(comp, levels = c("Yes", "No")),
+                              fill = factor(comp, levels = c("Yes", "No")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -6842,15 +6842,15 @@ npadd_nfix_plot
 
 # Mycorrhizal plot
 npadd_myc_plot <- ggplot(data = pft_mods %>% 
-                          filter(trait %in% c("marea", "nmass", "narea",
-                                              "pmass", "parea", "leaf_np") & 
-                                   nut_add == "np" & mod == "myc_nas"),
-                        aes(x = factor(trait, 
-                                       levels = c("leaf_np", "parea", "pmass", 
-                                                  "narea", "nmass", "marea")),  
-                            y = estimate, 
-                            shape = factor(comp, levels = c("Scavenging", "Mining")),
-                            fill = factor(comp, levels = c("Scavenging", "Mining")))) +
+                           filter(trait %in% c("marea", "nmass", "narea",
+                                               "pmass", "parea", "leaf_np") & 
+                                    nut_add == "np" & mod == "myc_nas"),
+                         aes(x = factor(trait, 
+                                        levels = c("leaf_np", "parea", "pmass", 
+                                                   "narea", "nmass", "marea")),  
+                             y = estimate, 
+                             shape = factor(comp, levels = c("Scavenging", "Mining")),
+                             fill = factor(comp, levels = c("Scavenging", "Mining")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -6897,15 +6897,15 @@ npadd_myc_plot
 
 # Photo plot
 npadd_photo_plot <- ggplot(data = pft_mods %>% 
-                            filter(trait %in% c("marea", "nmass", "narea",
-                                                "pmass", "parea", "leaf_np") & 
-                                     nut_add == "np" & mod == "photo"),
-                          aes(x = factor(trait, 
-                                         levels = c("leaf_np", "parea", "pmass", 
-                                                    "narea", "nmass", "marea")), 
-                              y = estimate, 
-                              shape = factor(comp, levels = c("C3", "C4")),
-                              fill = factor(comp, levels = c("C3", "C4")))) +
+                             filter(trait %in% c("marea", "nmass", "narea",
+                                                 "pmass", "parea", "leaf_np") & 
+                                      nut_add == "np" & mod == "photo"),
+                           aes(x = factor(trait, 
+                                          levels = c("leaf_np", "parea", "pmass", 
+                                                     "narea", "nmass", "marea")), 
+                               y = estimate, 
+                               shape = factor(comp, levels = c("C3", "C4")),
+                               fill = factor(comp, levels = c("C3", "C4")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -6980,15 +6980,15 @@ dev.off()
 
 # N fixation plot
 nadd_phys_nfix_plot <- ggplot(data = pft_mods %>% 
-                           filter(trait %in% c("ppue", "pnue", "jmax", 
-                                               "vcmax", "rd", "asat") & 
-                                    nut_add == "n" & mod == "nfix"),
-                         aes(x = factor(trait, 
-                                          levels = c("ppue", "pnue", "jmax", 
-                                                   "vcmax", "rd", "asat")),  
-                             y = estimate, 
-                             shape = factor(comp, levels = c("Yes", "No")),
-                             fill = factor(comp, levels = c("Yes", "No")))) +
+                                filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                    "vcmax", "rd", "asat") & 
+                                         nut_add == "n" & mod == "nfix"),
+                              aes(x = factor(trait, 
+                                             levels = c("ppue", "pnue", "jmax", 
+                                                        "vcmax", "rd", "asat")),  
+                                  y = estimate, 
+                                  shape = factor(comp, levels = c("Yes", "No")),
+                                  fill = factor(comp, levels = c("Yes", "No")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -7037,15 +7037,15 @@ nadd_phys_nfix_plot
 
 # Mycorrhizal plot
 nadd_phys_myc_plot <- ggplot(data = pft_mods %>% 
-                          filter(trait %in% c("ppue", "pnue", "jmax", 
-                                              "vcmax", "rd", "asat") & 
-                                   nut_add == "n" & mod == "myc_nas"),
-                        aes(x = factor(trait, 
-                                       levels = c("ppue", "pnue", "jmax", 
-                                                  "vcmax", "rd", "asat")),  
-                            y = estimate, 
-                            shape = factor(comp, levels = c("Scavenging", "Mining")),
-                            fill = factor(comp, levels = c("Scavenging", "Mining")))) +
+                               filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                   "vcmax", "rd", "asat") & 
+                                        nut_add == "n" & mod == "myc_nas"),
+                             aes(x = factor(trait, 
+                                            levels = c("ppue", "pnue", "jmax", 
+                                                       "vcmax", "rd", "asat")),  
+                                 y = estimate, 
+                                 shape = factor(comp, levels = c("Scavenging", "Mining")),
+                                 fill = factor(comp, levels = c("Scavenging", "Mining")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -7092,15 +7092,15 @@ nadd_phys_myc_plot
 
 # Photo plot
 nadd_phys_photo_plot <- ggplot(data = pft_mods %>% 
-                            filter(trait %in% c("ppue", "pnue", "jmax", 
-                                                "vcmax", "rd", "asat") & 
-                                     nut_add == "n" & mod == "photo"),
-                          aes(x = factor(trait, 
-                                         levels = c("ppue", "pnue", "jmax", 
-                                                    "vcmax", "rd", "asat")), 
-                              y = estimate, 
-                              shape = factor(comp, levels = c("C3", "C4")),
-                              fill = factor(comp, levels = c("C3", "C4")))) +
+                                 filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                     "vcmax", "rd", "asat") & 
+                                          nut_add == "n" & mod == "photo"),
+                               aes(x = factor(trait, 
+                                              levels = c("ppue", "pnue", "jmax", 
+                                                         "vcmax", "rd", "asat")), 
+                                   y = estimate, 
+                                   shape = factor(comp, levels = c("C3", "C4")),
+                                   fill = factor(comp, levels = c("C3", "C4")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -7153,15 +7153,15 @@ nadd_phys_photo_plot
 
 # N fixation plot
 padd_phys_nfix_plot <- ggplot(data = pft_mods %>% 
-                           filter(trait %in% c("ppue", "pnue", "jmax", 
-                                               "vcmax", "rd", "asat") & 
-                                    nut_add == "p" & mod == "nfix"),
-                         aes(x = factor(trait, 
-                                        levels = c("ppue", "pnue", "jmax", 
-                                                   "vcmax", "rd", "asat")),  
-                             y = estimate, 
-                             shape = factor(comp, levels = c("Yes", "No")),
-                             fill = factor(comp, levels = c("Yes", "No")))) +
+                                filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                    "vcmax", "rd", "asat") & 
+                                         nut_add == "p" & mod == "nfix"),
+                              aes(x = factor(trait, 
+                                             levels = c("ppue", "pnue", "jmax", 
+                                                        "vcmax", "rd", "asat")),  
+                                  y = estimate, 
+                                  shape = factor(comp, levels = c("Yes", "No")),
+                                  fill = factor(comp, levels = c("Yes", "No")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -7211,15 +7211,15 @@ padd_phys_nfix_plot
 
 # Mycorrhizal plot
 padd_phys_myc_plot <- ggplot(data = pft_mods %>% 
-                          filter(trait %in% c("ppue", "pnue", "jmax", 
-                                              "vcmax", "rd", "asat") & 
-                                   nut_add == "p" & mod == "myc_nas"),
-                        aes(x = factor(trait, 
-                                       levels = c("ppue", "pnue", "jmax", 
-                                                  "vcmax", "rd", "asat")),  
-                            y = estimate, 
-                            shape = factor(comp, levels = c("Scavenging", "Mining")),
-                            fill = factor(comp, levels = c("Scavenging", "Mining")))) +
+                               filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                   "vcmax", "rd", "asat") & 
+                                        nut_add == "p" & mod == "myc_nas"),
+                             aes(x = factor(trait, 
+                                            levels = c("ppue", "pnue", "jmax", 
+                                                       "vcmax", "rd", "asat")),  
+                                 y = estimate, 
+                                 shape = factor(comp, levels = c("Scavenging", "Mining")),
+                                 fill = factor(comp, levels = c("Scavenging", "Mining")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -7326,15 +7326,15 @@ padd_phys_photo_plot
 ################
 # N fixation plot
 npadd_phys_nfix_plot <- ggplot(data = pft_mods %>% 
-                            filter(trait %in% c("ppue", "pnue", "jmax", 
-                                                "vcmax", "rd", "asat") & 
-                                     nut_add == "np" & mod == "nfix"),
-                          aes(x = factor(trait, 
-                                         levels = c("ppue", "pnue", "jmax", 
-                                                    "vcmax", "rd", "asat")),  
-                              y = estimate, 
-                              shape = factor(comp, levels = c("Yes", "No")),
-                              fill = factor(comp, levels = c("Yes", "No")))) +
+                                 filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                     "vcmax", "rd", "asat") & 
+                                          nut_add == "np" & mod == "nfix"),
+                               aes(x = factor(trait, 
+                                              levels = c("ppue", "pnue", "jmax", 
+                                                         "vcmax", "rd", "asat")),  
+                                   y = estimate, 
+                                   shape = factor(comp, levels = c("Yes", "No")),
+                                   fill = factor(comp, levels = c("Yes", "No")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -7384,15 +7384,15 @@ npadd_phys_nfix_plot
 
 # Mycorrhizal plot
 npadd_phys_myc_plot <- ggplot(data = pft_mods %>% 
-                           filter(trait %in% c("ppue", "pnue", "jmax", 
-                                               "vcmax", "rd", "asat") & 
-                                    nut_add == "np" & mod == "myc_nas"),
-                         aes(x = factor(trait, 
-                                        levels = c("ppue", "pnue", "jmax", 
-                                                   "vcmax", "rd", "asat")),  
-                             y = estimate, 
-                             shape = factor(comp, levels = c("Scavenging", "Mining")),
-                             fill = factor(comp, levels = c("Scavenging", "Mining")))) +
+                                filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                    "vcmax", "rd", "asat") & 
+                                         nut_add == "np" & mod == "myc_nas"),
+                              aes(x = factor(trait, 
+                                             levels = c("ppue", "pnue", "jmax", 
+                                                        "vcmax", "rd", "asat")),  
+                                  y = estimate, 
+                                  shape = factor(comp, levels = c("Scavenging", "Mining")),
+                                  fill = factor(comp, levels = c("Scavenging", "Mining")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
@@ -7439,15 +7439,15 @@ npadd_phys_myc_plot
 
 # Photo plot
 npadd_phys_photo_plot <- ggplot(data = pft_mods %>% 
-                             filter(trait %in% c("ppue", "pnue", "jmax", 
-                                                 "vcmax", "rd", "asat") & 
-                                      nut_add == "np" & mod == "photo"),
-                           aes(x = factor(trait, 
-                                          levels = c("ppue", "pnue", "jmax", 
-                                                     "vcmax", "rd", "asat")), 
-                               y = estimate, 
-                               shape = factor(comp, levels = c("C3", "C4")),
-                               fill = factor(comp, levels = c("C3", "C4")))) +
+                                  filter(trait %in% c("ppue", "pnue", "jmax", 
+                                                      "vcmax", "rd", "asat") & 
+                                           nut_add == "np" & mod == "photo"),
+                                aes(x = factor(trait, 
+                                               levels = c("ppue", "pnue", "jmax", 
+                                                          "vcmax", "rd", "asat")), 
+                                    y = estimate, 
+                                    shape = factor(comp, levels = c("C3", "C4")),
+                                    fill = factor(comp, levels = c("C3", "C4")))) +
   geom_rect(aes(xmin = 0.5, xmax = 1.5, ymin = -Inf, ymax = Inf),
             fill = "lightgrey", alpha = 0.3) +
   geom_rect(aes(xmin = 2.5, xmax = 3.5, ymin = -Inf, ymax = Inf),
